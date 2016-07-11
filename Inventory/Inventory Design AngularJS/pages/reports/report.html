@@ -1,0 +1,1206 @@
+﻿<div class="  " ng-controller="reportDetailsController">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="margin-left:0px;">
+        <!-- Content Header (Page header) -->
+        <section class="content-header" style="margin-bottom:5px">
+            <h1>
+                Reports
+                <small>Control panel</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Reports</li>
+            </ol>
+        </section>
+
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="row">
+
+                <div class="col-lg-12">
+
+                    <div class="box box-primary">
+                        <div class="box box-solid">
+
+                        </div>
+                    </div>
+
+                    <div class="panel panel-primary" style="padding:0px;margin-bottom:110px">
+                        <div class="text-center panel-heading col-lg-12 panel-body">
+                            <div style="padding:4px 1px">
+                                <!--Duration-->
+                                Reports
+                            </div>
+
+                        </div>
+                       
+                        <div class="panel-body " style="padding: 0px">
+                            <!-- duration code -->
+                            <!--<table class="table  table-bordered table-sortable" id="tab_logic">
+
+                                <tbody>
+                                    <tr>
+                                        <td class="form-group">
+                                            <div class="form-group form-group-sm">
+                                                <div class="pull-left col-sm-3 " style="padding:4px 2px">Duration:</div>
+                                                <div class="col-sm-9" style="padding-left:5px">
+                                                    <select class="form-control input-sm" ng-model="selectDuration" ng-change="showhide()">
+                                                        <option value="">Select Duration</option>
+                                                        <option value="Today">Today</option>
+                                                        <option value="LastWeek">Last Week</option>
+                                                        <option value="Last15Day">Last 15 Days</option>
+                                                        <option value="LastMonths">Last Months</option>
+                                                        <option value="Last3Months">Last 3 Months</option>
+                                                        <option value="Last6Months">Last 6 Months</option>
+                                                        <option value="LastYear">Last Year</option>
+                                                    </select>
+                                                </div>
+
+
+                                            </div>
+                                        </td>
+                                        <td data-name="mail">
+                                            <div class="form-group form-group-sm">
+                                                <div class="pull-left col-sm-3 " style="padding:4px 1px">Start Date:</div>
+                                               
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="datetime" ng-model="startDatesss" placeholder="Select Date">
+
+                                                    <!--<input class="form-control" type="date" ng-model="startDates" placeholder="Select Date" ng-hide="strartdatePic">
+
+                                                    <input class="form-control" type="text" ng-model="txtStartDates" ng-hide="strartDatehide" value="{{startDatesss | datetime:'MMM-yyyy'}}" />-->
+                            <!--</div>
+
+                                            </div>
+                                        </td>
+
+                                        <td data-name="sel">
+                                            <div class="form-group form-group-sm">
+                                                <div class="pull-left col-sm-3 " style="padding:4px 1px">End Date:</div>
+
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="datetime" ng-model="endDatesss">-->
+                            <!--<input class="form-control" type="date" ng-model="endDate" ng-hide="enddatePic">
+                            <input class="form-control" type="text" ng-model="txtEndDate" ng-hide="endDatehide" ng-click="textDate()" />-->
+                            <!--</div>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="col-sm-12">
+                                                <a class="pull-left btn btn-default btn-sm"><i class="glyphicon glyphicon-print" style="font-size:13pt"></i></a>
+                                                &nbsp;&nbsp;
+                                                <a class=" btn btn-default btn-sm"><i class="glyphicon glyphicon-download-alt" style="font-size:13pt"></i></a>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>-->
+                            <!--end duration code -->
+
+                            <div class="panel panel-info">
+                                <div class="panel-heading panel-body" style="padding:5px">
+
+
+                                </div>
+
+
+
+
+                                <section class="content">
+
+                                    <div class="row">
+
+                                        <div class="col-md-4">
+                                            <div class="box box-solid">
+                                                <div class="box-header with-border">
+                                                    <h4 class="box-title">Sales</h4>
+                                                </div>
+
+                                                <!-- the events -->
+                                                <!-- the table  eventsstart 0000000    0000000000 -->
+                                                <!--<table class="table tab-pane">
+
+                                                    <tr>
+                                                        <th style="width: 10px">1:<a href="" data-toggle="modal" data-target="#dailySalesRegwModal" ng-click="DailySalesReg()"> Daily Sales Register</a></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="width: 10px">2:<a href="" data-toggle="modal" data-target="#dayEndReportModal" ng-click="DayEndReport()"> Day End Report</a></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="width: 10px">3:<a href="" data-toggle="modal" data-target="#displaycustomer_item"> Customer and Item Wise Sale</a></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="width: 10px">4:<a href="" data-toggle="modal" data-target="#dailyPrifitLossModal"> Daily Profit and Loss</a></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="width: 10px">5:<a href="" data-toggle="modal" data-target="#monthlyPrifitLossModal"> Monthly Profit and Loss</a></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="width: 10px">6:<a> Expense</a></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="width: 10px">6:<a href="" data-toggle="modal" data-target="#customerWiseSaleModal"> Customer Wise Sales</a></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="width: 10px">7:<a href="" data-toggle="modal" data-target="#supplierWiseSaleModal"> Supplier Wise Sales</a></th>
+                                                    </tr>
+
+                                                </table>-->
+
+                                                <table class="table tab-pane">
+
+                                                    <tr>
+                                                        <th style="width: 10px">1:<a href="/#/dailySalesRegister"> Daily Sales Register</a></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="width: 10px">2:<a href="/#/dayEndReport"> Day End Report</a></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="width: 10px">3:<a href="/#/customerItemWiseSale"> Customer and Item Wise Sale</a></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="width: 10px">4:<a href="/#/dailyProfitAndLoss"> Daily Profit and Loss</a></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="width: 10px">5:<a href="/#/monthlyProfitAndLoss"> Monthly Profit and Loss</a></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="width: 10px">6:<a href="/#/expenseReport"> Expense</a></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="width: 10px">7:<a href="/#/customerWiseSale"> Customer Wise Sales</a></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th style="width: 10px">8:<a href="/#/supplierWiseSale"> Supplier Wise Sales</a></th>
+                                                    </tr>
+
+                                                </table>
+                                                <!--table coding end----->
+
+                                            </div><!-- /. box -->
+
+                                        </div><!-- /.col -->
+
+
+                                        <div class="col-md-4">
+                                            <div class="box box-solid">
+                                                <div class="box-header with-border">
+                                                    <h4 class="box-title">Stock</h4>
+                                                </div>
+
+                                                <table class="table tab-pane">
+
+                                                    <tr>
+                                                        <th style="width: 10px">1:<a href="/#/stockReconciliation"> Stock Reconciliation</a></th>
+                                                    </tr>
+
+                                                </table>
+                                                <!--table coding end----->
+
+                                            </div><!-- /. box -->
+
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="box box-solid">
+                                                <div class="box-header with-border">
+                                                    <h4 class="box-title">Tax</h4>
+                                                </div>
+
+                                                <table class="table tab-pane">
+
+                                                    <tr>
+                                                        <th style="width: 10px">1: <a href="/#/vat_report"> VAT</a></th>
+                                                    </tr>
+
+                                                </table>
+                                                <!--table coding end----->
+
+                                            </div><!-- /. box -->
+
+                                        </div>
+
+                                        <!--Modal-->
+                                        <!--Daily Sale Register Report modal-->
+                                        <div class="modal fade" id="dailySalesRegwModal" role="dialog">
+                                            <div class="modal-dialog modal-lg">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header center">
+                                                        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                                                        <h3 class="modal-title" style="padding-left:350px;">
+
+                                                            Daily Sales Report
+
+                                                            <a class="btn btn-primary pull-right" data-toggle="offcanvas" role="button" style="width:100px; padding-top:10px;" ng-print print-element-id="printThisElement" data-dismiss="modal" ng-hide="PrintBtn" ng-click="ShowMaindiv()"><i class="fa fa-print"></i> Print</a>
+                                                        </h3>
+                                                    </div>
+                                                    <br />
+                                                    <div class="col-md-4">
+                                                        <span><b>Start Date:&nbsp; {{startDate | date:'dd/MM/yyyy'}}&nbsp;&nbsp; 6.00 AM</b></span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <span><b>End Date:&nbsp; {{endDate | date:'dd/MM/yyyy'}}&nbsp;&nbsp;5.59 AM</b></span>
+                                                    </div>
+                                                    <br />
+
+                                                    <div class="col-sm-12">
+                                                        <table class="table table-bordered" style="border-bottom-color:black;">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Date</th>
+                                                                    <th>Inv.No</th>
+                                                                    <th>Customer Name</th>
+                                                                    <th>Net 5%(Rs)</th>
+                                                                    <th>VAT 5%(Rs)</th>
+                                                                    <th>Net 12.5%(Rs)</th>
+                                                                    <th>VAT 12.5%(Rs)</th>
+                                                                    <th>Exempt(Rs)</th>
+                                                                    <th>Other (Rs)</th>
+                                                                    <th>Total (Rs)</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="data in getData">
+                                                                    <td>{{data.InvoiceDate | date:'dd-MM-yyyy'}}</td>
+                                                                    <td>{{data.Id}}</td>
+                                                                    <td>{{data.CustomerName}}</td>
+                                                                    <td>{{}}</td>
+                                                                    <td>{{}}</td>
+                                                                    <td>{{}}</td>
+                                                                    <td>{{}}</td>
+                                                                    <td>{{}}</td>
+                                                                    <td>{{}}</td>
+                                                                    <td>{{data.NetAmount}}</td>
+
+
+                                                                </tr>
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <td>Total:</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td>{{}}</td>
+                                                                    <td>{{}}</td>
+                                                                    <td>{{}}</td>
+                                                                    <td>{{}}</td>
+                                                                    <td>{{}}</td>
+                                                                    <td>{{}}</td>
+                                                                    <td>{{GrandTotal}}</td>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <!--Day End Report modal-->
+                                        <div class="modal fade" id="dayEndReportModal" role="dialog">
+                                            <div class="modal-dialog modal-lg">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header center">
+                                                        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                                                        <h4 class="modal-title" style="padding-left:350px;">
+
+                                                            <b>Day End Sales Report</b>
+
+                                                            <a class="btn btn-primary pull-right" data-toggle="offcanvas" role="button" style="width:100px; padding-top:10px;" ng-print print-element-id="printThisElement" data-dismiss="modal" ng-hide="PrintBtn" ng-click="dayEndPrint(dayEndReportModal)"><i class="fa fa-print"></i> Print</a>
+                                                        </h4>
+                                                    </div>
+                                                    <br />
+                                                    <div class="col-md-2">
+                                                        <!--<span><b>Day:&nbsp; {{currentday}}</b></span>-->
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <span><b>Start Date:&nbsp; {{startDate | date:'dd/MM/yyyy'}}&nbsp;&nbsp; 6.00 AM</b></span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <span><b>End Date:&nbsp; {{endDate | date:'dd/MM/yyyy'}}&nbsp;&nbsp;5.59 AM</b></span>
+                                                    </div>
+                                                    <br />
+                                                    <br />
+                                                    <div>
+                                                        <h4 class="modal-title" style="padding-left:350px;">
+                                                            <!--<b> Daily Sale and Payment</b>-->
+                                                        </h4>
+                                                    </div>
+                                                    <br />
+                                                    <div class="col-sm-12">
+                                                        <table class="table table-bordered" style="border-bottom-color:black;">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Bill No</th>
+                                                                    <th>Total Sale</th>
+                                                                    <th>Cr/De Card</th>
+                                                                    <th>Cheque</th>
+                                                                    <th>Cash</th>
+                                                                    <th>Credit Sale</th>
+                                                                    <th>Discount</th>
+                                                                    <th>Sales Return</th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="data in array">
+                                                                    <td>{{data.billno}}</td>
+                                                                    <td>{{data.totalsale}}</td>
+                                                                    <td>{{data.debit}}</td>
+                                                                    <td>{{data.cheque}}</td>
+                                                                    <td>{{data.cash}}</td>
+                                                                    <td>{{data.credit}}</td>
+                                                                    <td>{{data.discount}}</td>
+                                                                    <td>{{data.salesReturn}}</td>
+
+
+                                                                </tr>
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <td>Total:</td>
+
+                                                                    <td>{{GrandTotal}}</td>
+                                                                    <td>{{txtdebitTotal}}</td>
+                                                                    <td>{{txtchequeTotals}}</td>
+                                                                    <td>{{txtcashTotal}}</td>
+                                                                    <td>{{txtcreditTotal}}</td>
+                                                                    <td>{{txtdiscount}}</td>
+                                                                    <td>{{txtsalesReturn}}</td>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <!--<button type="button" class="btn btn-default" data-dismiss="modal" ng-hide="closebtn">Close</button>-->
+                                                    </div>
+                                                </div>
+
+                                            </div> 
+                                        </div>
+
+                                        <!--Customer & Item wise modal-->
+                                        <div class="modal fade" id="displaycustomer_item" role="dialog">
+                                            <div class="modal-dialog" ng-hide="maindiv">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                       
+                                                    </div>
+                                                    <div class="modal-header center ">
+                                                        
+                                                        <div class="panel panel-primary  col-lg-12">
+                                                            <div class="panel-heading text-left">
+                                                                <h4 class="modal-title">
+
+                                                                    <b>Customer and Item Wise Sale</b>
+
+                                                                </h4>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+
+                                                    <br />
+                                                   
+                                                    <div class="col-sm-10">
+
+                                                        <div class="form-group">
+                                                            <label for="inputEmail3" class="col-sm-4 control-label">Item Name:</label>
+
+                                                            <div class="col-sm-8">
+                                                                <select class="form-control" ng-model="itemId">
+                                                                    <option value="">Select Item Name</option>
+                                                                    <option ng-repeat="item in getItems" value="{{item.Id}}">{{item.ItemName}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <br />
+                                                        <br />
+
+                                                        <div class="form-group">
+                                                            <label for="inputEmail3" class="col-sm-4 control-label"> Customer Name:</label>
+
+                                                            <div class="col-sm-8">
+                                                                <select class="form-control" ng-model="custId">
+                                                                    <option value="">Select Customer Name</option>
+                                                                    <option ng-repeat="cust in getCustomers" value="{{cust.Id}}">{{cust.Name}}</option>
+                                                                </select>
+                                                            </div>
+                                                            <br />
+                                                        </div>
+                                                        <br />
+                                                        
+                                                      
+                                                        <div class="row" style="margin-top:5px">
+                                                            <div class="col-lg-12 text-center">
+                                                                <button type="button" class="btn btn-info" ng-click="ShowCustItemReport()">Show Report</button>
+                                                            </div>
+                                                            
+                                                        </div>
+
+                                                    </div>
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!--new div-->
+                                            <div class="modal-dialog modal-lg" ng-hide="Printdiv" >
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header center">
+                                                        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                                                        <h4 class="modal-title" style="padding-left:350px;">
+
+                                                            <b>Customer and Item Wise Sales Report</b>
+
+                                                            <a class="btn btn-primary pull-right" data-toggle="offcanvas" role="button" style="width:100px; padding-top:10px;" ng-print print-element-id="printThisElement" ng-hide="PrintBtn" ng-click="CustomerItemWisePrint()"><i class="fa fa-print"></i> Print</a>
+                                                        </h4>
+                                                    </div>
+                                                  
+                                                    <div class="col-md-10">
+                                                        <div class="col-md-4">
+                                                            <span><b>Customer Name:&nbsp; {{cust_name}}&nbsp;&nbsp;</b></span>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <span><b>Item Name:&nbsp; {{item_name}}&nbsp;&nbsp;</b></span>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    <br />
+                                                    <div class="col-md-10">
+                                                        <div class="col-md-4">
+                                                            <span><b>Start Date:&nbsp; {{startDatesss | date:'dd/MM/yyyy'}}&nbsp;&nbsp; 6.00 AM</b></span>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <span><b>End Date:&nbsp; {{endDatesss | date:'dd/MM/yyyy'}}&nbsp;&nbsp;5.59 AM</b></span>
+                                                        </div>
+
+                                                    </div>
+
+                                                        <div>
+                                                            <!--<h4 class="modal-title" style="padding-left:350px;">
+                                                        <b> Customer and Item Wise Sales Report</b>
+                                                    </h4>-->                
+                                                        </div>
+                                                        <br />
+                                                        <div class="col-sm-12">
+                                                            <table class="table table-bordered" style="border-bottom-color:black;">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Date</th>
+                                                                        <th>Total Sale Amount(Rs)</th>
+                                                                        
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>{{stdate | date:'dd-MM-yyyy'}}&nbsp;&nbsp;To&nbsp;&nbsp;{{eddate | date:'dd-MM-yyyy'}}</td>
+                                                                        <td>{{getTotal}}</td>
+
+
+
+                                                                    </tr>
+                                                                </tbody>
+                                                                
+                                                            </table>
+
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+
+                                            </div>
+
+                                           
+                                        </div>
+
+                                        <!--Daily Profit And Loss modal-->
+                                        <div class="modal fade" id="dailyPrifitLossModal" role="dialog">
+                                            <div class="modal-dialog modal-lg">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header center">
+                                                        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                                                        <h4 class="modal-title" style="padding-left:350px;">
+
+                                                            <b>DAILY PROFIT LOSS REPORT</b>
+
+                                                            <a class="btn btn-primary pull-right" data-toggle="offcanvas" role="button" style="width:100px; padding-top:10px;" ng-print print-element-id="printThisElement" data-dismiss="modal" ng-hide="PrintBtn" ng-click="dayEndPrint(dayEndReportModal)"><i class="fa fa-print"></i> Print</a>
+                                                        </h4>
+                                                    </div>
+                                                    <br />
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-6"><b>Gross profit = Sales price – Price of cost of goods sold</b></div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-6"><b>Net Profit = Gross Profit – Expenses</b></div>
+                                                        <br />
+                                                        <br />
+                                                    </div>
+                                                   
+                                                        <div class="col-md-4">
+                                                            <span><b>Start Date:&nbsp; {{startDatesss | date:'dd/MM/yyyy'}}&nbsp;&nbsp; 6.00 AM</b></span>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <span><b>End Date:&nbsp; {{endDatesss | date:'dd/MM/yyyy'}}&nbsp;&nbsp;5.59 AM</b></span>
+                                                        </div>
+                                                    <div class="col-md-4"></div>
+                                                    <div class="col-md-4"></div>
+                                                    <br />
+                                                    <br />
+                                                    <div>
+                                                        <h4 class="modal-title" style="padding-left:350px;">
+                                                            <!--<b> Daily Sale and Payment</b>-->
+                                                        </h4>
+                                                    </div>
+                                                    <br />
+                                                    <div class="col-sm-12">
+                                                        <table class="table table-bordered" style="border-bottom-color:black;">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Date</th>
+                                                                    <th>Purchase Value(Rs)</th>
+                                                                    <th>Sales Value(Rs)</th>
+                                                                    <th>Gross Profit(Rs)</th>
+                                                                    <th>Expenses (Rs)</th>
+                                                                    <th>Net Profit (Rs)</th>
+                                                                    
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="data in array">
+                                                                    <td>{{data.billno}}</td>
+                                                                    <td>{{data.totalsale}}</td>
+                                                                    <td>{{data.debit}}</td>
+                                                                    <td>{{data.cheque}}</td>
+                                                                    <td>{{data.cash}}</td>
+                                                                    <td>{{data.credit}}</td>
+                                                                    
+
+
+                                                                </tr>
+                                                            </tbody>
+                                                            
+                                                        </table>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <!--<button type="button" class="btn btn-default" data-dismiss="modal" ng-hide="closebtn">Close</button>-->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <!--Monthly Profit And Loss modal-->
+                                        <div class="modal fade" id="monthlyPrifitLossModal" role="dialog">
+                                            <div class="modal-dialog modal-lg">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header center">
+                                                        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                                                        <h4 class="modal-title" style="padding-left:350px;">
+
+                                                            <b>MONTHLY PROFIT LOSS REPORT</b>
+
+                                                            <a class="btn btn-primary pull-right" data-toggle="offcanvas" role="button" style="width:100px; padding-top:10px;" ng-print print-element-id="printThisElement" data-dismiss="modal" ng-hide="PrintBtn" ng-click="dayEndPrint(dayEndReportModal)"><i class="fa fa-print"></i> Print</a>
+                                                        </h4>
+                                                    </div>
+                                                    <br />
+                                                    <div class="col-md-4">
+                                                        <span><b>Start Date:&nbsp; {{startDate | date:'dd/MM/yyyy'}}&nbsp;&nbsp; 6.00 AM</b></span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <span><b>End Date:&nbsp; {{endDate | date:'dd/MM/yyyy'}}&nbsp;&nbsp;5.59 AM</b></span>
+                                                    </div>
+                                                    <div class="col-md-4"></div>
+                                                    <div class="col-md-4"></div>
+                                                    <br />
+                                                    <br />
+                                                    <div>
+                                                        <h4 class="modal-title" style="padding-left:350px;">
+                                                            <!--<b> Daily Sale and Payment</b>-->
+                                                        </h4>
+                                                    </div>
+                                                    <br />
+                                                    <div class="col-sm-12">
+                                                        <table class="table table-bordered" style="border-bottom-color:black;">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Date</th>
+                                                                    <th>Purchase Value(Rs)</th>
+                                                                    <th>Sales Value(Rs)</th>
+                                                                    <th>Gross Profit(Rs)</th>
+                                                                    <th>Expenses (Rs)</th>
+                                                                    <th>Net Profit (Rs)</th>
+
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="data in array">
+                                                                    <td>{{data.billno}}</td>
+                                                                    <td>{{data.totalsale}}</td>
+                                                                    <td>{{data.debit}}</td>
+                                                                    <td>{{data.cheque}}</td>
+                                                                    <td>{{data.cash}}</td>
+                                                                    <td>{{data.credit}}</td>
+
+
+
+                                                                </tr>
+                                                            </tbody>
+
+                                                        </table>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <!--<button type="button" class="btn btn-default" data-dismiss="modal" ng-hide="closebtn">Close</button>-->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <!--Customer wise sale modal-->
+                                        <div class="modal fade" id="customerWiseSaleModal" role="dialog">
+
+                                            <div class="modal-dialog" ng-hide="custWisediv">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                                    </div>
+                                                    <div class="modal-header center ">
+
+                                                        <div class="panel panel-primary  col-lg-12">
+                                                            <div class="panel-heading text-left">
+                                                                <h4 class="modal-title">
+
+                                                                    <b>Customer Wise Sale</b>
+
+                                                                </h4>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+
+                                                    <br />
+                                                    <div class="col-sm-10">
+
+                                                        <div class="form-group">
+                                                            <label for="inputEmail3" class="col-sm-4 control-label"> Customer Name:</label>
+
+                                                            <div class="col-sm-8">
+                                                                <select class="form-control">
+                                                                    <option ng-repeat="item in getCustomers" value="{{item.Id}}">{{item.Name}}</option>
+                                                                </select>
+                                                            </div>
+                                                            <br />
+                                                        </div>
+                                                        <br />
+
+
+                                                        <div class="row" style="margin-top:5px">
+                                                            <div class="col-lg-12 text-center">
+                                                                <button type="button" class="btn btn-info" ng-click="showCustomerwiseSale()">Show Report</button>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <!--Print div-->
+                                            <div class="modal-dialog modal-lg" ng-hide="custwisePrintDiv">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header center">
+                                                        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                                                        <h4 class="modal-title" style="padding-left:350px;">
+
+                                                            <b>CUSTOMER WISE SALE REPORT</b>
+
+                                                            <a class="btn btn-primary pull-right" data-toggle="offcanvas" role="button" style="width:100px; padding-top:10px;" ng-print print-element-id="printThisElement" data-dismiss="modal" ng-hide="PrintBtn" ng-click="dayEndPrint(dayEndReportModal)"><i class="fa fa-print"></i> Print</a>
+                                                        </h4>
+                                                    </div>
+                                                    <br />
+                                                    <div class="col-md-12">
+                                                        <span><b>Customer Name:&nbsp; {{customerNmae}}</b></span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <span><b>Start Date:&nbsp; {{startDate | date:'dd/MM/yyyy'}}&nbsp;&nbsp; 6.00 AM</b></span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <span><b>End Date:&nbsp; {{endDate | date:'dd/MM/yyyy'}}&nbsp;&nbsp;5.59 AM</b></span>
+                                                    </div>
+                                                    <div class="col-md-4"></div>
+                                                    <div class="col-md-4"></div>
+                                                    <br />
+                                                    <br />
+                                                    <div>
+                                                        <h4 class="modal-title" style="padding-left:350px;">
+                                                            <!--<b> Daily Sale and Payment</b>-->
+                                                        </h4>
+                                                    </div>
+                                                    <br />
+                                                    <div class="col-sm-12">
+                                                        <table class="table table-bordered" style="border-bottom-color:black;">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Date</th>
+                                                                    <th>Item Name</th>
+                                                                    <th>Quantity</th>
+                                                                    <th>Rate</th>
+                                                                    <th>Amount</th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="data in array">
+                                                                    <td>{{data.billno}}</td>
+                                                                    <td>{{data.totalsale}}</td>
+                                                                    <td>{{data.debit}}</td>
+                                                                    <td>{{data.cheque}}</td>
+                                                                    <td>{{data.cash}}</td>
+
+                                                                </tr>
+                                                            </tbody>
+
+                                                        </table>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <!--<button type="button" class="btn btn-default" data-dismiss="modal" ng-hide="closebtn">Close</button>-->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <!--Supplier wise sale modal-->
+                                        <div class="modal fade" id="supplierWiseSaleModal" role="dialog">
+
+                                            <div class="modal-dialog" ng-hide="SupplierWisediv">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                                    </div>
+                                                    <div class="modal-header center ">
+
+                                                        <div class="panel panel-primary  col-lg-12">
+                                                            <div class="panel-heading text-left">
+                                                                <h4 class="modal-title">
+
+                                                                    <b>Customer Wise Sale</b>
+
+                                                                </h4>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+
+                                                    <br />
+                                                    <div class="col-sm-10">
+
+                                                        <div class="form-group">
+                                                            <label for="inputEmail3" class="col-sm-4 control-label"> Supplier Name:</label>
+
+                                                            <div class="col-sm-8">
+                                                                <select class="form-control">
+                                                                    <option ng-repeat="item in getCustomers" value="{{item.Id}}">{{item.Name}}</option>
+                                                                </select>
+                                                            </div>
+                                                            <br />
+                                                        </div>
+                                                        <br />
+
+
+                                                        <div class="row" style="margin-top:5px">
+                                                            <div class="col-lg-12 text-center">
+                                                                <button type="button" class="btn btn-info" ng-click="showSupplierwiseSale()">Show Report</button>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                    <br />
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+
+                                            <div class="modal-dialog modal-lg" ng-hide="supplierWisePrintDiv">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header center">
+                                                        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                                                        <h4 class="modal-title" style="padding-left:350px;">
+
+                                                            <b>SUPPLIER WISE SALE REPORT</b>
+
+                                                            <a class="btn btn-primary pull-right" data-toggle="offcanvas" role="button" style="width:100px; padding-top:10px;" ng-print print-element-id="printThisElement" data-dismiss="modal" ng-hide="PrintBtn" ng-click="dayEndPrint(dayEndReportModal)"><i class="fa fa-print"></i> Print</a>
+                                                        </h4>
+                                                    </div>
+                                                    <br />
+                                                    <div class="col-lg-12">
+                                                        <span><b>Supplier Name:&nbsp; {{supplierName}}</b></span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <span><b>Start Date:&nbsp; {{startDate | date:'dd/MM/yyyy'}}&nbsp;&nbsp; 6.00 AM</b></span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <span><b>End Date:&nbsp; {{endDate | date:'dd/MM/yyyy'}}&nbsp;&nbsp;5.59 AM</b></span>
+                                                    </div>
+                                                    <div class="col-md-4"></div>
+                                                    <div class="col-md-4"></div>
+                                                    <br />
+                                                    <br />
+                                                    <div>
+                                                        <h4 class="modal-title" style="padding-left:350px;">
+                                                            <!--<b> Daily Sale and Payment</b>-->
+                                                        </h4>
+                                                    </div>
+                                                    <br />
+                                                    <div class="col-sm-12">
+                                                        <table class="table table-bordered" style="border-bottom-color:black;">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Date</th>
+                                                                    <th>Item Name</th>
+                                                                    <th>Quantity</th>
+                                                                    <th>Rate</th>
+                                                                    <th>Amount</th>
+                                                                   
+
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="data in array">
+                                                                    <td>{{data.billno}}</td>
+                                                                    <td>{{data.totalsale}}</td>
+                                                                    <td>{{data.debit}}</td>
+                                                                    <td>{{data.cheque}}</td>
+                                                                    <td>{{data.cash}}</td>
+                                                                   
+
+
+                                                                </tr>
+                                                            </tbody>
+
+                                                        </table>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <!--<button type="button" class="btn btn-default" data-dismiss="modal" ng-hide="closebtn">Close</button>-->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                        <!--Stock Reconciliation modal-->
+                                        <div class="modal fade" id="StockReconciliationModal" role="dialog">
+                                            <div class="modal-dialog modal-lg">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header center">
+                                                        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                                                        <h4 class="modal-title" style="padding-left:350px;">
+
+                                                            <b>Stock Reconciliation</b>
+
+                                                            <a class="btn btn-primary pull-right" data-toggle="offcanvas" role="button" style="width:100px; padding-top:10px;" ng-print print-element-id="printThisElement" data-dismiss="modal" ng-hide="PrintBtn" ng-click="dayEndPrint(dayEndReportModal)"><i class="fa fa-print"></i> Print</a>
+                                                        </h4>
+                                                    </div>
+                                                    <br />
+                                                    
+
+                                                    <div class="col-md-4">
+                                                        <span><b>Start Date:&nbsp; {{startDate | date:'dd/MM/yyyy'}}&nbsp;&nbsp; 6.00 AM</b></span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <span><b>End Date:&nbsp; {{endDate | date:'dd/MM/yyyy'}}&nbsp;&nbsp;5.59 AM</b></span>
+                                                    </div>
+                                                    
+                                                    <div>
+                                                        <h4 class="modal-title" style="padding-left:350px;">
+                                                            <!--<b> Daily Sale and Payment</b>-->
+                                                        </h4>
+                                                    </div>
+                                                    <br />
+                                                    <div class="col-sm-12">
+                                                        <table class="table table-bordered" style="border-bottom-color:black;">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Code</th>
+                                                                    <th>Item Name</th>
+                                                                    <th>Opening</th>
+                                                                    <th>Purchase</th>
+                                                                    <th>In</th>
+                                                                    <th>Out</th>
+                                                                    <th>Sales</th>
+                                                                    <th>Closing</th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="data in array">
+                                                                    <td>{{data.billno}}</td>
+                                                                    <td>{{data.totalsale}}</td>
+                                                                    <td>{{data.debit}}</td>
+                                                                    <td>{{data.cheque}}</td>
+                                                                    <td>{{data.cash}}</td>
+                                                                    <td>{{data.credit}}</td>
+                                                                    <td>{{data.discount}}</td>
+                                                                    <td>{{data.salesReturn}}</td>
+
+
+                                                                </tr>
+                                                            </tbody>
+                                                           
+                                                        </table>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <!--<button type="button" class="btn btn-default" data-dismiss="modal" ng-hide="closebtn">Close</button>-->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                    </section>
+                                    </div>
+                                
+                              </div>
+                        
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+
+                        <!-- /.content-wrapper -->
+                    <!-- Control Sidebar -->
+                    <aside class="control-sidebar control-sidebar-dark">
+                        <!-- Create the tabs -->
+                        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+                            <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+                            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <!-- Home tab content -->
+                            <div class="tab-pane" id="control-sidebar-home-tab">
+                                <h3 class="control-sidebar-heading">Recent Activity</h3>
+                                <ul class="control-sidebar-menu">
+                                    <li>
+                                        <a href="javascript::;">
+                                            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+                                            <div class="menu-info">
+                                                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+                                                <p>Will be 23 on April 24th</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript::;">
+                                            <i class="menu-icon fa fa-user bg-yellow"></i>
+                                            <div class="menu-info">
+                                                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+                                                <p>New phone +1(800)555-1234</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript::;">
+                                            <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+                                            <div class="menu-info">
+                                                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+                                                <p>nora@example.com</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript::;">
+                                            <i class="menu-icon fa fa-file-code-o bg-green"></i>
+                                            <div class="menu-info">
+                                                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+                                                <p>Execution time 5 seconds</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul><!-- /.control-sidebar-menu -->
+                                <h3 class="control-sidebar-heading">Tasks Progress</h3>
+                                <ul class="control-sidebar-menu">
+                                    <li>
+                                        <a href="javascript::;">
+                                            <h4 class="control-sidebar-subheading">
+                                                Custom Template Design
+                                                <span class="label label-danger pull-right">70%</span>
+                                            </h4>
+                                            <div class="progress progress-xxs">
+                                                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript::;">
+                                            <h4 class="control-sidebar-subheading">
+                                                Update Resume
+                                                <span class="label label-success pull-right">95%</span>
+                                            </h4>
+                                            <div class="progress progress-xxs">
+                                                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript::;">
+                                            <h4 class="control-sidebar-subheading">
+                                                Laravel Integration
+                                                <span class="label label-warning pull-right">50%</span>
+                                            </h4>
+                                            <div class="progress progress-xxs">
+                                                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript::;">
+                                            <h4 class="control-sidebar-subheading">
+                                                Back End Framework
+                                                <span class="label label-primary pull-right">68%</span>
+                                            </h4>
+                                            <div class="progress progress-xxs">
+                                                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul><!-- /.control-sidebar-menu -->
+                            </div><!-- /.tab-pane -->
+                            <!-- Stats tab content -->
+                            <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
+                            <!-- Settings tab content -->
+                            <div class="tab-pane" id="control-sidebar-settings-tab">
+                                <form method="post">
+                                    <h3 class="control-sidebar-heading">General Settings</h3>
+                                    <div class="form-group">
+                                        <label class="control-sidebar-subheading">
+                                            Report panel usage
+                                            <input type="checkbox" class="pull-right" checked>
+                                        </label>
+                                        <p>
+                                            Some information about this general settings option
+                                        </p>
+                                    </div><!-- /.form-group -->
+                                    <div class="form-group">
+                                        <label class="control-sidebar-subheading">
+                                            Allow mail redirect
+                                            <input type="checkbox" class="pull-right" checked>
+                                        </label>
+                                        <p>
+                                            Other sets of options are available
+                                        </p>
+                                    </div><!-- /.form-group -->
+                                    <div class="form-group">
+                                        <label class="control-sidebar-subheading">
+                                            Expose author name in posts
+                                            <input type="checkbox" class="pull-right" checked>
+                                        </label>
+                                        <p>
+                                            Allow the user to show his name in blog posts
+                                        </p>
+                                    </div><!-- /.form-group -->
+                                    <h3 class="control-sidebar-heading">Chat Settings</h3>
+                                    <div class="form-group">
+                                        <label class="control-sidebar-subheading">
+                                            Show me as online
+                                            <input type="checkbox" class="pull-right" checked>
+                                        </label>
+                                    </div><!-- /.form-group -->
+                                    <div class="form-group">
+                                        <label class="control-sidebar-subheading">
+                                            Turn off notifications
+                                            <input type="checkbox" class="pull-right">
+                                        </label>
+                                    </div><!-- /.form-group -->
+                                    <div class="form-group">
+                                        <label class="control-sidebar-subheading">
+                                            Delete chat history
+                                            <a href="javascript::;" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                                        </label>
+                                    </div><!-- /.form-group -->
+                                </form>
+                            </div><!-- /.tab-pane -->
+                        </div>
+                    </aside><!-- /.control-sidebar -->
+                    <!-- Add the sidebar's background. This div must be placed
+                         immediately after the control sidebar -->
+                    <div class="control-sidebar-bg"></div>
+                    
+                </div>
+                </div>

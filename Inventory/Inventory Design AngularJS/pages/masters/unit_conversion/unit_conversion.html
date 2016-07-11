@@ -1,0 +1,205 @@
+﻿
+
+<div class=" " ng-controller="UconController">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="margin-left:0px">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                {{UCon}}
+                <small>Control panel</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Services</li>
+            </ol>
+        </section>
+
+        <!-- 00000000000000000000     main body start   00000000000000000000 -->
+        <!-- Main content -->
+        <section class="content">
+            <div class="box box-primary">
+
+            </div>
+            <div class="row">
+
+
+                <div class="col-md-12">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <h4 class="box-title">Unit Conversion</h4>
+                        </div>
+                        <form class="form-horizontal" name="signup1" role="form" novalidate>
+                            <div class="box-body">
+                                <!-- the events -->
+                                <!-- the table  eventsstart 0000000    0000000000 -->
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+
+                                            <th>From Quantity</th>
+                                            <th>From Unit</th>
+                                            <th>To Quantity</th>
+                                            <th>To Unit</th>
+                                            <th width="20px">Update</th>
+                                            <th width="20px">Delete</th>
+
+                                        </tr>
+                                        <tr>
+
+                                            <th>
+                                                <input id="Text1" type="text" class="form-control" placeholder="Enter Quantity" ng-model="fquant" name="quant1" ng-pattern="/^[0-9\s]*$/" required>
+                                                <!-- Error Defination -->
+                                                <div class="error-container" style="margin-bottom: 5px; margin-left:15px;" ng-show="signup1.quant1.$dirty && signup1.quant1.$invalid">
+                                                    <small class="error" ng-show="signup1.quant1.$error.required">
+                                                        <b>please enter quantity</b>
+                                                    </small>
+                                                    <small class="error" ng-show="signup1.quant1.$error.pattern">
+                                                        <b>please enter Numeric Value</b>
+                                                    </small>
+                                                </div>
+                                                <!-- Error Defination End -->
+                                            </th>
+                                            <th>
+                                                <select id="Select1" class="form-control" ng-model="funit" >
+                                                    <option value="">Select Unit</option>
+                                                    <option value="{{unit.ID}}" ng-repeat="unit in getUnit">{{unit.Name}}</option>
+
+
+                                                </select>
+                                            </th>
+                                            <th>
+                                                <input id="Text1" type="text" class="form-control" placeholder="Enter Quantity" ng-model="tquant" name="tquant" ng-pattern="/^[0-9\s]*$/" required>
+                                                
+                                                <!-- Error Defination -->
+                                                <div class="error-container" style="margin-bottom: 5px; margin-left:15px;" ng-show="signup1.tquant.$dirty && signup1.tquant.$invalid">
+                                                    <small class="error" ng-show="signup1.tquant.$error.required">
+                                                        <b>please enter quantity</b>
+                                                    </small>
+                                                    <small class="error" ng-show="signup1.tquant.$error.pattern">
+                                                        <b>please enter Numeric Value</b>
+                                                    </small>
+                                                </div>
+                                                <!-- Error Defination End -->
+                                            </th>
+                                            <th>
+                                                <select id="Select1" class="form-control" ng-model="tunit">
+                                                    <option value="">Select Unit</option>
+                                                    <option value="{{unit.ID}}" ng-repeat="unit in getUnit">{{unit.Name}}</option>
+
+                                                </select>
+                                            </th>
+                                            <th></th>
+                                            <th></th>
+                                         
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <!--  <tr ng-repeat="data in getNewUnit">-->
+                                        <tr ng-repeat="data in getNewUnit" ng-hide="data.Status==false">
+
+                                            <td>{{data.FromQuantity}}</td>
+                                            <td>{{data.Name}}</td>
+                                            <td>{{data.ToQuantity}}</td>
+                                            <td>{{data.Name}}</td>
+                                            <!--   <td><a ng-click="update(i=data.Id)" class="btn btn-info"> <i class="glyphicon glyphicon-edit"></i> </a> </td>-->
+                                            <td><a data-toggle="modal" ng-click="update(i=data.Id)" data-target="#unitmodal" class="btn btn-info"> <i class="glyphicon glyphicon-edit"></i> </a> </td>
+                                            <td><a ng-click="deleteunit(Id=data.Id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a> </td>
+
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="4"> <button type="submit" ng-click="save()" class="btn btn-success col-sm-2" ng-show="savebtn">Save</button></td>
+                                            <td colspan="2"> <button type="submit" ng-click="cancel()" class="btn btn-danger col-sm-8">Cancel</button></td>
+
+                                         </tr>
+
+                                        <tr>
+                                            <td colspan="6" class="bg-aqua">Record Status</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                                <div id="unitmodal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog modal-lg">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Update Unit Conversion</h4>
+                                            </div>
+                                            <div class="panel panel-primary  col-lg-12">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+
+                                                            <th>From Quantity</th>
+                                                            <th>From Unit</th>
+                                                            <th>To Quantity</th>
+                                                            <th colspan="3">To Unit</th>
+
+                                                        </tr>
+
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+
+                                                            <td><input id="Text1" type="text" class="form-control" ng-model="upfquant" /></td>
+                                                            <td>
+                                                                <select id="Select1" class="form-control" ng-model="upfunit">
+                                                                    <option value="{{unit.ID}}" ng-repeat="unit in getUnit">{{unit.Name}}</option>
+
+
+                                                                </select>
+                                                            </td>
+                                                            <td><input id="Text1" type="text" class="form-control" ng-model="uptquant" /></td>
+                                                            <td colspan="4">
+                                                                <select id="Select1" class="form-control" ng-model="uptunit">
+                                                                    <option value="{{unit.ID}}" ng-repeat="unit in getUnit">{{unit.Name}}</option>
+
+                                                                </select>
+                                                            </td>
+
+                                                        </tr>
+                                                        <!--  <tr ng-repeat="data in getNewUnit">-->
+
+
+                                                        <tr>
+                                                            <td colspan="6"> <button type="submit" ng-click="updateSave()" data-dismiss="modal" class="btn btn-info col-sm-8">Update</button></td>
+
+                                                        </tr>
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer" style="padding:1px">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--table coding end----->
+                            </div><!-- /.box-body -->
+                        </form>
+                    </div><!-- /. box -->
+
+                </div><!-- /.col -->
+
+
+              
+                
+                <!-- Model Pop up -->
+             </div>
+
+        </section><!-- /.content -->
+        <!-- *********************************************************** -->
+    </div><!-- /.content-wrapper -->
+    <!-- Control Sidebar -->
+</div>

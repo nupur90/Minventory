@@ -1,0 +1,312 @@
+﻿<div class=" " ng-controller="servicesController">
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="margin-left:0px">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+               <!-- {{Services}}-->
+                Sales Invoice Setting
+                <small>Control panel</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Services</li>
+            </ol>
+        </section>
+
+        <!-- 00000000000000000000     main body start   00000000000000000000 -->
+        <!-- Main content -->
+        <section class="content">
+            <div class="box box-primary">
+
+            </div>
+            <div class="row">
+
+                <!--panel 1-->
+
+                <div class="col-md-5">
+                    <div class="box box-primary">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">General</h3>
+                            </div>
+
+
+                            <form class="form-horizontal" name="signup1" role="form">
+                                <div class="box-body">
+
+                                    <div class="form-group" style="display:none">
+                                        <label for="inputEmail3" class="col-sm-4 control-label">ID:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputEmail3" ng-model="ID">
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-4 control-label">Default Tax:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="unit">
+                                                <option value=""></option>
+                                                <option value="{{data.ID}}" ng-repeat="data in getUnits" ng-hide="data.Status==false">
+                                                    {{data.Name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Discount Type:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="unit">
+                                                <option value="">Rupees</option>
+                                                <option>Percent</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">default Due Period:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="unit">
+                                                <option value="">0</option>
+                                                <option>8</option>
+                                                <option>15</option>
+                                                <option>30</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Item Wise Tax:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="unit">
+                                                <option value="">ON</option>
+                                                <option>OFF</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Ask For Quantity:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="unit">
+                                                <option value="">Rupees</option>
+                                                <option>Percent</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Show Detail View:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="unit">
+                                                <option value="">Yes</option>
+                                                <option>No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Default Focus On:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="unit">
+                                                <option value="">Customer</option>
+                                                <option>Item</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Is Price Including Tax:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="unit">
+                                                <option value="">No</option>
+                                                <option>Yes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Paper Size:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="unit">
+                                                <option value="">A5</option>
+                                                <option>A4</option>
+                                                <option>Thermal Receipt</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Item Wise Discount:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="unit">
+                                                <option value="">OFF</option>
+                                                <option>On</option>
+                                                
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Reference Number:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="unit">
+                                                <option value="">OFF</option>
+                                                <option>On</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Allow Date To Edit:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="unit">
+                                                <option value="">Yes</option>
+                                                <option>No</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+
+                                   
+
+
+
+                                </div><!-- /.box-body -->
+                                <div class="box-footer">
+                                    <a ng-click="save()" class=" btn btn-success col-sm-8" ng-show="btnSave">Save</a>
+                                    
+                                    <a ng-click="cancelAndNew()" class="btn btn-primary pull-right">Default Settings</a>
+                                </div><!-- /.box-footer -->
+                            </form>
+                        </div>
+                    </div><!-- /. box -->
+                </div><!-- /.col -->
+
+                <!--panel 2-->
+
+                <div class="col-md-5">
+                    <div class="box box-primary">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">What To Do In Invoice Save</h3>
+                            </div>
+
+
+                            <form class="form-horizontal" name="signup1" role="form">
+                                <div class="box-body">
+
+                                    <div class="form-group" style="display:none">
+                                        <label for="inputEmail3" class="col-sm-4 control-label">ID:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputEmail3" ng-model="ID">
+                                        </div>
+                                    </div>
+
+
+
+                                    
+                                    
+                                    
+
+
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Show Payment Asking Dialog:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="unit">
+                                                <option value="">Yes</option>
+                                                <option > No</option>
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Show Payment Option Dialog:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="unit">
+                                                <option value="">Yes</option>
+                                                <option> No</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Show Print Asking Dialog:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="unit">
+                                                <option value="">No</option>
+                                                <option>Yes</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label"> Print Always:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="unit">
+                                                <option value="">No</option>
+                                                <option>Yes</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Print Preview:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="unit">
+                                                <option value="">OFF</option>
+                                                <option>ON</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                </div><!-- /.box-body -->
+                                <div class="box-footer">
+                                    <a ng-click="save()" class=" btn btn-success col-sm-8" ng-show="btnSave">Save</a>
+                           
+                                    <a ng-click="cancelAndNew()" class="btn btn-primary pull-right">Default Settings</a>
+                                </div><!-- /.box-footer -->
+                            </form>
+                        </div>
+                    </div><!-- /. box -->
+                </div><!-- /.col -->
+                <!--panel 3-->
+
+                <div class="col-md-2">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <form class="form-horizontal">
+                                <div class="box-footer">
+                                    <button type="submit" ng-click="cancelAndNew()" class="btn btn-primary col-md-12">New</button>
+
+                                </div>
+                            </form>
+                            <div class="box-body">
+                                <!-- the events -->
+
+                            </div><!-- /.box-body -->
+                        </div><!-- /. box -->
+
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+        </section><!-- /.content -->
+        <!-- *********************************************************** -->
+    </div><!-- /.content-wrapper -->
+    <!-- Control Sidebar -->
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+</div><!-- ./wrapper -->

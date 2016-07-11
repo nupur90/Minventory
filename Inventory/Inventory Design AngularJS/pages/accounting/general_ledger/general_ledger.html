@@ -1,0 +1,479 @@
+﻿
+<div ng-controller="generalLedgerController">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="margin-left:0px">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                <!--{{Units}}-->
+                General Ledger
+                <small>Control panel</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Services</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+
+                    </div>  
+                    <div class="col-md-12">
+                        <!--panel 1-->
+
+                        <div class="col-md-4">
+                            <div class="box box-solid">
+                                <div class="box-header with-border bg-aqua">
+                                    <h3 class="box-title text-center">Payment By</h3>
+                                </div>
+                                <form class="form-horizontal">
+                                    <div class="box-body col-sm-12">
+
+                                        <div class="form-group" style="height:5px">
+                                            <div class="checkbox col-sm-4">
+                                                <h4>
+                                                    <label>
+                                                        <input type="checkbox">
+                                                        All
+                                                    </label>
+                                                </h4>
+                                            </div>
+                                            <div class="checkbox col-sm-6">
+
+                                                <h4>
+                                                    <label>
+                                                        <input type="checkbox">
+                                                        Credit Card
+                                                    </label>
+                                                </h4>
+                                            </div>
+
+                                        </div>
+
+                                      
+
+                                        <div class="form-group" style="height:5px">
+                                            <div class="checkbox col-sm-4">
+                                                <h4>
+                                                    <label>
+                                                        <input type="checkbox">
+                                                        Cash
+                                                    </label>
+
+                                                </h4>
+
+                                            </div>
+
+
+                                            <div class="checkbox col-sm-6">
+                                                <h4>
+                                                    <label>
+                                                        <input type="checkbox">
+                                                        Debit Card
+                                                    </label>
+                                                </h4>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="form-group" style="height:5px">
+                                            <div class="checkbox col-sm-6">
+                                                <h4>
+                                                    <label>
+                                                        <input type="checkbox">
+                                                        Cheque
+                                                    </label>
+                                                </h4>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div><!-- /.box-body -->
+                                    <div class="box-body">
+
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div><!-- /. box -->
+                        <!--panel 2 -->
+                        <div class="col-md-4">
+                            <div class="box box-solid">
+                                <div class="box-header with-border bg-aqua">
+                                    <h3 class="box-title text-center">Statement</h3>
+                                </div>
+                                <form class="form-horizontal">
+                                    <div class="box-body col-sm-12" >
+
+                                        <div class="form-group" style="height:5px">
+                                            <div class="checkbox col-sm-4" >
+                                                <h4>
+                                                    <label>
+                                                        <input type="checkbox" ng-model="allStatement" ng-click="GetAllRecords()"><!--ng-click="GetAllRecords()"-->
+                                                        All
+                                                    </label>
+                                                </h4>
+                                            </div>
+                                            <div class="checkbox col-sm-6">
+
+                                                <h4>
+                                                    <label>
+                                                        <input type="checkbox" ng-model="allExpenses" ng-click="GetAllExpenses()">
+                                                        Expenses
+                                                    </label>
+                                                </h4>
+                                            </div>
+
+                                        </div>
+
+
+
+                                        <div class="form-group" style="height:5px">
+                                            <div class="checkbox col-sm-4">
+                                                <h4>
+                                                    <label>
+                                                        <input type="checkbox" ng-model="customer" ng-click="CustomerForCashBalance()"> <!--ng-click="CustomerForCashBalance()"-->
+                                                        Customer
+                                                       
+                                                    </label>
+
+                                                </h4>
+
+                                            </div>
+
+
+                                            <div class="checkbox col-sm-6">
+                                                <h4>
+                                                    <label>
+                                                        <input type="checkbox" ng-model="contraEntry" ng-click="getContraEntry()">
+                                                        Contra Entry
+                                                    </label>
+                                                </h4>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="form-group" style="height:5px">
+                                            <div class="checkbox col-sm-6">
+                                                <h4>
+                                                    <label>
+                                                        <input type="checkbox" ng-model="supplier" ng-click="SupplierForLedgetBalance()"> <!--ng-click="SupplierForLedgetBalance()"-->
+                                                        Supplier
+                                                    </label>
+                                                </h4>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div><!-- /.box-body -->
+                                    <div class="box-body">
+
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                        <!-- /. box -->
+                        <!--panel 3 -->
+                        <div class="col-md-4 pull-left">
+                            <div class="box box-solid">
+                                <div class="box-header with-border bg-aqua">
+                                    <h3 class="box-title text-center">Duration</h3>
+                                </div>
+                                <form class="form-horizontal">
+                                    <div class="box-body col-sm-12"  style="height:160px">
+
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-4 control-label">Duration:</label>
+
+                                            <div class="col-sm-8">
+                                                <select class="form-control input-sm" ng-model="selectDuration" ng-change="changePaymentDate(selectDuration)">
+                                                    <option value="">Select Duration</option>
+                                                    <option value="Today">Today</option>
+                                                    <option value="LastWeek">Last Week</option>
+                                                    <option value="Last15Day">Last 15 Days</option>
+                                                    <option value="LastMonths">Last Months</option>
+                                                    <option value="Last3Months">Last 3 Months</option>
+                                                    <option value="Last6Months">Last 6 Months</option>
+                                                    <option value="LastYear">Last Year</option>
+                                                </select>
+                                                <!--<input type="text" class="form-control" ng-model="copyDuration" ng-hide="Ishide" />-->
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-4 control-label">Start Date:</label>
+                                            <div class="col-sm-8">
+
+                                                <input class="form-control" type="date" placeholder="Select Date">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-4 control-label">End Date:</label>
+                                            <div class="col-sm-8">
+                                                <input class="form-control" type="date" id="formGroupInputSmall">
+                                            </div>
+                                        </div>
+
+
+                                    </div><!-- /.box-body -->
+                                    <div class="box-body">
+
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                        <!-- /. box -->
+                    </div>
+                    <div class="col-md-12">
+                        <!--panel 4 -->
+
+                        <div class="box box-solid">
+                            <div class="box-header with-border bg-aqua">
+                                <h3 class="box-title text-center">Account</h3>
+                            </div>
+
+                            <div class="box-body" style="height:10px">
+
+                                <div class=" col-sm-12 form-group text-center">
+                                    <label for="inputEmail3" class="control-label">Bank Account :</label>
+                                </div>
+                                <div class=" col-sm-12">
+                                    <select id="Select1" class="form-control" ng-model="bankAccount">
+                                        <option value="">Select Account No.</option>
+
+                                    </select>
+                                </div>
+                            </div><!-- /.box-body -->
+                            <div class="box-body">
+
+
+                            </div>
+
+
+                        </div>
+                        <!-- /. box -->
+                    </div>
+                    <div class="col-md-12">
+                        <a class="btn btn-success col-md-12" style="margin-bottom:10px ;font-size:20px" ng-click="AllReports()">Show Report</a>
+                    </div>
+                    <div class="col-md-12">
+
+
+                        <!--panel 6 -->
+
+                        <div class="col-md-12">
+                            <div class="box box-solid">
+                                <div class="box-header with-border bg-aqua">
+                                    <h3 class="box-title text-center">Summary</h3>
+                                </div>
+                                <form class="form-horizontal">
+                                    <div class="box-body col-sm-12" style="height:40px" >
+                                        <div class=" col-sm-4 form-group">
+                                            <div class=" col-sm-12 form-group">
+
+                                                <div class="form-group col-sm-8 text-right">
+                                                    <label for="inputEmail3" class="col-sm-12 control-label">Total Cash in Hand:</label>
+                                                </div>
+                                                <div class="form-group col-sm-4 text-left" style="padding-bottom:10px">
+                                                   
+                                                        <b style="font-size:25pt" >
+
+                                                           
+                                                                {{totalCashInHand}}
+                                                           
+
+                                                        </b>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" col-sm-4 form-group">
+                                            <div class="col-sm-12 form-group">
+                                                <div class="form-group col-sm-10 text-right">
+                                                    <label for="inputEmail3" class="col-sm-12 control-label">Total Amount in Account:</label>
+                                                </div>
+                                                <div class="form-group col-sm-2 text-left" style="padding-bottom:10px">
+                                                    <b style="font-size:25pt" >
+                                                       
+                                                            {{totalAmountInAccount}}
+                                                    </b>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class=" col-sm-4 form-group">
+
+                                            <div class=" col-sm-12 form-group">
+                                                <div class="form-group col-sm-8 text-right">
+                                                    <label for="inputEmail3" class="col-sm-12 control-label">Total Firm Balance:</label>
+                                                </div>
+                                                <div class="form-group col-sm-4 text-left ">
+                                                    <b>
+                                                        <label for="inputEmail3" ng-model="totalFirmBalance" style="color:red" class="control-label">00000</label>
+                                                    </b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                    </div><!-- /.box-body -->
+                                    <div class="box-body">
+
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div><!-- /. box -->
+                    </div>
+                    <!--table 1 panel -->
+                    <div class="col-md-6">
+                        <div class="box box-solid">
+
+
+                            <div class="form-group form-group-sm">
+
+                                <div class="box-header with-border bg-aqua">
+                                    <a class="pull-right btn btn-default btn-sm" style="margin-left:3px"><i class="glyphicon glyphicon-print" style="font-size:13pt"></i></a>
+
+                                    <a class="pull-right btn btn-default btn-sm"><i class="glyphicon glyphicon-download-alt" style="font-size:13pt"></i></a>
+
+
+                                    <h4 style="margin-top:6px" class="box-title">Cash A/C Ledger</h4>
+                                </div>
+                            </div>
+
+                            <div class="box-body">
+                                <!-- the events -->
+                                <!-- the table  eventsstart 0000000    0000000000 -->
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Particular</th>
+                                        <th>Debit</th>
+                                        <th>Credit</th>
+                                        <th>Balance</th>
+                                        <!--<th style="width: 20px">Update</th>
+                                        <th style="width: 20px">Delete</th>-->
+                                    </tr>
+                                    <tbody>
+                                        <tr ng-repeat="data in getCashAccountLedger">
+
+                                            <td>{{data.pd|date :'dd-MM-yyyy'}}</td>
+                                            <td>{{data.n}}</td>
+                                            <td>{{data.d}}</td>
+                                            <td>{{data.c}}</td>
+                                            <td>{{data.b}}</td>
+                                            <!--<td>{{paymentDate|date :'dd-MM-yyyy'}}</td>
+                                            <td>{{note}}</td>
+                                            <td>{{debit}}</td>
+                                            <td>{{credit}}</td>
+                                            <td>{{balanceAmount}}</td>-->
+                                        </tr>
+                                        <tr class="bg-info" ng-show="!getCashAccountLedger">
+                                            <td colspan="6">Loading.....</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="bg-gray">Record Status</td>
+                                            <td class="bg-gray" ><b>{{totalCreditBalance}}</b></td>
+                                            <td class="bg-gray"><b>{{totalDebitBalance}}</b></td>
+                                            <td class="bg-gray"><b>{{totalBalance}}</b></td>
+                                        </tr>
+
+                                    </tbody>
+
+
+                                </table>
+                                <!--table coding end----->
+                            </div><!-- /.box-body -->
+                        </div><!-- /. box -->
+
+                    </div><!-- /.col -->
+                    <!--table 2 panel -->
+                    <div class="col-md-6">
+                        <div class="box box-solid">
+
+                            <div class="form-group form-group-sm">
+
+                                <div class="box-header with-border bg-aqua">
+                                    <a class="pull-right btn btn-default btn-sm" style="margin-left:3px"><i class="glyphicon glyphicon-print" style="font-size:13pt"></i></a>
+
+                                    <a class="pull-right btn btn-default btn-sm"><i class="glyphicon glyphicon-download-alt" style="font-size:13pt"></i></a>
+
+
+                                    <h4 style="margin-top:6px" class="box-title">Bank A/C Ledger</h4>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+                            <div class="box-body">
+                                <!-- the events -->
+                                <!-- the table  eventsstart 0000000    0000000000 -->
+                                <table class="table table-bordered">
+                                    <tr style="text-align:center">
+                                        <th>Date</th>
+                                        <th>Particular</th>
+                                        <th>Debit</th>
+                                        <th>Credit</th>
+                                        <th>Balance</th>
+                                        <!--<th style="width: 20px">Update</th>
+                                        <th style="width: 20px">Delete</th>-->
+                                    </tr>
+                                    <tbody>
+                                        <tr ng-repeat="data in getBankAccountLedger" ng-hide="data.Status==false">
+
+                                            <td>{{data.pd|date :'dd-MM-yyyy'}}</td>
+                                            <td>{{data.n}}</td>
+                                            <td>{{data.d}}</td>
+                                            <td>{{data.c}}</td>
+                                            <td>{{data.b}}</td>
+
+                                        </tr>
+                                        <tr class="bg-info" ng-show="!getBankAccountLedger">
+                                            <td colspan="6">Loading.....</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="bg-gray">Record Status</td>
+                                            <td class="bg-gray"><b>{{bankTotalCreditBalance}}</b></td>
+                                            <td class="bg-gray"><b>{{bankTotalDebitBalance}}</b></td>
+                                            <td class="bg-gray"><b>{{bankTotalBalance}}</b></td>
+                                        </tr>
+
+                                    </tbody>
+
+
+                                </table>
+                                <!--table coding end----->
+                            </div><!-- /.box-body -->
+                        </div><!-- /. box -->
+
+                    </div><!-- /.col -->
+
+                </div><!-- /.col -->
+                <!-- /.col -->
+                <!-- /.row -->
+            </div>
+
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+
+</div>

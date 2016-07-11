@@ -1,0 +1,220 @@
+﻿
+<div class=" " ng-controller="countryStateCitysController">
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="margin-left:0px">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                <!--{{Country-State-City}}-->
+
+                <b>
+
+                    Country-State-City
+                </b>
+
+                <small>Control panel</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Users Details</li>
+            </ol>
+        </section>
+
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="box box-primary">
+
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <h4 class="box-title">Country State City Listing</h4>
+                        </div>
+                        <div class="box-body">
+
+
+
+                            <!-- the table  eventsstart 00000000000000000 -->
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr class="panel-heading bg-aqua">
+                                        <!--<th>Sr.No</th>-->
+                                        <th>Country Name</th>
+                                        <th>State Name</th>
+                                        <th>City Name</th>
+
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr ng-repeat="data in getcountryStateCity" ng-hide="data.Status==false">
+
+                                        <!--<td>{{$index + 1}}</td>-->
+                                        <td>{{data.CountryName}}</td>
+                                        <td>{{data.StateName}}</td>
+                                        <td>{{data.City}}</td>
+
+                                        <!-- <td><a ng-click="update(data.ID data.Name data.Appointment data.Technology data.Task)" class="btn btn-info">Update  </a> </td>-->
+                                        <!--<td><a ng-click="update(id=data.Id)" class="btn btn-info"> <i class="glyphicon glyphicon-edit"></i> </a> </td>
+                                        <td><a ng-click="delete(id=data.Id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a> </td>-->
+                                    </tr>
+                                    <tr class="bg-info" ng-show="!getcountryStateCity">
+                                        <td colspan="6">Loading.....</td>
+
+                                    </tr>
+                                    <!--<tr>
+                                        <td>NO. of Records:</td>
+                                    </tr>-->
+                                </tbody>
+
+
+
+                            </table>
+
+
+
+                        </div><!-- /.box-body -->
+                        <div class="panel-heading bg-aqua">
+                            <!--<div class="panel-title">Number of Records: {{x}}</div>-->
+
+                        </div>
+
+                    </div><!-- /. box -->
+
+                </div><!-- /.col -->
+                <div class="col-sm-5">
+                    <div class="box box-primary">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Add Country State City</h3>
+                            </div>
+                            <form class="form-horizontal" name="signup1" role="form" novalidate>
+                                <div class="box-body">
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Country:</label>
+                                        <div class="col-sm-8">
+                                            <select id="Select1" class="form-control" ng-model="country" ng-change="BlankFields(); checkOtherCountry();">
+                                                <option value="">Select Country</option>
+                                                <option value="{{country.ID}}" ng-repeat="country in getCountry |unique:'CountryName'">{{country.CountryName}}</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-show="countryNameDiv">
+                                        <label for="inputPassword3" class="col-sm-4  control-label" >Enter Country:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" ng-model="countryName" name="country" ng-pattern="/^[a-zA-Z\s]*$/" placeholder="Enter Country Name" style="width:280px; height:33px" required/>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.country.$dirty && signup1.country.$invalid">
+                                            <small class="error" ng-show="signup1.country.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.country.$error.pattern">
+                                                <b>please enter text</b>
+                                            </small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+
+                                    <div class="form-group" ng-show="stateDiv">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">State:</label>
+                                        <div class="col-sm-8">
+                                            <select id="Select1" class="form-control" ng-model="state" ng-change="checkOtherState();">
+                                                <option value="">Select State</option>
+                                                <option value="{{state.ID}}" ng-repeat="state in getState |filter:{Country_ID:country} |unique:'StateName'">{{state.StateName}}</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-show="stateNameDiv">
+                                        <label for="inputPassword3" class="col-sm-4  control-label">Enter State:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" ng-model="stateName" name="state" placeholder="Enter State Name" ng-pattern="/^[a-zA-Z\s]*$/" style="width:280px; height:33px" required/>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.state.$dirty && signup1.state.$invalid">
+                                            <small class="error" ng-show="signup1.state.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.state.$error.pattern">
+                                                <b>please enter text</b>
+                                            </small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+
+                                    <div class="form-group" ng-show="cityDiv">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">City:</label>
+                                        <div class="col-sm-8">
+                                            <!--<input type="text" class="form-control" id="inputPassword3" ng-model="city" placeholder="">-->
+                                            <select id="Select1" class="form-control" ng-model="city" ng-change="checkOtherCity();">
+                                                <option value="">Select City</option>
+                                                <option value="{{city.City_ID}}" ng-repeat="city in getcountryStateCity |filter:{State_ID:state} |unique:'City'">{{city.City}}</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-show="cityNameDiv">
+                                        <label for="inputPassword3" class="col-sm-4  control-label">Enter City:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" ng-model="cityName" name="city" placeholder="Enter City Name" ng-pattern="/^[a-zA-Z\s]*$/" style="width:280px; height:33px" required/>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.city.$dirty && signup1.city.$invalid">
+                                            <small class="error" ng-show="signup1.city.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.city.$error.pattern">
+                                                <b>please enter text</b>
+                                            </small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+
+                                </div><!-- /.box-body -->
+                                <div class="box-footer">
+                                    <button type="submit" ng-click="saveCountry()" class="btn btn-success col-sm-8" ng-show="saveCountrybtn">Save Country</button>
+                                    <button type="submit" ng-click="saveState()" class="btn btn-success col-sm-8" ng-show="saveStatebtn">Save State</button>
+                                    <button type="submit" ng-click="saveCity()" class="btn btn-success col-sm-8" ng-show="saveCitybtn">Save City</button>
+
+                                    <button type="submit" ng-click="save()" class="btn btn-success col-sm-8" ng-show="savebtn">Save</button>
+                                    <button type="submit" ng-click="updateSave()" class="btn btn-info col-sm-8" ng-show="upbtn">Update</button>
+                                    <a ng-click="cancelAndNew()" class="btn btn-danger pull-right">Cancel</a>
+                                </div><!-- /.box-footer -->
+                            </form>
+                        </div>
+                    </div><!-- /. box -->
+                </div><!-- /.col -->
+                <div class="col-md-2">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <form class="form-horizontal">
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary col-md-12" ng-click="cancelAndNew()">New</button>
+
+                                </div>
+
+                            </form>
+                            <div class="box-body">
+                                <!-- the events -->
+
+                            </div><!-- /.box-body -->
+                        </div><!-- /. box -->
+
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+    <!-- Control Sidebar -->
+
+</div>

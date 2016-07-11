@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+
+<!-- define angular app -->
+<html ng-app="scotchApp">
+
+<head>
+    <!-- SCROLLS -->
+
+
+    <title>Inventory By Mservices</title>
+    <script src="js/angularjs/angular.min.js"></script>
+    <script src="js/angularjs/angular_rought.js"></script>
+
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-1.11.3 (1).js"></script>
+
+    <script src="js/controller.js"></script>
+    <link href="css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+
+    <link href="dist/css/datepicker.css" rel="stylesheet" />
+
+
+
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="plugins/morris/morris.css">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker-bs3.css">
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+
+</head>
+
+<!-- define angular controller -->
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="index2.html" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>A</b>LT</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Inventory</b>INT</span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+
+                        <li>
+                            <a data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p>Inventory Admin</p>
+                        <a><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div>
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="#/">
+                            <i class="fa fa-home"></i> <span>Home</span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="">
+                            <i class="fa fa-laptop"></i>
+                            <span>Masters</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu menu-open" style=" ">
+                            <li><a href="/#/"><i class="fa fa-circle-o"></i>Items</a></li>
+                            <li><a href="/#/Services"><i class="fa fa-circle-o"></i>Services</a></li>
+                            <li><a href="/#/Category"><i class="fa fa-circle-o"></i>Category</a></li>
+
+                            <li><a href="/#/Units"><i class="fa fa-circle-o"></i>Units</a></li>
+                            <li><a href="/#/Customers"><i class="fa fa-circle-o"></i> Customers</a></li>
+                            <li><a href="/#/Suppliers"><i class="fa fa-circle-o"></i> Suppliers</a></li>
+
+                            <li><a href="/#/Taxes"><i class="fa fa-circle-o"></i>Taxes</a></li>
+                            <li><a href="/#/UnitConversion"><i class="fa fa-circle-o"></i>Unit Conversion</a></li>
+                            <li><a href="/#/Users"><i class="fa fa-circle-o"></i> Users</a></li>
+                            <li><a href="/#/Company"><i class="fa fa-circle-o"></i> Company</a></li>
+                            <li><a href="/#/ProfitPercentage"><i class="fa fa-circle-o"></i> Profit Percentage</a></li>
+                            <li><a href="/#/CountryStateCity"><i class="fa fa-circle-o"></i> Country-State-City</a></li>
+
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a href="">
+                            <i class="fa fa-credit-card"></i>
+                            <span>Sales</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu menu-open" style=" ">
+                            <li><a href="/#/Invoices"><i class="fa fa-circle-o"></i>Invoices</a></li>
+                            <li><a href="/#/CustomerPayment"><i class="fa fa-circle-o"></i>Customer Payment</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a>
+                            <i class="fa fa-shopping-cart"></i> <span>Purchase</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+
+                        <ul class="treeview-menu menu-open" style=" ">
+                            <li><a href="/#/PurchaseInvoice"><i class="fa fa-circle-o"></i>Invoices</a></li>
+                            <li><a href="/#/Supplierpayment"><i class="fa fa-circle-o"></i>Supplier Payment</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/#/Expenses">
+                            <i class="fa fa-pencil-square"></i> <span>Expenses   </span>
+                        </a>
+                    </li>
+                    <li class=" ">
+                        <a href="">
+                            <i class="fa fa-laptop"></i>
+                            <span>Accounting</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu menu-open" style=" ">
+                            <li><a href="/#/GeneralLedger"><i class="fa fa-circle-o"></i>General Ledger</a></li>
+                            <li><a href="/#/CustomerLedger"><i class="fa fa-circle-o"></i>Customer Ledger</a></li>
+                            <li><a href="/#/SupplierLedger"><i class="fa fa-circle-o"></i>Supplier Ledger</a></li>
+                            <li><a href="/#/CustomerCheque"><i class="fa fa-circle-o"></i>Customer Cheque</a></li>
+                            <li><a href="/#/SupplierCheque"><i class="fa fa-circle-o"></i>Supplier Cheque</a></li>
+                            <li><a href="/#/BankDetails"><i class="fa fa-circle-o"></i>Bank Details</a></li>
+                            <li><a href="/#/BankAccountDetails"><i class="fa fa-circle-o"></i>Bank Account Details</a></li>
+                            <li><a href="/#/ContraEntry"><i class="fa fa-circle-o"></i>Contra Entry</a></li>
+                            <li><a href="/#/partyPayments"><i class="fa fa-circle-o"></i>Party Payment</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="fa fa-line-chart"></i> <span>Stock</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+
+                        </a>
+                        <ul class="treeview-menu menu-open" style=" ">
+
+                            <li><a href="/#/StockInHand"><i class="fa fa-circle-o"></i>Stock-In-Hand</a></li>
+                            <li><a href="/#/DeliveryChallan"><i class="fa fa-circle-o"></i>Delivery Challan</a></li>
+
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/#/reports">
+                            <i class="fa fa-book"></i> <span>Reports</span>
+                        </a>
+                    </li>
+                    <li>
+                       <!-- <a href="pages/utilities.html">-->
+                        <a href="#">
+
+                            <i class="fa fa-calculator"></i> <span>Utilities</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pages/settings.html">
+                            <i class="fa fa-cogs"></i>
+                            <span>Settings</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu menu-open" style=" ">
+                            <li><a href="/#/SettingsSales"><i class="fa fa-circle-o"></i>Sales</a></li>
+                            <li><a href="/#/SettingsPurchase"><i class="fa fa-circle-o"></i>Purchase</a></li>
+                            <li><a href="/#/TaxPolicy"><i class="fa fa-circle-o"></i>Tax Policy</a></li>
+                            <li><a href="/#/Print"><i class="fa fa-circle-o"></i>Print</a></li>
+                            <li><a href="/#/SettingsItem"><i class="fa fa-circle-o"></i>Item</a></li>
+                            <li><a href="/#/PrinterConfiguration"><i class="fa fa-circle-o"></i>Printer Configuration</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+
+            <div id="main">
+
+                <!-- angular templating -->
+                <!-- this is where content will be injected -->
+                <div ng-view></div>
+
+
+
+            </div>
+
+        </div><!-- /.content-wrapper -->
+
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 2.3.0
+            </div>
+            <strong>Copyright &copy; 2015-2016 <a href="http://www.mservices.in">Mservices Solutions Pvt Ltd</a>.</strong> All rights reserved.
+        </footer>
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Create the tabs -->
+            <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+                <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+                <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- Home tab content -->
+                <div class="tab-pane" id="control-sidebar-home-tab">
+                    <h3 class="control-sidebar-heading">Recent Activity</h3>
+                    <ul class="control-sidebar-menu">
+                        <li>
+                            <a href="javascript::;">
+                                <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+                                <div class="menu-info">
+                                    <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+                                    <p>Will be 23 on April 24th</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript::;">
+                                <i class="menu-icon fa fa-user bg-yellow"></i>
+                                <div class="menu-info">
+                                    <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+                                    <p>New phone +1(800)555-1234</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript::;">
+                                <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+                                <div class="menu-info">
+                                    <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+                                    <p>nora@example.com</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript::;">
+                                <i class="menu-icon fa fa-file-code-o bg-green"></i>
+                                <div class="menu-info">
+                                    <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+                                    <p>Execution time 5 seconds</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul><!-- /.control-sidebar-menu -->
+                    <h3 class="control-sidebar-heading">Tasks Progress</h3>
+                    <ul class="control-sidebar-menu">
+                        <li>
+                            <a href="javascript::;">
+                                <h4 class="control-sidebar-subheading">
+                                    Custom Template Design
+                                    <span class="label label-danger pull-right">70%</span>
+                                </h4>
+                                <div class="progress progress-xxs">
+                                    <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript::;">
+                                <h4 class="control-sidebar-subheading">
+                                    Update Resume
+                                    <span class="label label-success pull-right">95%</span>
+                                </h4>
+                                <div class="progress progress-xxs">
+                                    <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript::;">
+                                <h4 class="control-sidebar-subheading">
+                                    Laravel Integration
+                                    <span class="label label-warning pull-right">50%</span>
+                                </h4>
+                                <div class="progress progress-xxs">
+                                    <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript::;">
+                                <h4 class="control-sidebar-subheading">
+                                    Back End Framework
+                                    <span class="label label-primary pull-right">68%</span>
+                                </h4>
+                                <div class="progress progress-xxs">
+                                    <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul><!-- /.control-sidebar-menu -->
+                </div><!-- /.tab-pane -->
+                <!-- Stats tab content -->
+                <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
+                <!-- Settings tab content -->
+                <div class="tab-pane" id="control-sidebar-settings-tab">
+                    <form method="post">
+                        <h3 class="control-sidebar-heading">General Settings</h3>
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Report panel usage
+                                <input type="checkbox" class="pull-right" checked>
+                            </label>
+                            <p>
+                                Some information about this general settings option
+                            </p>
+                        </div><!-- /.form-group -->
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Allow mail redirect
+                                <input type="checkbox" class="pull-right" checked>
+                            </label>
+                            <p>
+                                Other sets of options are available
+                            </p>
+                        </div><!-- /.form-group -->
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Expose author name in posts
+                                <input type="checkbox" class="pull-right" checked>
+                            </label>
+                            <p>
+                                Allow the user to show his name in blog posts
+                            </p>
+                        </div><!-- /.form-group -->
+                        <h3 class="control-sidebar-heading">Chat Settings</h3>
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Show me as online
+                                <input type="checkbox" class="pull-right" checked>
+                            </label>
+                        </div><!-- /.form-group -->
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Turn off notifications
+                                <input type="checkbox" class="pull-right">
+                            </label>
+                        </div><!-- /.form-group -->
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Delete chat history
+                                <a href="javascript::;" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                            </label>
+                        </div><!-- /.form-group -->
+                    </form>
+                </div><!-- /.tab-pane -->
+            </div>
+        </aside><!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+             immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+    </div>
+
+
+    <!--controllers-->
+
+    <script src="pages/masters/items/items.ctrl.js"></script>
+    <script src="pages/masters/units/unit.ctrl.js"></script>
+    <script src="pages/masters/customers/customer.ctrl.js"></script>
+    <script src="pages/masters/suppliers/supplier.ctrl.js"></script>
+    <script src="pages/accounting/bankaccountdetails/bank_account.ctrl.js"></script>
+    <script src="pages/accounting/contraentry/contra_entry.ctrl.js"></script>
+    <script src="pages/purchases/supplierInvoices/supplierInvoice.ctrl.js"></script>
+    <script src="pages/purchases/supplier_payments/supplier_payments.ctrl.js"></script>
+    <script src="pages/masters/categories/categories.ctrl.js"></script>
+    <script src="pages/masters/services/services.ctrl.js"></script>
+    <script src="pages/masters/taxes/taxs.ctrl.js"></script>
+    <script src="pages/masters/user/user.ctrl.js"></script>
+    <script src="pages/masters/company/companyctrl.js"></script>
+    <script src="pages/masters/unit_conversion/unit_conversion.ctrl.js"></script>
+    <script src="pages/sales/customer_payments/cust_payments.ctrl.js"></script>
+    <script src="pages/sales/invoices/invoices.ctrl.js"></script>
+    <script src="pages/masters/percentage/percentage.ctrl.js"></script>
+    <script src="pages/expenses/expenses.ctrl.js"></script>
+
+    <script src="pages/reports/customer_and_item_wise_sale/customer_and_item_wise_sale.ctrl.js"></script>
+    <script src="pages/reports/customer_wise_sale/customer_wise_sale.ctrl.js"></script>
+    <script src="pages/reports/supplier_wise_sale/supplier_wise_sale.ctrl.js"></script>
+    <script src="pages/reports/daily_profit_and_loss/daily_profit_and_loss.ctrl.js"></script>
+    <script src="pages/reports/daily_sales_register/daily_sales_register.ctrl.js"></script>
+    <script src="pages/reports/day_end_report/day_end_report.ctrl.js"></script>
+    <script src="pages/reports/expense_report/expense_report.ctrl.js"></script>
+    <script src="pages/reports/monthly_profit_and_loss/monthly_profit_and_loss.ctrl.js"></script>
+    <script src="pages/reports/stock_reconciliation/stock_reconciliation.ctrl.js"></script>
+    <script src="pages/reports/report.ctrl.js"></script>
+    <script src="pages/reports/vat_report/vat_report.ctrl.js"></script>
+     
+
+
+    <script src="pages/accounting/general_ledger/general_ledger.js"></script>
+    <script src="pages/accounting/customer_ledger/customer_ledger.ctrl.js"></script>
+    <script src="pages/accounting/supplier_ledger/supplier_ledger.ctrl.js"></script>
+    <script src="pages/accounting/customer_cheque/customer_cheque.ctrl.js"></script>
+    <script src="pages/accounting/supplier_cheque/supplier_cheque.ctrl.js"></script>
+    <script src="pages/accounting/bank_details/bank_details.ctrl.js"></script>
+    <script src="pages/accounting/bank_account_details/bank_account.ctrl.js"></script>
+    <script src="pages/accounting/contra_entry/contra_entry.ctrl.js"></script>
+    <script src="pages/accounting/party_payments/party_payments.ctrl.js"></script>
+    <script src="pages/masters/countryStateCity/countryStateCity.ctrl.js"></script>
+   
+  
+    <script src="pages/stock/stockInHand/stockInHand.ctrl.js"></script>
+
+    <script src="pages/stock/deliveryChallan/deliveryChallan.ctrl.js"></script>
+
+    <script src="pages/settings/item/setting_item.ctrl.js"></script>
+    <script src="pages/settings/print/print.ctrl.js"></script>
+    <script src="pages/settings/printer_configuration/printer_configuration.ctrl.js"></script>
+    <script src="pages/settings/purchase/settings_purchase.ctrl.js"></script>
+    <script src="pages/settings/sales/settings_sale.ctrl.js"></script>
+    <script src="pages/settings/tax_policy/tax_policy.ctrl.js"></script>
+
+    <!--End controllers-->
+
+    <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- Morris.js charts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="plugins/morris/morris.min.js"></script>
+    <!-- Sparkline -->
+    <script src="plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!-- jvectormap -->
+    <script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="plugins/knob/jquery.knob.js"></script>
+    <!-- daterangepicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+    <script src="plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- datepicker -->
+    <script src="plugins/datepicker/bootstrap-datepicker.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="plugins/fastclick/fastclick.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/app.min.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="dist/js/pages/dashboard.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+
+
+    <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
+    <!-- polyfiller file to detect and load polyfills -->
+    <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
+    <script>
+        webshims.setOptions('waitReady', false);
+        webshims.setOptions('forms-ext', { types: 'date' });
+        webshims.polyfill('forms forms-ext');
+        $.webshims.formcfg = {
+            en: {
+                dFormat: '-',
+                dateSigns: '-',
+                patterns: {
+                    d: "yy-mm-dd"
+                }
+            }
+        };
+    </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,197 @@
+﻿
+    <div class=" " ng-controller="taxsController">
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="margin-left:0px">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                {{taxes}}
+                <small>Control panel</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Services</li>
+            </ol>
+        </section>
+
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="box box-primary">
+
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="box box-solid" >
+                        <div class="box-header with-border">
+                            <h4 class="box-title">Service Name Listing</h4>
+                        </div>
+                        <div class="box-body" >
+
+
+
+                            <!-- the table  eventsstart 00000000000000000 -->
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Sr.No</th>
+                                        <th>Name</th>
+                                        <th>Tax Value</th>
+                                        <th>Description</th>
+                                        <th>update</th>
+                                        <th>Delete</th>
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr ng-repeat="data in getTaxs" ng-hide="{{data.Status}}==false">
+
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{data.Name}}</td>
+                                       <td>{{data.TaxValue}}</td>
+                                        <td>{{data.Description}}</td>
+                                        <!-- <td><a ng-click="update(data.ID data.Name data.Appointment data.Technology data.Task)" class="btn btn-info">Update  </a> </td>-->
+                                        <td><a ng-click="update(i=data.Id,n=data.Name ,t=data.TaxValue, d= data.Description)" class="btn btn-info"> <i class="glyphicon glyphicon-edit"></i> </a> </td>
+                                        <td><a ng-click="deletetax(id=data.Id)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a> </td>
+                                    </tr>
+                                    <tr class="bg-info" ng-show="!getTaxs">
+                                        <td colspan="6">Loading.....</td>
+
+                                    </tr>
+                                    <!--<tr>
+                    <td>NO. of Records:</td>
+                </tr>-->
+                                </tbody>
+
+
+
+                            </table>
+                         
+
+
+                        </div><!-- /.box-body -->
+                        <div class="panel-heading bg-aqua">
+                            <div class="panel-title">Number of Records: {{x}}</div>
+
+                        </div>
+                    </div><!-- /. box -->
+
+                </div><!-- /.col -->
+                <div class="col-md-5">
+                    <div class="box box-primary">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">New Services</h3>
+                            </div>
+                            <form class="form-horizontal" name="signup1" novalidate>
+                                <div class="box-body">
+
+                                    <div class="form-group" style="display:none;">
+                                        <label for="inputEmail3" class="col-sm-4 control-label">ID:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" disabled class="form-control" id="username" ng-model="ID" name="id" placeholder="ID" >
+
+                                        </div>
+                                    </div>
+
+                                    <!--name validation start-->
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-4 control-label">Tax Name:</label>
+                                        <div class="col-xs-8">
+                                            <input type="text" class="form-control" ng-model="name" name="username" placeholder="Tax Name" ng-pattern="/^[a-zA-Z\s]*$/" required/>
+                                        </div>
+                                         <!-- Error Defination -->
+                                         <div class="error-container" style="margin-bottom: 5px; margin-left:160px;" ng-show="signup1.username.$dirty && signup1.username.$invalid">
+                                            <small class="error" ng-show="signup1.username.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.username.$error.pattern">
+                                                <b>please enter text</b>
+                                            </small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--name validation end-->
+
+                                    <!--<div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-4 control-label">Name:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="username" ng-model="name" name="username" placeholder="Name" required>
+
+                                        </div>
+                                    </div>-->
+
+                                <!--numeric validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Tax Value(%):</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="tax" name="taxvalue" id="inputPassword3" placeholder="Tax Value" maxlength="2" ng-pattern="/^[0-9\s]*$/" required>
+                                        </div>
+                                        <!-- Error Defination -->
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:160px;" ng-show="signup1.taxvalue.$dirty && signup1.taxvalue.$invalid">
+                                            <small class="error" ng-show="signup1.taxvalue.$error.required">
+                                                <b>please enter Tax Value</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.taxvalue.$error.pattern">
+                                                <b>please enter Numeric Value</b>
+                                            </small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--numeric validation end-->
+
+
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Description:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" ng-model="description" name="taxdesc" placeholder="Description" required>
+                                        </div>
+                                        <!-- Error Defination -->
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:160px;" ng-show="signup1.taxdesc.$dirty && signup1.taxdesc.$invalid">
+                                            <small class="error" ng-show="signup1.taxdesc.$error.required">
+                                                <b>please enter Tax Description</b>
+                                            </small>
+
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+
+                                </div><!-- /.box-body -->
+                                <div class="box-footer">
+                                    <!--<button type="submit" ng-click="save()" class="btn btn-success col-sm-8" ng-disabled="!signup1.$valid" ng-show="savebtn">Save</button>-->
+                                    <button type="submit" ng-click="save()" class="btn btn-success col-sm-8" ng-show="savebtn">Save</button>
+
+                                 <button type="submit" ng-click="updateSave()" class="btn btn-info col-sm-8" ng-show="upbtn">Update</button>
+                                    <a ng-click="cancelAndNew()" class="btn btn-danger pull-right">Cancel</a>
+
+                                </div><!-- /.box-footer -->
+                            </form>
+                        </div>
+                    </div><!-- /. box -->
+                </div><!-- /.col -->
+                <div class="col-md-2">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <form class="form-horizontal">
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary col-md-12" ng-click="cancelAndNew()">New</button>
+
+                                </div>
+
+                            </form>
+                            <div class="box-body">
+                                <!-- the events -->
+
+                            </div><!-- /.box-body -->
+                        </div><!-- /. box -->
+
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+    <!-- Control Sidebar -->
+   
+</div><!-- ./wrapper -->
+   

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-InventoryEnitiyFrameworkWEB-API-20151126123857.mdf;Initial Catalog=aspnet-InventoryEnitiyFrameworkWEB-API-20151126123857;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Rohit\\Workspace\\InventoryEnitiyFrameworkWEB-API\\InventoryEnitiyFrameworkWEB-API\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="InventoryEntities-Web.config Connection String" description="InventoryEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.Inventory.csdl|res://*/Models.Inventory.ssdl|res://*/Models.Inventory.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=vl325cs3pg.database.windows.net;initial catalog=mInventory;persist security info=True;user id=Mservices;password=Password@01;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Rohit\\Workspace\\InventoryEnitiyFrameworkWEB-API\\InventoryEnitiyFrameworkWEB-API\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='InventoryEntities']/@connectionString" />
+  </parameter>
+</parameters>

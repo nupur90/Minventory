@@ -1,0 +1,291 @@
+﻿
+<div ng-controller="partyPaymentsController">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="margin-left:0px">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                <!--{{Units}}-->
+                Party Payment
+                <small>Control panel</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Services</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+
+                    </div> 
+                    <div class="col-md-12">
+                        <!--panel 1-->
+
+                        <div class="col-md-12">
+                            <div class="box box-solid">
+                                <div class="box-header with-border bg-aqua">
+                                    <h3 class="box-title text-center"></h3>
+                                </div>
+                                <form class="form-horizontal" name="signup1" role="form">
+                                    <div class="box-body col-sm-12">
+
+                                        <div class="col-lg-12">
+                                            <div class="col-sm-1">
+                                                <h4>
+                                                    Party:
+                                                </h4>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h4>
+                                                    <select class="form-control input-sm" ng-model="CustomerName" ng-change="custid(CustomerName)">
+                                                        <option value="">Select Name</option>
+                                                        <option ng-repeat="name in getCustomers" ng-hide="name.Status==false" value="{{name.Id}}">{{name.Name}}</option>
+
+                                                    </select>
+                                                </h4>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <h4>
+                                                    City: &nbsp;&nbsp;
+                                                    <label ng-model="city" ng-pattern="/^[0-9\s]*$/">{{city}}</label>
+                                                </h4>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <h4>
+                                                    Contact Number: &nbsp;&nbsp;
+                                                    <label ng-model="contactNumber">{{Customercontactno}}</label>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="col-lg-6">
+                                                <h4>
+                                                    Due:&nbsp;&nbsp;
+                                                    <b><label for="inputEmail3" ng-model="due" class="control-label">{{dueAmount}}</label></b>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.box-body -->
+                                    <div class="box-body">
+
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div><!-- /. box -->
+
+                    </div>
+
+
+
+
+
+                    <!--panel 2-->
+
+                    <div class="col-md-12">
+                        <div class="box box-solid">
+                            <div class="pull-right">
+
+                                <div>
+                                    <h3>
+                                        <a class="box-title text-center" data-toggle="modal" style="cursor:pointer" data-target="#myModal" ng-click="viewList();"> View List </a>
+                                    </h3>
+                                </div>
+
+                            </div>
+                            <form class="form-horizontal">
+                                <div class="box-body col-sm-12">
+
+
+                                    <div class="col-sm-12">
+
+
+                                        <div class="panel-body " style="background-color: lightgray;">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-3">
+                                                    Amount:
+                                                    <input type="text" class="form-control" ng-model="amount" ng-pattern="/^[0-9\s]*$/" ng-change="amountToAmountChanges()" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-group-sm  row text-right">
+                                                <div class="pull-left col-sm-8 "> Payment Date:</div>
+                                                <div class="col-sm-4">
+                                                    <input class="form-control" type="date" placeholder="Select Date" ng-model="PaymentDate">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+
+                                                <div class="col-sm-4">
+                                                    Payment Type:
+                                                    <select class="form-control" ng-model="ddlPaymentType" autopostback="true">
+                                                        <option value="">Select Payment</option>
+                                                        <option value="Cash">Cash</option>
+                                                        <option value="CreditCard">Credit Card</option>
+                                                        <option value="DebitCard">Debit Card</option>
+                                                        <option value="Cheque">Cheque</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-12">
+
+                                                <!--<div class="col-sm-4" ng-show="ddlPaymentType=='Cheque'">
+                                                    Issue Date:
+                                                    <input type="date" ng-model="txtIssueDate" class="form-control">
+                                                </div>-->
+                                                <div class="col-sm-4" ng-show="ddlPaymentType=='Cheque'">
+                                                    Deposite Date:
+                                                    <input type="date" ng-model="txtDepositeDate" class="form-control">
+                                                </div>
+
+                                                <div class="col-sm-4" ng-show="ddlPaymentType=='CreditCard' || ddlPaymentType=='DebitCard'">
+                                                    Reference No:
+                                                    <input type="text" ng-model="txtReferenceNo" class="form-control">
+                                                </div>
+
+                                                <!--<div class="col-sm-4" ng-show="ddlPaymentType=='Cheque'">
+                                                    Cheque Number:
+                                                    <input type="text" ng-model="txtChequenoS" class="form-control">
+                                                </div>-->
+                                                <div class="col-sm-4" ng-show="ddlPaymentType=='CreditCard' || ddlPaymentType=='DebitCard' || ddlPaymentType=='Cheque'">
+                                                    Deposite To:
+                                                    <select ng-model="ddlDepositeTo" class="form-control" autopostback="true" width="150px">
+                                                        <option value="">Select </option>
+                                                        <option value="{{data.AccountName}}" ng-repeat="data in getBankAccounts" ng-hide="data.Status==false">
+                                                            {{data.AccountName}}
+                                                        </option>
+                                                    </select>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-12">
+
+
+                                                <!--<div class="col-sm-4">
+                                                    Amount:
+                                                    <input type="text" ng-model="txtAmount"  ng-pattern="/^[0-9\s]*$/"  class="form-control">
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    Paid Amount:
+                                                    <input type="text" ng-model="txtPaidAmount"  ng-pattern="/^[0-9\s]*$/" class="form-control" ng-change="amountChanges()">
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    Balance Amount:
+                                                    <input type="text" ng-model="BalanceAmount"  ng-pattern="/^[0-9\s]*$/"  class="form-control">
+                                                </div>-->
+                                                <!--<div class="col-sm-4" ng-show="ddlpaymenttype == 'Cheque'">
+                                                    Deposite Number:
+                                                    <input type="text" ng-model="txtDepositeno" class="form-control">
+                                                </div>-->
+                                                <div class="col-sm-4" ng-show="ddlPaymentType=='CreditCard' || ddlPaymentType=='DebitCard' || ddlPaymentType=='Cheque'">
+                                                    Bank Name:
+                                                    <input type="text" ng-model="txtBankName" class="form-control">
+                                                </div>
+                                                <div class="col-sm-4" ng-show="ddlPaymentType=='Cheque'">
+                                                    Cheque Number:
+                                                    <input type="text" ng-model="txtChequenoS" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12" style="margin-top: 10px">
+                                                <div class="col-sm-1 text-left">
+                                                    Note:
+                                                    <textarea type="text" ng-model="note" style="width:540px;height:100px" id="inputEmail3"></textarea>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+                                    <div class="box-footer text-center col-sm-12" style="padding-top:10px">
+                                        <a class="btn btn-success " ng-click="savePayment();">Make Payment</a>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <a class="btn btn-success" ng-click="cancelAndNew()">Cancel</a>
+                                    </div><!-- /.box-footer -->
+
+
+                                </div><!-- /.box-body -->
+                                <div class="box-body">
+
+
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div><!-- /. box -->
+
+
+                </div><!-- /.col -->
+                <!-- /.col -->
+                <!-- /.row -->
+            </div>
+
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">All Records</h4>
+                </div>
+                <div class="panel-body " style="background-color: lightgray;">
+                    <div class="box-body">
+                        <!-- the events -->
+                        <!-- the table  eventsstart 0000000    0000000000 -->
+                        <table class="table table-bordered">
+                            <tr class="bg-aqua">
+                                <th>Payment Date</th>
+                                <th>Customer Name</th>
+                                <th>Payment Type</th>
+                                <th>Note</th>
+                                <th>Amount</th>
+
+                                <!--<th style="width: 20px">Update</th>
+                                <th style="width: 20px">Delete</th>-->
+                            </tr>
+                            <tbody>
+                                <tr ng-repeat="data in getPartyPaymentLedger">
+
+                                    <td>{{data.pd|date :'dd-MM-yyyy'}}</td>
+                                    <td>{{data.cn}}</td>
+                                    <td>{{data.pt}}</td>
+                                    <td>{{data.n}}</td>
+                                    <td>{{data.amt}}</td>
+
+                                </tr>
+                                <tr class="bg-info" ng-show="!getPartyPaymentLedger">
+                                    <td colspan="6">Loading.....</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="bg-aqua">Record Status</td>
+                                    <td class="bg-aqua"><b>{{totalBalance}}</b></td>
+                                </tr>
+
+                            </tbody>
+
+
+                        </table>
+                        <!--table coding end----->
+                    </div><!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

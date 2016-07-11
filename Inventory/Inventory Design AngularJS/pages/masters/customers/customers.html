@@ -1,0 +1,400 @@
+﻿<div class=" " ng-controller="customerController">
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="margin-left:0px">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                {{Customers}}
+
+                <small>Control panel</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Services</li>
+            </ol>
+        </section>
+
+        <!-- 00000000000000000000     main body start   00000000000000000000 -->
+        <!-- Main content -->
+        <section class="content">
+            <div class="box box-primary">
+
+            </div>
+            <div class="row">
+
+
+                <div class="col-md-5">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <h4 class="box-title">Customer Name Listing</h4>
+                        </div>
+                        <div class="box-body">
+                            <!-- the events -->
+                            <!-- the table  eventsstart 0000000    0000000000 -->
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th style="width: 10px">Sr.No</th>
+                                    <th>Name</th>
+                                    <th>Contact No.</th>
+                                    <th>City</th>
+                                    <th style="width: 20px">Update</th>
+                                    <th style="width: 20px">Delete</th>
+                                </tr>
+                                <tbody>
+                                    <tr ng-repeat="data in getCustomers" ng-hide="data.Status==false">
+                                        <td>{{$index + 1}}</td>
+                                        <th>{{data.Name}}</th>
+                                        <th>{{data.ContactNumber}}</th>
+                                        <th>{{data.City}}</th>
+                                        <th>
+                                            <a ng-click="editCustomer(id=data.Id)" class="btn btn-info btn-sm" style="padding:0px"><i class="glyphicon glyphicon-edit"></i></a>
+                                        </th>
+                                        <th>
+                                            <a ng-click="deleteCustomer(id=data.Id)" class="btn btn-danger btn-sm" style="padding:0px"><i class="glyphicon glyphicon-trash"></i></a>
+                                        </th>
+                                    </tr>
+                                    <tr class="bg-info" ng-show="!getCustomers">
+                                        <td colspan="7">Loading.....</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6" class="bg-aqua">Record Status</td>
+                                    </tr>
+                                </tbody>
+                                
+
+                            </table>
+                            <!--table coding end----->
+                        </div><!-- /.box-body -->
+                    </div><!-- /. box -->
+
+                </div><!-- /.col -->
+
+
+                <div class="col-md-5">
+                    <div class="box box-primary">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Customer Details</h3>
+                            </div>
+                            <form class="form-horizontal" name="signup1" role="form">
+                                <div class="box-body">
+
+                                    <div class="form-group" style="display:none">
+                                        <label for="inputEmail3" class="col-sm-4 control-label">ID:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="id" id="inputEmail3" placeholder="" disabled>
+                                        </div>
+                                    </div>
+
+                                    <!--name validation start-->
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-4 control-label">Name:</label>
+
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="name" name="Name" id="inputEmail3" ng-pattern="/^[a-zA-Z\s]*$/" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.Name.$dirty && signup1.Name.$invalid">
+                                            <small class="error" ng-show="signup1.Name.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.Name.$error.pattern">
+                                                <b>please enter text</b>
+                                            </small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--name validation end-->
+
+             
+                                    <div class="form-group" style="display:none">
+                                        <label for="inputEmail3" class="col-sm-4 control-label">city:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputEmail3" ng-model="city" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">City:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="city">
+                                                <option value="">
+                                                    Select City
+                                                </option>
+                                                <option value="{{city.City_ID}}" ng-repeat="city in getCity" ng-hide="city.Status==false">
+                                                    {{city.City}}
+                                                    <!--{{city.City_ID}}-->
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Form For contact number Input max 12 max 10 value Start -->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Contact No:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" ng-pattern="/^[0-9\s]*$/" ng-model="contactNo" maxlength="12" minlength="10" name="max" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.max.$dirty && signup1.max.$invalid">
+                                            <small class="error" ng-show="signup1.max.$error.required">
+                                                <b>please enter contact number</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.max.$error.pattern">
+                                                <b>please enter valid contact number</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.max.$error.minlength">
+                                                <b>please enter min 10 number</b>
+                                            </small>
+
+                                        </div>
+                                        <!-- Error Defination End -->
+
+                                    </div>
+                                    <!-- Form For contact number Input max 12 max 10 value end -->
+                                       
+                                    <!--<div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Contact No:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" ng-model="contactNo" placeholder="">
+                                        </div>
+                                    </div>-->
+
+                                    <!-- Form For contact number 2 Input max 12 max 10 value Start -->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Contact No 2:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" ng-pattern="/^[0-9\s]*$/" ng-model="contactNo2" maxlength="12" minlength="10" name="con2" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.con2.$dirty && signup1.con2.$invalid">
+                                            <small class="error" ng-show="signup1.con2.$error.required">
+                                                <b>please enter contact number</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.con2.$error.pattern">
+                                                <b>please enter valid contact number</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.con2.$error.minlength">
+                                                <b>please enter min 10 numbers</b>
+                                            </small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!-- Form For contact number 2 Input max 12 max 10 value ends -->
+
+                                    <!--<div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Contact No 2:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" ng-model="contactNo2" placeholder="">
+                                        </div>
+                                    </div>-->
+
+                                    <!--only required validation is done-->
+                                    <!--email validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Email-id:</label>
+                                        <div class="col-sm-8">
+                                            <input type="email" class="form-control" id="inputPassword3" ng-model="emailId" ng-pattern="/^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,15})$/" name="email1" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.email1.$dirty && signup1.email1.$invalid">
+                                            
+                                            <small class="error" ng-show="signup1.email1.$error.required">
+                                                <b>please enter email</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.email1.$error.pattern">
+                                                <b>please enter valid email</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.email1.$error.email"></small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--email validation ends-->
+                                    
+                                             
+                                    <!--only required validation is done-->
+                                    <!--email 2 validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">2nd Email-id:</label>
+                                        <div class="col-sm-8">
+                                            <input type="email" class="form-control" id="inputPassword3" ng-model="emailId2" ng-pattern="/^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,15})$/" name="emailId2" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.emailId2.$dirty && signup1.emailId2.$invalid">
+                                            <small class="error" ng-show="signup1.emailId2.$error.required">
+                                                <b>please enter email</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.emailId2.$error.pattern">
+                                                <b>please enter valid email</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.emailId2.$error.email"></small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--email 2 validation ends-->
+
+                                    <!--VAT No: validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">VAT No:</label>
+
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="vatNo" name="vatNo" id="inputPassword3" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.vatNo.$dirty && signup1.vatNo.$invalid">
+                                            <small class="error" ng-show="signup1.vatNo.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--VAT No: validation end-->
+
+                                   
+                                    <!--TIN No: validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">TIN No:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="tinNo" name="tinNo" id="inputPassword3" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.tinNo.$dirty && signup1.tinNo.$invalid">
+                                            <small class="error" ng-show="signup1.tinNo.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--TIN No: validation end-->
+
+                                  
+
+                                    <!--Street validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Street:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="street" name="street" id="inputPassword3" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.street.$dirty && signup1.street.$invalid">
+                                            <small class="error" ng-show="signup1.street.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--Street validation end-->
+
+                                   
+
+                                    <!--Area validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Area:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="area" name="area" id="inputPassword3" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.area.$dirty && signup1.area.$invalid">
+                                            <small class="error" ng-show="signup1.area.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--Area validation end-->
+
+                                  
+
+                                    <!--Pincode validation Start -->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Pincode:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" ng-model="pincode" ng-pattern="/^[0-9\s]*$/" name="pincode" maxlength="6" minlength="6" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.pincode.$dirty && signup1.pincode.$invalid">
+                                            <small class="error" ng-show="signup1.pincode.$error.required">
+                                                <b>please enter numeric</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.pincode.$error.pattern">
+                                                <b>please enter numeric</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.pincode.$error.minlength">
+                                                <b>please enter 6 digits</b>
+                                            </small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!-- Pincode validation end -->
+
+                                   
+
+                                    <!--Note validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Note:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="note" name="note" id="inputPassword3" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.note.$dirty && signup1.note.$invalid">
+                                            <small class="error" ng-show="signup1.note.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--Note validation end-->
+
+                                    
+
+
+                                </div><!-- /.box-body -->
+                                <div class="box-footer">
+                                    <a class="btn btn-success col-sm-8" ng-show="btnsave" ng-click="save()">Save</a>
+                                    <a class="btn btn-info col-sm-8" ng-show="btnupdate" ng-click="update()">Update</a>
+                                    <a class="btn btn-danger pull-right" ng-click="cancelAndNew()">Cancel</a>
+                                </div><!-- /.box-footer -->
+                            </form>
+                        </div>
+                    </div><!-- /. box -->
+                </div><!-- /.col -->
+
+
+                <div class="col-md-2">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <form class="form-horizontal">
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary col-md-12" ng-click="cancelAndNew()">New</button>
+
+                                </div>
+
+                            </form>
+                            <div class="box-body">
+                                <!-- the events -->
+
+                            </div><!-- /.box-body -->
+                        </div><!-- /. box -->
+
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+        </section><!-- /.content -->
+        <!-- *********************************************************** -->
+    </div><!-- /.content-wrapper -->
+    <!-- Control Sidebar -->
+  
+</div><!-- ./wrapper -->
