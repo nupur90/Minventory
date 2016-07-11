@@ -1,0 +1,298 @@
+﻿<div class=" " ng-controller="servicesController">
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="margin-left:0px">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                {{Services}}
+                <small>Control panel</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Services</li>
+            </ol>
+        </section>
+
+        <!-- 00000000000000000000     main body start   00000000000000000000 -->
+        <!-- Main content -->
+        <section class="content">
+            <div class="box box-primary">
+
+            </div>
+            <div class="row">
+
+<!--panel 1-->
+                <div class="col-md-5">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <h4 class="box-title">Service Name Listing</h4>
+                        </div>
+                        <div class="box-body">
+                            <!-- the events -->
+                            <!-- the table  eventsstart 0000000    0000000000 -->
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th style="width: 10px">Sr.No</th>
+                                    <th>Service</th>
+                                    <th>Category</th>
+                                    <th>Sale Price</th>
+                                    <th style="width: 20px">Update</th>
+                                    <th style="width: 20px">Delete</th>
+                                </tr>
+
+                                <tbody>
+                                    <tr ng-repeat="data in getServices" ng-hide="data.Status==false">
+
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{data.ServiceName}}</td>
+                                        <td>{{data.Name}}</td>
+                                        <td>{{data.SalesPrice}}</td>
+                                      <th>
+                                          <a ng-click="editServices(id=data.Id)" class="btn btn-info btn-sm" style="padding:0px"><i class="glyphicon glyphicon-edit"></i> </a>
+                                      </th>
+                                      <th>
+                                          <a ng-click="deleteServices(id=data.Id)" class="btn btn-danger btn-sm" style="padding:0px"><i class="glyphicon glyphicon-trash"></i> </a>
+                                      </th>
+                                    </tr>
+                                    <tr class="bg-info" ng-show="!getServices">
+                                        <td colspan="6">Loading.....</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6" class="bg-aqua">Record Status {{x}}</td>
+                                    </tr>
+
+                                </tbody>
+                               
+                            </table>
+                            <!--table coding end----->
+                        </div><!-- /.box-body -->
+                    </div><!-- /. box -->
+
+                </div><!-- /.col -->
+<!--panel 2-->
+
+                <div class="col-md-5">
+                    <div class="box box-primary">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">New Services</h3>
+                            </div>
+                           
+
+                            <form class="form-horizontal" name="signup1" role="form">
+                                <div class="box-body">
+
+                                    <div class="form-group" style="display:none">
+                                        <label for="inputEmail3" class="col-sm-4 control-label">ID:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputEmail3" ng-model="ID">
+                                        </div>
+                                    </div>
+
+
+                                   
+                                    <!--name validation start-->
+                                    <div class="form-group">
+                                         <label for="inputEmail3" class="col-sm-4 control-label">Service Name:</label>
+                                        <div class="col-xs-8">
+                                            <input id="login-username" ng-pattern="/^[a-zA-Z\s]*$/" type="text" class="form-control" ng-model="serviceName" name="Name" value="" placeholder="" required>
+                                        </div>
+                                        
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.Name.$dirty && signup1.Name.$invalid">
+                                            <small class="error" ng-show="signup1.Name.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.Name.$error.pattern">
+                                                <b>please enter text</b>
+                                            </small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--name validation end-->
+
+
+                            <!-- saleprice validation Start -->
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-4 control-label">Sale Price:</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="inputPassword3" ng-model="salePrise" ng-pattern="/^[0-9\s]*$/" name="salePrise" value="" placeholder="" required>
+                                    </div>
+                                    <!-- Error Defination -->
+
+                                    <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.salePrise.$dirty && signup1.salePrise.$invalid">
+                                        <small class="error" ng-show="signup1.salePrise.$error.required">
+                                            <b>please enter numeric</b>
+                                        </small>
+                                        <small class="error" ng-show="signup1.salePrise.$error.pattern">
+                                            <b>please enter numeric</b>
+                                        </small>
+                                    </div>
+                                    <!-- Error Defination End -->
+                                </div>
+                             <!-- saleprice validation end -->
+
+
+                             <!-- Purchase Price validation Start -->
+
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-4 control-label">Purchase Price:</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="inputPassword3" ng-model="purchasePrise" ng-pattern="/^[0-9\s]*$/" name="purchasePrise" value="" placeholder="" required>
+                                    </div>
+                                    
+                                     <!-- Error Defination -->
+
+                                    <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.purchasePrise.$dirty && signup1.purchasePrise.$invalid">
+                                        <small class="error" ng-show="signup1.purchasePrise.$error.required">
+                                            <b>please enter numeric</b>
+                                        </small>
+                                        <small class="error" ng-show="signup1.purchasePrise.$error.pattern">
+                                            <b>please enter numeric</b>
+                                        </small>
+                                    </div>
+                                    <!-- Error Defination End -->
+                                </div>
+
+                            
+                            <!-- Purchase Price validation end -->
+
+                                        
+
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Unit:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="unit">
+                                                <option value="">Select Unit</option>
+                                                <option value="{{data.ID}}" ng-repeat="data in getUnits" ng-hide="data.Status==false">
+                                                    {{data.Name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-4 control-label">Category:</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" ng-model="category">
+                                                    <option value="">Select Category</option>
+                                                    <option value="{{data.Id}}" ng-repeat="data in getCategories" ng-hide="data.Status==false">
+                                                        {{data.Name}}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-4 control-label">Purchase Tax:</label>
+                                            <div class="col-sm-7">
+                                                <select class="form-control" ng-model="purchaseTax">
+                                                    <option value="">Select Purchase Tax</option>
+                                                    <option value="{{data.Id}}" ng-repeat="data in getTaxs" ng-hide="data.Status==false">
+                                                        {{data.Name}}
+                                                </select>
+                                            </div>
+                                            <div class="checkbox col-sm-1">
+                                                <input type="checkbox">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-4 control-label">Sales Tax:</label>
+                                            <div class="col-sm-7">
+                                                <select class="form-control" ng-model="salesTax">
+                                                    <option value="">Select Sales Tax</option>
+                                                    <option value="{{data.Id}}" ng-repeat="data in getTaxs"  ng-hide="data.Status==false">
+                                                        {{data.Name}}
+                                                </select>
+                                            </div>
+                                            <div class="checkbox col-sm-1">
+                                                <input type="checkbox">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-4 control-label">Allow Sales:</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" ng-model="allowSales">
+                                                    <option value="">Select sales</option>
+                                                    <option value="true">Yes</option>
+                                                    <option value="false">No</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-4 control-label">Allow Purchase:</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" ng-model="allowPurchase">
+                                                    <option value="">Select Purchase</option>
+                                                    <option value="true">Yes</option>
+                                                    <option value="false">No</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                            <!--description validation start-->
+
+                          
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-4 control-label">Description:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="description" id="inputEmail3" name="description" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.description.$dirty && signup1.description.$invalid">
+                                            <small class="error" ng-show="signup1.description.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                            
+                            <!--description validation start-->
+
+                                       
+
+
+
+                        </div><!-- /.box-body -->
+                                <div class="box-footer">
+                                    <a  ng-click="save()" class=" btn btn-success col-sm-8" ng-show="btnSave">Save</a>
+                                    <a ng-click="updateServices()" class=" btn btn-info col-sm-8" ng-show="btnUpdate">Update</a>   
+                                    <a ng-click="cancelAndNew()" class="btn btn-danger pull-right">Cancel</a>
+                                </div><!-- /.box-footer -->
+                          </form>
+                        </div>
+                    </div><!-- /. box -->
+                </div><!-- /.col -->
+
+ <!--panel 3-->
+
+                <div class="col-md-2">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <form class="form-horizontal">
+                                <div class="box-footer">
+                                    <button type="submit" ng-click="cancelAndNew()" class="btn btn-primary col-md-12">New</button>
+
+                                </div>
+                            </form>
+                            <div class="box-body">
+                                <!-- the events -->
+
+                            </div><!-- /.box-body -->
+                        </div><!-- /. box -->
+
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+        </section><!-- /.content -->
+        <!-- *********************************************************** -->
+    </div><!-- /.content-wrapper -->
+    <!-- Control Sidebar -->
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+</div><!-- ./wrapper -->

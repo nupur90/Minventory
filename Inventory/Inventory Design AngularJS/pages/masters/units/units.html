@@ -1,0 +1,167 @@
+﻿ 
+<div ng-controller="unitController">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="margin-left:0px">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                {{Units}}
+                <small>Control panel</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Services</li>
+            </ol>
+        </section>
+
+        <!-- 00000000000000000000     main body start   00000000000000000000 -->
+        <!-- Main content -->
+        <section class="content">
+            <div class="box box-primary">
+
+            </div>
+            <div class="row">
+
+
+                <div class="col-md-5">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <h4 class="box-title">Unit Name Listing</h4>
+                        </div>
+                        <div class="box-body">
+                            <!-- the events -->
+                            <!-- the table  eventsstart 0000000    0000000000 -->
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th style="width: 10px">Sr.No</th>
+                                    <th>Name</th>
+                                    <th>Desription</th>
+                                    <th style="width: 20px">Update</th>
+                                    <th style="width: 20px">Delete</th>
+                                </tr>
+                               
+                                <tbody>
+
+                                    <tr ng-repeat="data in getUnits" ng-hide="data.Status==false">
+                                        <td>{{$index + 1}}</td>
+                                        <th>{{data.Name}}</th>
+                                        <th>{{data.Description}}</th>
+                                        <th>
+                                            <a ng-click="editUnits(id=data.ID)" class="btn btn-info btn-sm" style="padding:0px"><i class="glyphicon glyphicon-edit"></i></a>
+                                            
+                                        </th>
+                                        <th>
+                                            <a ng-click="deleteUnit(id=data.ID)" class="btn btn-danger btn-sm" style="padding:0px"><i class="glyphicon glyphicon-trash"></i></a>
+                                        </th>
+
+                                    </tr>
+                                    <tr class="bg-info" ng-show="!getUnits">
+                                        <td colspan="7">Loading.....</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" class="bg-aqua">Record Status</td>
+                                    </tr>
+                                </tbody>
+                                
+
+                            </table>
+                            <!--table coding end----->
+                        </div><!-- /.box-body -->
+                    </div><!-- /. box -->
+
+                </div><!-- /.col -->
+
+
+                <div class="col-md-5">
+                    <div class="box box-primary">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Units Details</h3>
+                            </div>
+                            <form class="form-horizontal" name="signup1" role="form">
+                                <div class="box-body">
+                                    <div class="form-group" style="display:none">
+                                        <label for="inputEmail3" class="col-sm-4 control-label">ID:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="id" id="inputEmail3" placeholder="" disabled>
+                                        </div>
+                                    </div>
+
+                                    <!--name validation start-->
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-4 control-label">Unit :</label>
+
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="name" name="Name" id="inputEmail3" ng-pattern="/^[0-9\s]*$/" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.Name.$dirty && signup1.Name.$invalid">
+                                            <small class="error" ng-show="signup1.Name.$error.required">
+                                                <b>please enter unit</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.Name.$error.pattern">
+                                                <b>please enter unit</b>
+                                            </small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--name validation end-->
+
+                                    <!--Description validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Description:</label>
+
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="description" name="description" id="inputPassword3"  value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.description.$dirty && signup1.description.$invalid">
+                                            <small class="error" ng-show="signup1.description.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+
+                                    <!--Description validation end-->
+                          
+
+                                </div><!-- /.box-body -->
+                                <div class="box-footer">
+                                    <a class="btn btn-success col-sm-8" ng-show="btnsave" ng-click="save()">Save</a>
+                                    <a class="btn btn-info col-sm-8" ng-show="btnupdate" ng-click="update()">Update</a>
+
+                                    <a class="btn btn-danger pull-right" ng-click="cancelAndNew()">Cancel</a>
+                                </div><!-- /.box-footer -->
+                            </form>
+                        </div>
+                    </div><!-- /. box -->
+                </div><!-- /.col -->
+
+
+                <div class="col-md-2">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <form class="form-horizontal">
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary col-md-12" ng-click="cancelAndNew()">New</button>
+
+                                </div>
+
+                            </form>
+                            <div class="box-body">
+                                <!-- the events -->
+
+                            </div><!-- /.box-body -->
+                        </div><!-- /. box -->
+
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+        </section><!-- /.content -->
+        <!-- *********************************************************** -->
+    </div><!-- /.content-wrapper -->
+
+</div>
+

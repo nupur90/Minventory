@@ -1,0 +1,1405 @@
+﻿<div class=" " ng-controller="invoicesController">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="margin-left:0px;" ng-show="IsShowdiv">
+        <!-- Content Header (Page header) -->
+        <section class="content-header" style="margin-bottom:5px">
+            <h1>
+                Sales Invoice
+                <small>Control panel</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li class="active">Invoices</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="box box-primary">
+                    </div>
+                    <div class="panel panel-danger col-sm-11" style="padding:0px;margin-bottom:110px">
+                        <div class="panel-heading col-lg-12 panel-body">
+                            <div class="col-sm-3" style="padding:4px 1px">
+                                New Sale Invoice
+                            </div>
+                            <div class="col-sm-5 pull-right">
+                                <div class="form-group form-group-sm">
+                                    <div class="pull-left col-sm-2 " style="padding:4px 1px">Invoice#:</div>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="text" placeholder="" ng-model="InvoceNo" ng-change="changeInvoice()">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="panel-body " style="padding: 0px">
+                            <table class="table  table-bordered table-sortable" id="tab_logic">
+                                <tbody>
+                                    <tr>
+                                        <td class="form-group">
+                                            <div class="form-group form-group-sm">
+                                                <div class="pull-left col-sm-2 " style="padding:4px 2px">Name:</div>
+                                                <div class="col-sm-8" style="padding-left:5px">
+                                                    <select class="form-control input-sm" ng-model="CustomerName" ng-change="custid(CustomerName)">
+                                                        <option value="">Select Name</option>
+                                                        <option ng-repeat="name in getCustomers" ng-hide="name.Status==false" value="{{name.Id}}">{{name.Name}}</option>
+
+                                                    </select>
+                                                </div>
+                                                <a class="col-sm-2" data-toggle="modal" data-target="#myModal" style="padding-left:2px"><i class="btn btn-success btn-sm glyphicon glyphicon-plus-sign"></i></a>
+                                            </div>
+                                        </td>
+                                        <td data-name="mail">
+                                            <div class="form-group form-group-sm">
+                                                <div class="pull-left col-sm-3 " style="padding:4px 1px">Invo. Date:</div>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="date" placeholder="Select Date" ng-model="InvoiceDate" ng-change="changeInvoiceDate()">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td data-name="sel">
+                                            <div class="form-group form-group-sm">
+                                                <div class="pull-left col-sm-3 " style="padding:4px 1px">Ref:</div>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="text" id="formGroupInputSmall" placeholder="Small input" ng-model="Ref">
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="form-group">
+                                            <div class="form-group form-group-sm">
+                                                <div class="pull-left col-sm-2 " style="padding:4px 1px">City:</div>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" type="text" id="formGroupInputSmall" ng-model="city" placeholder="Enter City">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td data-name="mail">
+                                            <div class="form-group form-group-sm">
+                                                <div class="pull-left col-sm-4" style="padding:4px 0px">Contact No:</div>
+                                                <div class="col-sm-8" style="padding:0px">
+                                                    <input class="form-control" type="number" placeholder="Enter Contact No" value="{{Customercontactno}}">
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td data-name="sel">
+                                            <div class="form-group form-group-sm">
+                                                <div class="pull-left col-sm-4 " style="padding:4px 0px">Due Date:</div>
+                                                <div class="col-sm-8" style="padding:0px">
+                                                    <input class="form-control" type="date" id="formGroupInputSmall" placeholder="Small input" ng-model="DueDate" ng-change="changeDueDate()">
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                            <div class="panel panel-info">
+                                <div class="panel-heading panel-body" style="padding:5px">
+                                    <div class="form-group form-group-sm">
+                                        <div class=" col-sm-2 text-right" style="padding:4px 0px">Select Item:</div>
+                                        <div class="col-sm-9">
+                                            <select class="form-control input-sm" ng-model="selecteditem" ng-change="toggleModal()">
+                                                <option value="">Select Item</option>
+                                                <option ng-repeat="item in getItemsname" ng-hide="item.Status==false" value="{{item.Id}}">{{item.ItemName}}</option>
+
+                                            </select>
+
+
+
+                                        </div>
+                                        <a data-toggle="modal" data-target="#itemModal" class="col-sm-1 btn btn-success btn-sm" style="padding-left:4px"><i class="glyphicon glyphicon-plus-sign"></i></a>
+
+                                    </div>
+
+                                </div>
+                                <div class=" ">
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Item Name</th>
+                                                <th>Per</th>
+                                                <th>Manufacturer</th>
+                                                <th>Batch No</th>
+                                                <th>Exp. Date</th>
+                                                <th>M.R.P.</th>
+                                                <th>Rate (र)</th>
+                                                <th>Quantity</th>
+                                                <th>Total Amount (र)</th>
+                                                <th></th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="aitem in additem">
+                                                <th scope="row">{{$index+1}}</th>
+                                                <td>{{aitem.ItemName}}</td>
+                                                <td>{{aitem.percent1}}</td>
+                                                <td>{{aitem.manufacturer1}}</td>
+                                                <td>{{aitem.batchNo1}}</td>
+                                                <td>{{aitem.expirydate1}}</td>
+                                                <td>Rs. {{aitem.mrp1}}</td>
+                                                <td>Rs. {{aitem.saleprice1}}</td>
+                                                <td>{{aitem.quantities1}}</td>
+                                                <td>Rs. {{aitem.totalprice1}}</td>
+                                                <td><a ng-click="deleteitemfrmlist($index,aitem)" class=" btn btn-danger btn-sm" style="padding:0px"><i class="glyphicon glyphicon-trash"></i></a></td>
+                                            </tr>
+
+
+
+                                            <tr class="active">
+                                                <td colspan="7"></td>
+                                                <td><b>Total</b></td>
+                                                <td></td>
+                                                <td ng-model="TotalTaxAmount">Rs. {{getgrandtotal}}</td>
+                                                <!--<td><a ng-click="clearAll()" class="col-sm-12 btn btn-danger btn-sm" style="padding:0px"><i>All Clear</i></a></td>-->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-sm-12">
+                                <div class="col-sm-4">
+                                    Note:
+                                    <textarea class="form-control" rows="5" ng-model="Note" ng-change="NoteChange()"> </textarea>
+                                </div>
+                                <div class="col-sm-5 pull-right">
+                                    <div class="panel">
+                                        <div class="bg-info row panel-body">
+
+                                            <div class="form-group form-group-sm  row">
+                                                <div class="pull-left col-sm-5 " style="padding:4px 1px 0px 9px">Total Discount (र):</div>
+                                                <div class="col-sm-7">
+                                                    <input class="form-control" type="number" value="0" ng-model="totaldiscount" ng-change="discountchange()">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group form-group-sm  row">
+                                                <div class=" col-sm-5 " style="padding:0px">
+                                                    <select class="form-control input-sm col-sm-5" ng-model="tax" ng-change="selecttax()">
+                                                        <option value="">Select Tax</option>
+                                                        <option value="{{tax.TaxValue}}" ng-repeat="tax in getTaxes">{{tax.Name}}</option>
+
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <input class="form-control" type="number" placeholder="0" ng-model="calculatedtax" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-group-sm row">
+                                                <div class="pull-left col-sm-5 " style="padding:4px 1px 0px 9px">Shipping Cost (र):</div>
+                                                <div class="col-sm-7">
+                                                    <input class="form-control" type="number" ng-model="shippingcost" ng-change="shippingchange()">
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-group-sm row">
+                                                <div class="pull-left col-sm-5 " style="padding:4px 1px 0px 9px">Amount (र):</div>
+                                                <div class="col-sm-7">
+                                                    <input class="form-control" type="number" ng-model="amount" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-group-sm row">
+                                                <div class="pull-left col-sm-5 " style="padding:4px 1px 0px 9px">Round off (र):</div>
+                                                <div class="col-sm-7">
+                                                    <input class="form-control" type="number" placeholder="0" ng-model="roundoff" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group form-group-sm row bg-warning panel-body">
+                                            <div class="pull-left col-sm-5 " style="padding:4px 1px">Net Amount (र):</div>
+                                            <div class="col-sm-7">
+                                                <input class="form-control" type="number" placeholder="0" ng-model="netamount" disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <a class="btn btn-primary col-sm-6" data-toggle="modal" data-target="#makePaymentModal" ng-click="payment(netamount)">Save</a>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <a class="btn btn-default col-sm-11" ng-click="resetinvoice()">Reset</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-sm-1" style="margin-top:20px;">
+                        <div class=" text-center">
+                            <a class=" " style=" cursor:pointer;text-decoration:none !important" href="/#/CustomerPayment">
+                                <i style="color:gray;font-size:xx-large" class="glyphicon glyphicon-folder-open"></i>
+                                <br /> Invoices
+                            </a>
+                        </div>
+
+                        <div style="margin-top:120px;">
+                            <!--<div>
+                                <input type="checkbox" />: Ask For Quantity
+                            </div>-->
+                            <!--<div>
+                                <input type="checkbox" />: Print Preview
+                            </div>-->
+                            <div>
+                                <h4>
+                                    <a style="cursor:pointer;text-decoration:none !important" data-toggle="modal" data-target="#PrintItemModal">Print Item List....</a>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Trigger the modal with a button -->
+                <!-- Modal -->
+
+
+
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Customer</h4>
+                            </div>
+                            <div class="panel panel-primary  col-lg-12">
+                                <div class="panel-heading text-left">
+                                    <span>New Customer</span>
+                                </div>
+                                <div class="panel-body " style="background-color: lightgray;">
+                                    <div class="form-group" style="display:none">
+                                        <label for="inputEmail3" class="col-sm-4 control-label">ID:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="id" id="inputEmail3" placeholder="" disabled>
+                                        </div>
+                                    </div>
+
+                                    <!--name validation start-->
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-4 control-label">Name:</label>
+
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="name" name="Name" id="inputEmail3" ng-pattern="/^[a-zA-Z\s]*$/" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.Name.$dirty && signup1.Name.$invalid">
+                                            <small class="error" ng-show="signup1.Name.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.Name.$error.pattern">
+                                                <b>please enter text</b>
+                                            </small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--name validation end-->
+
+
+                                    <div class="form-group" style="display:none">
+                                        <label for="inputEmail3" class="col-sm-4 control-label">city:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputEmail3" ng-model="city" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">City:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="city">
+                                                <option value="">
+                                                    Select City
+                                                </option>
+                                                <option value="{{city.City_ID}}" ng-repeat="city in getCity" ng-hide="city.Status==false">
+                                                    {{city.City}}
+                                                    <!--{{city.City_ID}}-->
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Form For contact number Input max 12 max 10 value Start -->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Contact No:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" ng-pattern="/^[0-9\s]*$/" ng-model="contactNo" maxlength="12" minlength="10" name="max" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.max.$dirty && signup1.max.$invalid">
+                                            <small class="error" ng-show="signup1.max.$error.required">
+                                                <b>please enter contact number</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.max.$error.pattern">
+                                                <b>please enter valid contact number</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.max.$error.minlength">
+                                                <b>please enter min 10 number</b>
+                                            </small>
+
+                                        </div>
+                                        <!-- Error Defination End -->
+
+                                    </div>
+                                    <!-- Form For contact number Input max 12 max 10 value end -->
+                                    <!--<div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Contact No:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" ng-model="contactNo" placeholder="">
+                                        </div>
+                                    </div>-->
+                                    <!-- Form For contact number 2 Input max 12 max 10 value Start -->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Contact No 2:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" ng-pattern="/^[0-9\s]*$/" ng-model="contactNo2" maxlength="12" minlength="10" name="con2" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.con2.$dirty && signup1.con2.$invalid">
+                                            <small class="error" ng-show="signup1.con2.$error.required">
+                                                <b>please enter contact number</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.con2.$error.pattern">
+                                                <b>please enter valid contact number</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.con2.$error.minlength">
+                                                <b>please enter min 10 numbers</b>
+                                            </small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!-- Form For contact number 2 Input max 12 max 10 value ends -->
+                                    <!--<div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Contact No 2:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" ng-model="contactNo2" placeholder="">
+                                        </div>
+                                    </div>-->
+                                    <!--only required validation is done-->
+                                    <!--email validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Email-id:</label>
+                                        <div class="col-sm-8">
+                                            <input type="email" class="form-control" id="inputPassword3" ng-model="emailId" ng-pattern="/^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,15})$/" name="email1" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.email1.$dirty && signup1.email1.$invalid">
+
+                                            <small class="error" ng-show="signup1.email1.$error.required">
+                                                <b>please enter email</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.email1.$error.pattern">
+                                                <b>please enter valid email</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.email1.$error.email"></small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--email validation ends-->
+                                    <!--<div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Email-id:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" ng-model="emailId" placeholder="">
+                                        </div>
+                                    </div-->
+                                    <!--only required validation is done-->
+                                    <!--email 2 validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">2nd Email-id:</label>
+                                        <div class="col-sm-8">
+                                            <input type="email" class="form-control" id="inputPassword3" ng-model="emailId2" ng-pattern="/^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,15})$/" name="emailId2" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.emailId2.$dirty && signup1.emailId2.$invalid">
+                                            <small class="error" ng-show="signup1.emailId2.$error.required">
+                                                <b>please enter email</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.emailId2.$error.pattern">
+                                                <b>please enter valid email</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.emailId2.$error.email"></small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--email 2 validation ends-->
+                                    <!--<div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">2nd Email-id:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" ng-model="emailId2" placeholder="">
+                                        </div>
+                                    </div>-->
+                                    <!--VAT No: validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">VAT No:</label>
+
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="vatNo" name="vatNo" id="inputPassword3" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.vatNo.$dirty && signup1.vatNo.$invalid">
+                                            <small class="error" ng-show="signup1.vatNo.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--VAT No: validation end-->
+                                    <!--<div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">VAT No:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" placeholder="" ng-model="vatNo">
+                                        </div>
+                                    </div>-->
+                                    <!--TIN No: validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">TIN No:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="tinNo" name="tinNo" id="inputPassword3" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.tinNo.$dirty && signup1.tinNo.$invalid">
+                                            <small class="error" ng-show="signup1.tinNo.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--TIN No: validation end-->
+                                    <!--<div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">TIN No:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" placeholder="" ng-model="tinNo">
+                                        </div>
+                                    </div>-->
+                                    <!--Street validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Street:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="street" name="street" id="inputPassword3" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.street.$dirty && signup1.street.$invalid">
+                                            <small class="error" ng-show="signup1.street.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--Street validation end-->
+                                    <!--<div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Street:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" placeholder="" ng-model="street">
+                                        </div>
+                                    </div>-->
+                                    <!--Area validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Area:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="area" name="area" id="inputPassword3" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.area.$dirty && signup1.area.$invalid">
+                                            <small class="error" ng-show="signup1.area.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--Area validation end-->
+                                    <!--<div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Area:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" placeholder="" ng-model="area">
+                                        </div>
+                                    </div>-->
+                                    <!--Pincode validation Start -->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Pincode:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" ng-model="pincode" ng-pattern="/^[0-9\s]*$/" name="pincode" maxlength="6" minlength="6" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.pincode.$dirty && signup1.pincode.$invalid">
+                                            <small class="error" ng-show="signup1.pincode.$error.required">
+                                                <b>please enter numeric</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.pincode.$error.pattern">
+                                                <b>please enter numeric</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.pincode.$error.minlength">
+                                                <b>please enter 6 digits</b>
+                                            </small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+
+                                    <!--Note validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Note:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="note" name="note" id="inputPassword3" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.note.$dirty && signup1.note.$invalid">
+                                            <small class="error" ng-show="signup1.note.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+
+
+
+                                    <div class="row" style="margin-top:5px">
+                                        <div class="col-lg-5 text-right">
+                                            <!--<asp:button id="btnSave" class="form-control" placeholder="Save" cssclass="btn btn-primary" onclick="btnSave_Click" />-->
+                                            <button id="btnSave" class="form-control btn btn-primary" ng-click="savecustomer()">Save</button>
+                                        </div>
+                                        <div class="col-lg-5 text-left">
+                                            <!--<asp:button id="btnCancel" class="form-control" placeholder="Cancel" cssclass="btn btn-danger" onclick="btnCancel_Click" />-->
+                                            <button id="btnCancel" class="form-control btn btn-danger" placeholder="Cancel" ng-click="CancelCustomer()">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!--Print Item List Model Start-->
+                <div id="PrintItemModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Items List</h4>
+                            </div>
+                            <div class="panel panel-primary  col-lg-12">
+
+                                <div class="panel-body " style="background-color: lightgray;">
+                                    <div class="pull-right" style="padding-bottom:15px">
+                                        <a class="glyphicon glyphicon-floppy-save btn btn-primary" style="width:100px"></a>
+                                        <a class="glyphicon glyphicon-print btn btn-primary " style="width:100px" onclick="javascript:window.print()"></a>
+                                    </div>
+                                    <div class=" ">
+                                        <table class="table table-bordered text-center">
+                                            <thead>
+                                                <tr class="bg-lime-active">
+
+                                                    <th>Item Code</th>
+                                                    <th>Item Name</th>
+                                                    <th>Unit</th>
+                                                    <th>Sales Price (र)</th>
+                                                    <th>Cost Price (र)</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="data in getItemsname" ng-hide="item.Status==false">
+                                                    <th scope="row">{{$index+1}}</th>
+                                                    <th>{{data.ItemName}}</th>
+                                                    <th>{{data.TotalQuantity}}</th>
+                                                    <th>{{data.SalePrice}}</th>
+                                                    <th>{{data.CostPrice}}</th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--Print Item List model End-->
+
+                <div id="itemModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Items Details</h4>
+                            </div>
+                            <div class="panel panel-primary  col-lg-12">
+
+                                <div class="panel-body " style="background-color: lightgray;">
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            Code :
+                                        </div>
+                                        <div class="col-sm-9 text-left">
+                                            <input type="text" class="form-control" ng-model="code" id="inputEmail3" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            Item Name :
+                                        </div>
+                                        <div class="col-sm-9 text-left">
+                                            <input type="text" class="form-control" ng-model="itemName" id="inputPassword3" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            Manufacture :
+                                        </div>
+                                        <div class="col-sm-9 text-left">
+                                            <input type="text" class="form-control" id="inputPassword3" ng-model="manufacturer" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            ManuFacturing Date: :
+                                        </div>
+                                        <div class="col-sm-9 date">
+                                            <div class="input-group input-append " id="datepicker1">
+                                                <input type="date" class="form-control" placeholder="dd-mm-yyyy" ng-model="manuFacturingDate" />
+                                                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            Expeiry Date:
+                                        </div>
+                                        <div class="col-sm-9 date">
+                                            <div class="input-group input-append " id="datepicker">
+                                                <input type="date" class="form-control" placeholder="dd-mm-yyyy" ng-model="expeiryDate" />
+                                                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="bfh-datepicker" data-format="y-m-d" data-date="today">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            Cost Price:
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="number" class="form-control " ng-model="costPrice" id="inputEmail3">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            Profit %:
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" ng-model="percentage" ng-change="percent(percentage)">
+                                                <option value="">
+                                                    Select Percentage
+                                                </option>
+                                                <option value="{{data.ProfitPercentage}}" ng-repeat="data in getPercentage" ng-hide="data.Status==false">
+                                                    {{data.ProfitPercentage}}
+
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div for="inputEmail3" class="col-sm-3 text-right">
+                                            Sales Price(<i class="fa fa-inr"></i>):
+                                        </div>
+                                        <div class="col-sm-9 text-left">
+                                            <input type="number" class="form-control " ng-model="salesPrice" id="inputEmail3" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right" for="inputEmail3">
+                                            Purchase Price(<i class="fa fa-inr"></i>):
+                                        </div>
+                                        <div class="col-sm-9 text-left">
+                                            <input type="number" class="form-control" id="inputEmail3" ng-model="purchasePrice">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right" for="inputEmail3">
+                                            M.R.P. (<i class="fa fa-inr"></i>):
+                                        </div>
+                                        <div class="col-sm-9 text-left">
+                                            <input type="number" class="form-control" id="inputEmail3" ng-model="MRP">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            Standard Unit:
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" ng-model="standardUnit">
+                                                <option value="">
+                                                    Select Standard Unit
+                                                </option>
+                                                <option value="{{data.ID}}" ng-repeat="data in getUnits" ng-hide="data.Status==false">
+                                                    {{data.Name}}
+
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            Purchase Unit:
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" ng-model="purchaseUnit">
+                                                <option value="">
+                                                    Select Purchase Unit
+                                                </option>
+                                                <option value="{{data.ID}}" ng-repeat="data in getUnits" ng-hide="data.Status==false">
+                                                    {{data.Name}}
+
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            Category:
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" ng-model="category">
+                                                <option value="">
+                                                    Select Category
+                                                </option>
+                                                <option value="{{data.Id}}" ng-repeat="data in getCategories" ng-hide="data.Status==false">
+                                                    {{data.Name}}
+
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            Purchase Tax:
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" ng-model="purchaseTax">
+                                                <option value="">
+                                                    Select Purchase Tax
+                                                </option>
+                                                <option value="{{data.Id}}" ng-repeat="data in getTaxs" ng-hide="data.Status==false">
+                                                    {{data.Name}}
+
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            Sales Tax:
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" ng-model="salesTax">
+                                                <option value="">
+                                                    Select Sales Tax
+                                                </option>
+                                                <option value="{{data.Id}}" ng-repeat="data in getTaxs" ng-hide="data.Status==false">
+                                                    {{data.Name}}
+
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            Opening Stock:
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="inputEmail3" ng-model="openingStock">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            Ideal Quantity:
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="inputEmail3" ng-model="idealQuantity">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            Reorder Quantity:
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="inputEmail3" ng-model="reorderQuantity">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            Max Quantity:
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="inputEmail3" ng-model="maxQuantity">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            Total Quantity:
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="inputEmail3" ng-model="totalQuantity">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            Allow Sales:
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" ng-model="allowSales">
+                                                <option value="">
+                                                    Select Sales
+                                                </option>
+                                                <option value='true'>
+                                                    YES
+                                                </option>
+                                                <option value='false'>
+                                                    No
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            Allow Purchase:
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" ng-model="allowPurchase">
+                                                <option value="">
+                                                    Select Purchase
+                                                </option>
+                                                <option value='true'>
+                                                    YES
+                                                </option>
+                                                <option value='false'>
+                                                    No
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            Allow Inward:
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" ng-model="allowInword">
+                                                <option value="">
+                                                    Select Inward
+                                                </option>
+                                                <option value='true'>
+                                                    YES
+                                                </option>
+                                                <option value='false'>
+                                                    No
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            Allow Outward:
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" ng-model="allowOutword">
+                                                <option value="">
+                                                    Select Outward
+                                                </option>
+                                                <option value='true'>
+                                                    YES
+                                                </option>
+                                                <option value='false'>
+                                                    No
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            Description:
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="inputEmail3" ng-model="description">
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-top:5px">
+                                        <div class="col-sm-3 text-right">
+                                        </div>
+                                        <div class="col-sm-5 text-right">
+                                            <button id="Button1" class="form-control btn btn-primary" placeholder="Save" ng-show="btnsave" ng-click="saveItem()">Save</button>
+                                        </div>
+                                        <div class="col-sm-4 text-left">
+                                            <button id="Button2" class="form-control btn btn-danger" placeholder="Cancel" ng-click="ItemCacel()">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer" style="padding:0px">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <modal class="modal fade" visible="showModal" role="dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                            <h4 class="modal-title">Enter Quantity & Price</h4>
+                        </div>
+                        <div class="col-sm-12">
+
+
+
+                            <div class="col-sm-6 text-right">
+                                Available Stock :
+                            </div>
+                            <div class="col-sm-6 text-left">
+                                <input type="text" class="form-control" ng-model="getavailablestock" disabled>
+                            </div>
+                            <div class="col-sm-6 text-right">
+                                Enter Quantity :
+                            </div>
+                            <div class="col-sm-6 text-left">
+                                <input type="text" id="txtQuantity" class="form-control" value="1" ng-model="quantity" ng-change="QuantityLimit()">
+                            </div>
+                            <div class="col-sm-6 text-right">
+                                Enter Sale Price :
+                            </div>
+                            <div class="col-sm-6 text-left">
+                                <input type="text" class="form-control" ng-model="getsaleprice" disabled>
+                            </div>
+                            <div class="col-sm-6 text-right">
+                                Batch No :
+                            </div>
+                            <div class="col-sm-6 text-left">
+                                <input type="text" class="form-control" ng-model="getbatchno">
+                            </div>
+                            <div class="col-sm-6 text-right">
+                                <!--<asp:button id="btnOk" class="form-control" placeholder="Ok" cssclass="btn btn-primary" />-->
+                                <button id="btnOk" class="form-control btn btn-primary" ng-click="additeminlist()" data-dismiss="modal">Ok</button>
+                            </div>
+                            <div class="col-sm-6 text-left">
+                                <!--<asp:button id="btnCacel" class="form-control" placeholder="Cancel" cssclass="btn btn-danger" />-->
+                                <button id="btnCacel" class="form-control btn btn-danger" placeholder="Cancel" ng-click="CancelQuantity()">Cancel</button>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </modal>
+
+
+                <div id="makePaymentModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Make Payment</h4>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="panel-body " style="background-color: lightgray;">
+                                    <div class="form-group form-group-sm  row text-right">
+                                        <div class="pull-left col-sm-8 "> Payment Date:</div>
+                                        <div class="col-sm-4">
+                                            <input class="form-control" type="date" placeholder="Select Date" ng-model="PaymentDate">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        Payment Type:
+                                        <select class="form-control" ng-model="ddlPaymentType" autopostback="true" width="150px">
+                                            <option value="">Select Payment</option>
+                                            <option value="Cash">Cash</option>
+                                            <option value="CreditCard">Credit Card</option>
+                                            <option value="DebitCard">Debit Card</option>
+                                            <option value="Cheque">Cheque</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-12">
+
+                                        <div class="col-sm-4" ng-show="ddlPaymentType=='Cheque'">
+                                            Issue Date:
+                                            <input type="date" ng-model="txtIssueDate" class="form-control">
+                                        </div>
+                                        <div class="col-sm-4" ng-show="ddlPaymentType=='Cheque'">
+                                            Deposite Date:
+                                            <input type="date" ng-model="txtDepositeDate" class="form-control">
+                                        </div>
+
+                                        <div class="col-sm-4" ng-show="ddlPaymentType=='CreditCard' || ddlPaymentType=='DebitCard'">
+                                            Reference No:
+                                            <input type="text" ng-model="txtReferenceNo" class="form-control">
+                                        </div>
+
+                                        <!--<div class="col-sm-4" ng-show="ddlPaymentType=='Cheque'">
+                                            Cheque Number:
+                                            <input type="text" ng-model="txtChequenoS" class="form-control">
+                                        </div>-->
+                                        <div class="col-sm-4" ng-show="ddlPaymentType=='CreditCard' || ddlPaymentType=='DebitCard' || ddlPaymentType=='Cheque'">
+                                            Deposite To:
+                                            <select ng-model="ddlDepositeTo" class="form-control" autopostback="true" width="150px">
+                                                <option>sdfddgf</option>
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-12">
+
+
+                                        <div class="col-sm-4">
+                                            Amount:
+                                            <input type="text" ng-model="txtAmount" class="form-control">
+                                        </div>
+                                        <div class="col-sm-4">
+                                            Paid Amount:
+                                            <input type="text" ng-model="txtPaidAmount" class="form-control" ng-change="amountChanges()">
+                                        </div>
+                                        <div class="col-sm-4">
+                                            Balance Amount:
+                                            <input type="text" ng-model="BalanceAmount" class="form-control">
+                                        </div>
+
+                                        <!--<div class="col-sm-4" ng-show="ddlpaymenttype == 'Cheque'">
+                                            Deposite Number:
+                                            <input type="text" ng-model="txtDepositeno" class="form-control">
+                                        </div>-->
+                                        <div class="col-sm-4" ng-show="ddlPaymentType=='CreditCard' || ddlPaymentType=='DebitCard' || ddlPaymentType=='Cheque'">
+                                            Bank Name:
+                                            <input type="text" ng-model="txtBankName" class="form-control">
+                                        </div>
+                                        <div class="col-sm-4" ng-show="ddlPaymentType=='Cheque'">
+                                            Cheque Number:
+                                            <input type="text" ng-model="txtChequenoS" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12" style="margin-top: 10px">
+                                        <div class="col-sm-12 text-left">
+                                            Note:
+                                            <input type="text" ng-model="txtNotePaymentDetails" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12" style="margin-top: 40px">
+                                        <div class="col-sm-12 text-left">
+                                            <h4><b>Customer Details...</b></h4>
+                                        </div>
+                                        <br />
+                                        <div class="row col-sm-12">
+                                            --------------------------------------------------------------------------------------------------------------
+                                        </div>
+                                        <div class="col-sm-12 ">
+                                            <div class="col-sm-12">
+                                                Customer Name:<input type="text" ng-model="txtCustomerName" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12" style="margin-top: 5px">
+                                            <div class="col-sm-5">
+                                                City:
+
+                                                <input type="text" ng-model="txtCityPayment" class="form-control">
+                                            </div>
+                                            <div class="col-sm-6">
+                                                Contact Number:
+                                                <input type="text" ng-model="txtContactPayment" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 text-center" style="margin-top: 25px">
+                                            <a name="btnReceivePayment" class="form-control btn btn-primary" ng-click="savePayment();" data-dismiss="modal">Receive Payment</a> <!--ng-click="savePayment()"-->
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button name="btnCancelPayment" class="form-control btn btn-danger">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+        <!-- /.content -->
+    </div><!-- /.content-wrapper -->
+    <!-- Control Sidebar -->
+    <!--for printing the page Information   page content-->
+
+    <div class="panel panel-danger " ng-hide="IsHidden">
+        <div class="panel-heading ">
+
+            <h3><b> Invoice Details</b></h3>
+
+        </div>
+        <div class="panel-body " style="padding: 0px">
+
+            <div class="col-sm-6 panel-body">
+                <div class="panel panel-danger ">
+                    <div class="panel-heading " style="padding:2px">
+
+                        <h3><b> Bill Form</b></h3>
+
+                    </div>
+                    <div class="panel-body " style="padding: 0px">
+
+                        <div class="col-sm-12 ">
+                            <div class="col-sm-3 text-right">Customer Name:</div>
+                            <div class="col-sm-8 text-left">
+
+                                <label class="" ng-model="">{{PrintCustName}}</label>
+                            </div>
+
+
+                        </div>
+                        <div class="col-sm-12 text-right">
+                            <div class="col-sm-3">Contact No:</div>
+                            <div class="col-sm-8 text-left">
+                                <label class="" ng-model="supplierName">{{PrintCustContactNo}}</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 panel-body">
+                <div class="panel panel-danger ">
+                    <div class="panel-heading panel-body">
+                        <div class="text-left col-sm-3" style="font-size:25px"><b>Invoice#</b></div>
+
+                        <div class="col-sm-4 form-group-sm">
+                            <input class="form-control" type="text" placeholder="Enter Invoice" ng-model="PrintInvoice" ng-hide="IsTextHide">
+                            <label class="pull-left" ng-model="PrintInvoiceno" ng-show="IsShowLbl" style="padding-top:8px; font-size:large;">{{PrintInvoice}}</label>
+                        </div>
+                        <div class="col-sm-5">
+                            <a class="glyphicon glyphicon-edit btn btn-primary btn-sm" ng-click="editInvoice()" style="padding-top:12px;" ng-hide="IsEditHide">Edit</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp; <a class="glyphicon glyphicon-floppy-disk btn btn-primary btn-sm" style="padding-top:12px;" ng-click="saveInvoice()" ng-hide="IsSaveHide">Save</a>
+                        </div>
+
+                    </div>
+                    <div class="panel-body " style="padding: 0px">
+
+                        <div class="col-sm-12 ">
+                            <div class="col-sm-3 text-right">Invoice Date:</div>
+                            <div class="col-sm-8 text-left">
+
+                                <label class="" ng-model="invoiceDatePayment">{{PrintInvoiceDate}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 text-right">
+                            <div class="col-sm-3">Due Date:</div>
+                            <div class="col-sm-8 text-left">
+                                <label class="" ng-model="invoiceduedate">{{PrintDueDate}}</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-12 panel-body">
+                <div class="panel panel-danger ">
+                    <div class="panel-heading panel-body ">
+                        <h3>Item List</h3>
+                    </div>
+                    <div class="panel-body " style="padding: 0px">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Item Name</th>
+                                    <th>Per</th>
+                                    <th>Manufacturer</th>
+                                    <th>Batch No</th>
+                                    <th>Exp. Date</th>
+                                    <th>M.R.P.</th>
+                                    <th>Sales Price (र)</th>
+                                    <th>Cost Price (र)</th>
+                                    <th>Quantity</th>
+                                    <th>Total Amount (र)</th>
+                                    <th></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="aitem in additem">
+                                    <th scope="row">{{aitem.counts}}</th>
+                                    <td>{{aitem.itemname1}}</td>
+                                    <td>{{aitem.percent1}}</td>
+                                    <td>{{aitem.manufacturer1}}</td>
+                                    <td>{{aitem.batchNo}}</td>
+                                    <td>{{aitem.expirydate1}}</td>
+                                    <td>Rs. {{aitem.mrp1}}</td>
+                                    <td>Rs. {{aitem.saleprice1}}</td>
+                                    <td>Rs. {{aitem.costprice1}}</td>
+                                    <td>{{aitem.quantities1}}</td>
+                                    <td>Rs. {{aitem.totalprice1}}</td>
+                                    <!--<td><a ng-click="deleteitemfrmlist()" class="btn btn-danger btn-sm" style="padding:0px"><i class="glyphicon glyphicon-trash"></i></a></td>-->
+                                </tr>
+
+
+
+                                <tr class="active">
+                                    <td colspan="7"></td>
+                                    <td><b>Total</b></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td ng-model="TotalTaxAmount">Rs. {{getgrandtotal}}</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-4">
+                    <div style="font-size:20px"><b> Note: </b> </div>
+                    <br />
+                    <div style="padding-left:50px">
+                        <p ng-model="notePayment">{{PrintNote}} </p>
+                    </div>
+
+                </div>
+                <div class="col-sm-5 pull-right">
+                    <div class="panel   ">
+                        <div class="row panel-body">
+
+                            <div class="form-group form-group-sm  row">
+                                <div class="text-right col-sm-7 ">Total Discount (र):</div>
+                                <div class="col-sm-5 text-right">
+                                    <label ng-model="totaldiscountPaymnet">{{PrintDiscount}}</label>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm  row">
+                                <div class="text-right col-sm-7 "><b>Sub Total (र):</b></div>
+                                <div class="col-sm-5 text-right">
+                                    <label ng-model="subTotal">{{getgrandtotal}}</label>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm  row">
+                                <div class="text-right col-sm-7 ">Apllicable Tax:</div>
+                                <div class="col-sm-5 text-right">
+                                    <label ng-model="subTotal">{{PrintTax}}</label>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm row">
+                                <div class="text-right col-sm-7 ">Amount (र):</div>
+                                <div class="col-sm-5 text-right">
+                                    <label ng-model="amountPayment">{{PrintAmount}}</label>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm row">
+                                <div class="text-right col-sm-7 ">Round off (र):</div>
+                                <div class="col-sm-5 text-right">
+                                    <label ng-model="roundoffPayment">{{PrintRoundOff}}</label>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm row" style="color:blue">
+                                <div class="text-right col-sm-7 "><h4><b>Net Amount (र):</b></h4></div>
+                                <div class="col-sm-5 text-right">
+                                    <h4><b>  <label ng-model="netAmountPayment">{{PrintNetAmount}}</label></b></h4>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-group-sm row" style="color:darkgreen">
+                                <div class="text-right col-sm-7 "><h4><b>Paid Amount (र): </b></h4></div>
+                                <div class="col-sm-5 text-right">
+                                    <h4><b> <label ng-model="paidAmount">{{PrintPaidAmount}}</label></b></h4>
+                                </div>
+                            </div>
+                            <!--<div class="pull-left col-sm-12 ">
+                            <b>-->
+                            ----------------------------------------------------------------------------------------------------
+                            <!--</b>
+                            </div>-->
+
+                            <div class="form-group form-group-sm row" style="color:red">
+                                <div class="text-right col-sm-7 "><h4><b>Remaining Amount (र): </b></h4></div>
+                                <div class="col-sm-5 text-right">
+                                    <h4><b> <label ng-model="remainingAmount">{{PrintBalanceAmount}}</label></b></h4>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-12 text-center" style="padding-bottom:20px">
+                <a class="btn btn-primary sidebar-toggle" data-toggle="offcanvas" role="button" style="width:180px" ng-print print-element-id="printThisElement" ng-hide="PrintBtn" ng-click="ShowMaindiv()"><i class="fa fa-print"></i> Print</a>
+            </div>
+        </div>
+    </div>
+
+    <!--End Print Code-->
+
+
+</div><!-- ./wrapper -->

@@ -1,0 +1,211 @@
+﻿
+<div ng-controller="supplierLedgerController">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="margin-left:0px">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Supplier Ledger
+                <small>Control panel</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Services</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+
+                    </div>
+                    <div class="col-md-12">
+                    
+
+<!--panel 1  -->
+
+                        <div class="col-md-7">
+                            <div class="box box-solid">
+                                <div class="box-header with-border bg-aqua">
+                                    <h3 class="box-title text-center">Supplier Details</h3>
+                                </div>
+                                <form class="form-horizontal">
+                                    <div class="box-body col-sm-12">
+
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-4 control-label">Supplier Name:</label>
+                                            <div class="col-sm-8">
+                                                <select id="Select1" class="form-control" ng-model="SupplierName"  ng-change="custid(SupplierName)">
+                                                    <option value="">Select Name</option>
+                                                    <option value="{{data.Id}}" ng-repeat="data in getSuppliers" ng-hide="data.Status==false">{{data.Name}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-4 control-label">Contact No:</label>
+                                            <!--<div class="col-sm-8" style="padding:10px">
+                                                <input  type="text" class="form-control" ng-model="contactNumber" placeholder="Contact No" text="{{ContactNumber}}">
+                                            </div>-->
+                                            <label for="inputEmail3" class="col-sm-2 control-label" value="">
+                                                {{suppliercontactno}}
+                                            </label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-4 control-label">Current Balance:</label>
+                                            <!--<div class="col-sm-8" style="padding:10px">
+                                                <input type="text" class="form-control" ng-model="balance" placeholder="Balance" text="{{ContactNumber}}">
+                                            </div>-->
+                                            <label for="inputEmail3" class="col-sm-2 control-label">
+                                                {{currentBalance}}
+                                            </label>
+                                        </div>
+                                    </div><!-- /.box-body -->
+                                    <div class="box-body">
+
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div><!-- /. box -->
+
+                        <!--panel 2 -->
+
+                        <div class="col-md-5 pull-left">
+                            <div class="box box-solid">
+                                <div class="box-header with-border bg-aqua">
+                                    <h3 class="box-title text-center ">Duration</h3>
+                                </div>
+                                <form class="form-horizontal">
+                                    <div class="box-body col-sm-12">
+
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-4 control-label">Duration:</label>
+
+                                            <div class="col-sm-8">
+                                                <select id="Select1" class="form-control" ng-model="country">
+                                                    <option value="">Today</option>
+                                                    <option>Last Week</option>
+                                                    <option>Last 15 Days</option>
+                                                    <option>Last Month</option>
+                                                    <option>Last 3 Months</option>
+                                                    <option>Last 6 Months</option>
+                                                    <option>Last Year</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-4 control-label">Start Date:</label>
+                                            <div class="col-xs-8 date">
+                                                <div class="input-group input-append " id="datepicker">
+                                                    <input type="date" class="form-control" placeholder="dd-mm-yyyy" ng-model="manuFacturingDate" />
+                                                    <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-4 control-label">End Date:</label>
+                                            <div class="col-xs-8 date">
+                                                <div class="input-group input-append " id="datepicker">
+                                                    <input type="date" class="form-control" placeholder="dd-mm-yyyy" ng-model="manuFacturingDate" />
+                                                    <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div><!-- /.box-body -->
+                                    <div class="box-body">
+
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div><!-- /. box -->
+                    </div>
+                    
+                    <!--table panel -->
+                    <div class="col-md-12">
+                        <div class="box box-solid">
+                            <table class="table  table-bordered table-sortable" id="tab_logic">
+
+                                <tbody>
+                                    <tr>
+                                        <!--<td class="form-group">
+                                            <div class="form-group form-group-sm bg-aqua">
+                                                <div class="box-header with-border">
+                                                    <h4 class="box-title">Cash A/C Ledger</h4>
+                                                </div>
+                                            </div>
+                                        </td>-->
+                                        <td>
+                                            <div class="col-sm-12 bg-aqua">
+                                                <a class="pull-right btn btn-default btn-sm"><i class="glyphicon glyphicon-print" style="font-size:13pt"></i></a>
+                                                &nbsp;&nbsp;
+                                                <a class="pull-right btn btn-default btn-sm"><i class="glyphicon glyphicon-download-alt" style="font-size:13pt"></i></a>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="box-body">
+                                <!-- the events -->
+                                <!-- the table  eventsstart 0000000    0000000000 -->
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Particular</th>
+                                        <th>Debit</th>
+                                        <th>Credit</th>
+                                        <th>Balance</th>
+                                        <!--<th style="width: 20px">Update</th>
+                                        <th style="width: 20px">Delete</th>-->
+                                    </tr>
+                                    <tbody>
+                                        <tr ng-repeat="data in SupplierPaymentTable" ng-hide="data.Status==false">
+
+                                            <td>{{data.paymentDate1|date :'dd-MM-yyyy'}}</td>
+                                            <td>{{data.note}}</td>
+                                            <td>{{data.paidAmount}}</td>
+                                            <td>{{data.creditBalanceAmount}}</td>
+                                            <td>{{data.balanceamount}}</td>
+                                        </tr>
+                                        <!--<tr class="bg-info" ng-show="!getCategories">
+                                            <td colspan="6">Loading.....</td>
+                                        </tr>-->
+                                        <tr>
+                                            <td colspan="2" class="bg-gray">Record Status</td>
+                                            <td class="bg-gray">{{totalCreditBalance}}</td>
+                                            <td class="bg-gray">{{totalDebitBalance}}</td>
+                                            <td class="bg-gray">{{totalBalance}}</td>
+                                        </tr>
+                                    </tbody>
+
+
+                                </table>
+                                <!--table coding end----->
+                            </div><!-- /.box-body -->
+                        </div><!-- /. box -->
+
+                    </div><!-- /.col -->
+
+
+                </div><!-- /.col -->
+                <!-- /.col -->
+                <!-- /.row -->
+            </div>
+
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+</div>
+

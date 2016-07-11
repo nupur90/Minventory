@@ -1,0 +1,179 @@
+﻿
+<div ng-controller="bankDetailsController">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="margin-left:0px">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                {{Units}}
+                Bank Details
+                <small>Control panel</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Services</li>
+            </ol>
+        </section>
+
+        <!-- 00000000000000000000     main body start   00000000000000000000 -->
+        <!-- Main content -->
+        <section class="content">
+            <div class="box box-primary">
+
+            </div>
+            <div class="row">
+
+
+                <div class="col-md-5">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <h4 class="box-title">Bank Details Listing</h4>
+                        </div>
+                        <div class="box-body">
+                            <!-- the events -->
+                            <!-- the table  eventsstart 0000000    0000000000 -->
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Sr.No.</th>
+                                    <th>Name</th>
+                                    <th>IFSC Code</th>
+                                    <th>Branch</th>
+                                    <th style="width: 20px">Update</th>
+                                    <th style="width: 20px">Delete</th>
+                                </tr>
+
+                                <tbody>
+
+                                    <tr ng-repeat="data in getBank" ng-hide="data.Status==false">
+                                        <td>{{$index + 1}}</td>
+                                        <th>{{data.BankName}}</th>
+                                        <th>{{data.IFSCCode}}</th>
+                                        <th>{{data.Branch}}</th>
+                                        <th>
+                                            <a ng-click="editBank(id=data.Id)" class="btn btn-info btn-sm" style="padding:0px"><i class="glyphicon glyphicon-edit"></i></a>
+
+                                        </th>
+                                        <th>
+                                            <a ng-click="deleteBank(id=data.Id)" class="btn btn-danger btn-sm" style="padding:0px"><i class="glyphicon glyphicon-trash"></i></a>
+                                        </th>
+
+                                    </tr>
+                                    <tr class="bg-info" ng-show="!getBank">
+                                        <td colspan="7">Loading.....</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="7" class="bg-aqua">Record Status</td>
+                                    </tr>
+                                </tbody>
+
+
+                            </table>
+                            <!--table coding end----->
+                        </div><!-- /.box-body -->
+                    </div><!-- /. box -->
+
+                </div><!-- /.col -->
+
+
+                <div class="col-md-5">
+                    <div class="box box-primary">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Bank Details</h3>
+                            </div>
+                            <form class="form-horizontal" name="signup1" role="form">
+                                <div class="box-body">
+                                    <div class="form-group" style="display:none">
+                                        <label for="inputEmail3" class="col-sm-4 control-label">ID:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="id" id="inputEmail3" placeholder="" disabled>
+                                            <input type="text" class="form-control" ng-model="status" id="inputEmail3" placeholder="" disabled>
+                                        </div>
+                                    </div>
+
+                                    <!--Account Number validation start-->
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-4 control-label">Bank Name:</label>
+
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="bankName" name="bankName" id="inputEmail3"  value="" placeholder="" required/><!--ng-pattern="/^[0-9\s]*$/"-->
+                                        </div>
+                                        <!-- Error Defination -->
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.bankName.$dirty && signup1.bankName.$invalid">
+                                            <small class="error" ng-show="signup1.bankName.$error.required">
+                                                <b>please enter unit</b>
+                                            </small>
+                                            <!--<small class="error" ng-show="signup1.bankName.$error.pattern">
+                                                <b>please enter unit</b>
+                                            </small>-->
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--Account Number validation end-->
+                                    <!--Account Name validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">IFSC Code:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="IFSCcode" name="IFSCcode" id="inputPassword3" value="" placeholder="" required/>
+                                        </div>
+                                        <!-- Error Defination -->
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.IFSCcode.$dirty && signup1.IFSCcode.$invalid">
+                                            <small class="error" ng-show="signup1.IFSCcode.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--Account Name validation end-->
+                                    <!--Bank validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Branch:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="branch" name="branch" id="inputPassword3" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.branch.$dirty && signup1.branch.$invalid">
+                                            <small class="error" ng-show="signup1.branch.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--Bank validation end-->
+
+                                </div><!-- /.box-body -->
+                                <div class="box-footer">
+                                    <a class="btn btn-success col-sm-8" ng-click="saveBank()" ng-show="btnsave">Save</a>
+                                    <a class="btn btn-info col-sm-8" ng-show="btnupdate" ng-click="updateBank()">Update</a>
+                                    <a class="btn btn-danger pull-right" ng-click="cancelAndNew()">Cancel</a>
+                                </div><!-- /.box-footer -->
+                            </form>
+                        </div>
+                    </div><!-- /. box -->
+                </div><!-- /.col -->
+
+
+                <div class="col-md-2">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <form class="form-horizontal">
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary col-md-12" ng-click="cancelAndNew()">New</button>
+
+                                </div>
+
+                            </form>
+                            <div class="box-body">
+                                <!-- the events -->
+
+                            </div><!-- /.box-body -->
+                        </div><!-- /. box -->
+
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+        </section><!-- /.content -->
+        <!-- **************************************************************** -->
+    </div><!-- /.content-wrapper -->
+
+</div>
+

@@ -1,0 +1,707 @@
+﻿<div class=" " ng-controller="deliveryChallanController">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="margin-left:0px;" ng-show="IsShowdiv">
+        <!-- Content Header (Page header) -->
+        <section class="content-header" style="margin-bottom:5px">
+            <h1>
+                <b>
+                    Delivery Challan
+
+                </b>
+            </h1>
+            <!--<ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+                <li class="active">Invoices</li>
+            </ol>-->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">  
+                <div class="col-lg-12">
+                    <div class="box box-primary">
+                    </div>
+                    <div class="panel panel-info col-sm-11" style="padding:0px;margin-bottom:110px">
+                        <div class="panel-heading col-lg-12 panel-body">
+                            <div class="col-sm-3" style="padding:4px 1px">
+                                Delivery Challan
+
+                            </div>
+
+                        </div>
+                        <div class="panel-body " style="padding: 0px">
+                            <table class="table " id="tab_logic">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div class="">
+                                                <div class="pull-left col-sm-3" style="padding:4px 2px">Customer Name:</div>
+                                                <div class="col-sm-6 pull-left" style="padding-left:5px">
+                                                    <select class="form-control input-sm" ng-model="CustomerName" ng-change="custid(CustomerName)">
+                                                        <option value="">Select Name</option>
+                                                        <option ng-repeat="name in getCustomers" ng-hide="name.Status==false" value="{{name.Id}}">{{name.Name}}</option>
+
+                                                    </select>
+                                                </div>
+                                                <a class="col-sm-2" data-toggle="modal" data-target="#myModal" style="padding-left:2px"><i class="btn btn-success btn-sm glyphicon glyphicon-plus-sign"></i></a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="pull-right">
+                                                <div class=" col-sm-3 " style="padding:4px 1px">Date:</div>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="date" placeholder="Select Date" ng-model="challanDate">
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="">
+                                                <div class="pull-left col-sm-2 " style="padding:4px 1px">City:</div>
+                                                <div class="col-sm-10">
+                                                    <!--<label ng-model="city" ng-pattern="/^[0-9\s]*$/"></label>-->
+                                                    <label ng-model="city" style="font-size:20px">{{cityName}}</label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="">
+                                                <div class="pull-left col-sm-4" style="padding:4px 0px">Contact No:</div>
+                                                <div class="col-sm-8" style="padding:0px">
+                                                    <!--<label ng-model="contactNumber"></label>-->
+                                                    <label ng-model="Customercontactno" style="font-size:20px">{{Customercontactno}}</label>
+                                                </div>
+                                            </div>
+                                        </td>
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                            <div class="panel panel-info">
+                                <div class="panel-heading panel-body" style="padding:5px">
+                                    <div class="form-group form-group-sm">
+                                        <div class=" col-sm-2 text-right" style="padding:4px 0px">Select Item:</div>
+                                        <div class="col-sm-9">
+                                            <select class="form-control input-sm" ng-model="selecteditem" ng-change="toggleModal()">
+                                                <option value="">Select Item</option>
+                                                <option ng-repeat="item in getItemsname" ng-hide="item.Status==false" value="{{item.Id}}">{{item.ItemName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class=" ">
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:10px">Sr.No.</th>
+
+                                                <th>Item Name</th>
+                                                <th>Unit</th>
+                                                <th>Quantity</th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="aitem in additem">
+                                                <th scope="row">{{$index+1}}</th>
+                                                <td style="display:none">{{aitem.Id}}</td>
+                                                <td style="display:none">{{aitem.Item_Id}}</td>
+
+                                                <td>{{aitem.ItemName}}</td>
+                                                <td>{{aitem.PurchaseUnitName}}</td>
+                                                <td>{{aitem.Quantity}}</td>
+
+                                                <td><a ng-click="deleteitemfrmlist($index,aitem)" class=" btn btn-danger btn-sm" style="padding:0px"><i class="glyphicon glyphicon-trash"></i></a></td>
+                                            </tr>
+
+
+
+                                            <tr>
+                                                <td colspan="1" class="bg-aqua"> </td>
+                                                <td colspan="1" class="bg-aqua"> </td>
+                                                <td class=" text-center bg-aqua"> Total Quantity</td>
+                                                <td class="active bg-aqua">
+
+                                                    <b style="font-size:20px">
+                                                        {{totalQuantity}}
+                                                    </b>
+
+                                                </td>
+
+                                                <!--<td><a ng-click="clearAll()" class="col-sm-12 btn btn-danger btn-sm" style="padding:0px"><i>All Clear</i></a></td>-->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-sm-12">
+                                <div class="col-sm-4">
+                                    Note:
+                                    <textarea class="form-control" rows="4" ng-model="note"> </textarea>
+                                </div>
+                                <div class="col-sm-5 pull-right">
+                                    <div class="panel">
+                                        <div class="bg-info row panel-body">
+                                            <div class="pull-left col-sm-5 " style="padding:4px 1px">Total Quantity:</div>
+                                            <div class="col-sm-7">
+                                                <input class="form-control" type="number" placeholder="0" ng-model="totalQuantity" disabled>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-lg-12 text-center" style="margin-bottom:20px">
+                                <a class="btn btn-primary" style="width:125px" ng-click="saveChallan()">Save</a>
+                                &nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-reddit" style="width:125px" ng-click="ClearAllFields()">Reset</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-1" style="margin-top:20px;">
+                        <div class=" text-center">
+                            <a class=" " style=" cursor:pointer;text-decoration:none !important" href="/#/StockInHand">
+                                <i style="color:gray;font-size:xx-large" class="glyphicon glyphicon-folder-open"></i>
+                                <br /> Invoices
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Modal Customer Start -->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Customer</h4>
+                            </div>
+                            <div class="panel panel-primary  col-lg-12">
+                                <div class="panel-heading text-left">
+                                    <span>New Customer</span>
+                                </div>
+                                <div class="panel-body " style="background-color: lightgray;">
+                                    <div class="form-group" style="display:none">
+                                        <label for="inputEmail3" class="col-sm-4 control-label">ID:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="id" id="inputEmail3" placeholder="" disabled>
+                                        </div>
+                                    </div>
+
+                                    <!--name validation start-->
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-4 control-label">Name:</label>
+
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="name" name="Name" id="inputEmail3" ng-pattern="/^[a-zA-Z\s]*$/" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.Name.$dirty && signup1.Name.$invalid">
+                                            <small class="error" ng-show="signup1.Name.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.Name.$error.pattern">
+                                                <b>please enter text</b>
+                                            </small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--name validation end-->
+
+
+                                    <div class="form-group" style="display:none">
+                                        <label for="inputEmail3" class="col-sm-4 control-label">city:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputEmail3" ng-model="city" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">City:</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" ng-model="city">
+                                                <option value="">
+                                                    Select City
+                                                </option>
+                                                <option value="{{city.City_ID}}" ng-repeat="city in getCity" ng-hide="city.Status==false">
+                                                    {{city.City}}
+                                                    <!--
+                                                    {{city.City_ID}}-->
+                                                    </op
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Form For contact number Input max 12 max 10 value Start -->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Contact No:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" ng-pattern="/^[0-9\s]*$/" ng-model="contactNo" maxlength="12" minlength="10" name="max" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.max.$dirty && signup1.max.$invalid">
+                                            <small class="error" ng-show="signup1.max.$error.required">
+                                                <b>please enter contact number</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.max.$error.pattern">
+                                                <b>please enter valid contact number</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.max.$error.minlength">
+                                                <b>please enter min 10 number</b>
+                                            </small>
+
+                                        </div>
+                                        <!-- Error Defination End -->
+
+                                    </div>
+                                    <!-- Form For contact number Input max 12 max 10 value end -->
+                                    <!--<div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Contact No:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" ng-model="contactNo" placeholder="">
+                                        </div>
+                                    </div>-->
+                                    <!-- Form For contact number 2 Input max 12 max 10 value Start -->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Contact No 2:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" ng-pattern="/^[0-9\s]*$/" ng-model="contactNo2" maxlength="12" minlength="10" name="con2" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.con2.$dirty && signup1.con2.$invalid">
+                                            <small class="error" ng-show="signup1.con2.$error.required">
+                                                <b>please enter contact number</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.con2.$error.pattern">
+                                                <b>please enter valid contact number</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.con2.$error.minlength">
+                                                <b>please enter min 10 numbers</b>
+                                            </small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!-- Form For contact number 2 Input max 12 max 10 value ends -->
+                                    <!--<div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Contact No 2:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" ng-model="contactNo2" placeholder="">
+                                        </div>
+                                    </div>-->
+                                    <!--only required validation is done-->
+                                    <!--email validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Email-id:</label>
+                                        <div class="col-sm-8">
+                                            <input type="email" class="form-control" id="inputPassword3" ng-model="emailId" ng-pattern="/^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,15})$/" name="email1" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.email1.$dirty && signup1.email1.$invalid">
+
+                                            <small class="error" ng-show="signup1.email1.$error.required">
+                                                <b>please enter email</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.email1.$error.pattern">
+                                                <b>please enter valid email</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.email1.$error.email"></small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--email validation ends-->
+                                    <!--only required validation is done-->
+                                    <!--email 2 validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">2nd Email-id:</label>
+                                        <div class="col-sm-8">
+                                            <input type="email" class="form-control" id="inputPassword3" ng-model="emailId2" ng-pattern="/^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,15})$/" name="emailId2" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.emailId2.$dirty && signup1.emailId2.$invalid">
+                                            <small class="error" ng-show="signup1.emailId2.$error.required">
+                                                <b>please enter email</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.emailId2.$error.pattern">
+                                                <b>please enter valid email</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.emailId2.$error.email"></small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--email 2 validation ends-->
+                                    <!--VAT No: validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">VAT No:</label>
+
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="vatNo" name="vatNo" id="inputPassword3" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.vatNo.$dirty && signup1.vatNo.$invalid">
+                                            <small class="error" ng-show="signup1.vatNo.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--VAT No: validation end-->
+                                    <!--TIN No: validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">TIN No:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="tinNo" name="tinNo" id="inputPassword3" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.tinNo.$dirty && signup1.tinNo.$invalid">
+                                            <small class="error" ng-show="signup1.tinNo.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--TIN No: validation end-->
+                                    <!--Street validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Street:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="street" name="street" id="inputPassword3" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.street.$dirty && signup1.street.$invalid">
+                                            <small class="error" ng-show="signup1.street.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--Street validation end-->
+                                    <!--Area validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Area:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="area" name="area" id="inputPassword3" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.area.$dirty && signup1.area.$invalid">
+                                            <small class="error" ng-show="signup1.area.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--Area validation end-->
+                                    <!--Pincode validation Start -->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Pincode:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="inputPassword3" ng-model="pincode" ng-pattern="/^[0-9\s]*$/" name="pincode" maxlength="6" minlength="6" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.pincode.$dirty && signup1.pincode.$invalid">
+                                            <small class="error" ng-show="signup1.pincode.$error.required">
+                                                <b>please enter numeric</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.pincode.$error.pattern">
+                                                <b>please enter numeric</b>
+                                            </small>
+                                            <small class="error" ng-show="signup1.pincode.$error.minlength">
+                                                <b>please enter 6 digits</b>
+                                            </small>
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!-- Pincode validation end -->
+                                    <!--Note validation start-->
+                                    <div class="form-group">
+                                        <label for="inputPassword3" class="col-sm-4 control-label">Note:</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-model="note" name="note" id="inputPassword3" value="" placeholder="" required>
+                                        </div>
+                                        <!-- Error Defination -->
+
+                                        <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.note.$dirty && signup1.note.$invalid">
+                                            <small class="error" ng-show="signup1.note.$error.required">
+                                                <b>please enter text</b>
+                                            </small>
+
+                                        </div>
+                                        <!-- Error Defination End -->
+                                    </div>
+                                    <!--Note validation end-->
+                                    <div class="row" style="margin-top:5px">
+                                        <div class="col-lg-5 text-right">
+                                            <!--<asp:button id="btnSave" class="form-control" placeholder="Save" cssclass="btn btn-primary" onclick="btnSave_Click" />-->
+                                            <button id="btnSave" class="form-control btn btn-primary" ng-click="savecustomer()">Save</button>
+                                        </div>
+                                        <div class="col-lg-5 text-left">
+                                            <!--<asp:button id="btnCancel" class="form-control" placeholder="Cancel" cssclass="btn btn-danger" onclick="btnCancel_Click" />-->
+                                            <button id="btnCancel" class="form-control btn btn-danger" placeholder="Cancel" ng-click="CancelCustomer()">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Modal Customer End -->
+                <!-- Item Quantity Enter Modal  -->
+                <modal class="modal fade" visible="showModal" role="dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                            <h4 class="modal-title">Enter Quantity For <b>{{itemname}}</b> </h4>
+                        </div>
+                        <div class="col-sm-12">
+
+
+
+                            <div class="col-sm-6 text-right">
+                                Available Stock :
+                            </div>
+                            <div class="col-sm-6 text-left">
+                                <input type="text" class="form-control" ng-model="getavailablestock" disabled>
+                            </div>
+                            <div class="col-sm-6 text-right">
+                                Enter Quantity :
+                            </div>
+                            <div class="col-sm-6 text-left">
+                                <input type="text" id="txtQuantity" class="form-control" value="1" ng-model="quantity" ng-change="QuantityLimit()">
+                            </div>
+                            <div class="col-sm-6 text-right">
+                                Enter Sale Price :
+                            </div>
+                            <div class="col-sm-6 text-left">
+                                <input type="text" class="form-control" ng-model="getsaleprice" disabled>
+                            </div>
+                            <div class="col-sm-6 text-right">
+                                <!--<asp:button id="btnOk" class="form-control" placeholder="Ok" cssclass="btn btn-primary" />-->
+                                <button id="btnOk" class="form-control btn btn-primary" ng-click="additeminlist()" data-dismiss="modal">Ok</button>
+                            </div>
+                            <div class="col-sm-6 text-left">
+                                <!--<asp:button id="btnCacel" class="form-control" placeholder="Cancel" cssclass="btn btn-danger" />-->
+                                <button id="btnCacel" class="form-control btn btn-danger" placeholder="Cancel" ng-click="CancelQuantity()">Cancel</button>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </modal>
+                <!-- Item Quantity Enter Modal End -->
+
+
+
+
+
+
+            </div>
+
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+    <!-- Control Sidebar -->
+    <!--for printing the page Information   page content-->
+
+    <div class="panel panel-info " ng-hide="IsHidden">
+        <div class="panel-heading ">
+
+            <h3><b> Delivery Challan Details</b></h3>
+
+        </div>
+        <div class="panel-body " style="padding: 0px">
+
+            <div class="col-sm-6 panel-body" >
+                <div class="panel panel-info ">
+                    <div class="panel-heading " style="padding:2px;">
+
+                        <b> To</b>
+
+                    </div>
+                    <div class="panel-body " style="padding: 0px">
+
+                        <div class="col-sm-12 ">
+                            <div class="col-sm-4 text-right">Customer Name:</div>
+                            <div class="col-sm-8 text-left">
+
+                                <label class="" ng-model="">{{PrintCustName}}</label>
+                            </div>
+
+
+                        </div>
+                        <div class="col-sm-12 text-right">
+                            <div class="col-sm-4">Contact No:</div>
+                            <div class="col-sm-8 text-left">
+                                <label class="" ng-model="supplierName">{{PrintCustContactNo}}</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 panel-body" >
+                <div class="panel panel-info ">
+                    <div class="panel-heading text-left" style="padding:2px">
+                        <b>Invoice#</b>
+
+                        <!--<div class="col-sm-4 form-group-sm">
+                            <input class="form-control" type="text" placeholder="Enter Invoice" ng-model="PrintInvoice" ng-hide="IsTextHide">
+                            <label class="pull-left" ng-model="PrintInvoiceno" ng-show="IsShowLbl" style="padding-top:8px; font-size:large;">{{PrintInvoice}}</label>
+                        </div>-->
+                        <!--<div class="col-sm-5">
+                            <a class="glyphicon glyphicon-edit btn btn-primary btn-sm" ng-click="editInvoice()" style="padding-top:12px;" ng-hide="IsEditHide">Edit</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp; <a class="glyphicon glyphicon-floppy-disk btn btn-primary btn-sm" style="padding-top:12px;" ng-click="saveInvoice()" ng-hide="IsSaveHide">Save</a>
+                        </div>-->
+
+                    </div>
+                    <div class="panel-body " style="padding: 0px">
+
+                        <div class="col-sm-12 ">
+                            <div class="col-sm-4 text-right">Outword Date:</div>
+                            <div class="col-sm-8 text-left">
+
+                                <label class="" ng-model="OutwordDatePayment">{{PrintOutwordDate}}</label>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-12 panel-body">
+                <div class="panel panel-info ">
+                    <div class="panel-heading">
+                        <h5>
+                            <b>
+                                Item List
+                            </b>
+                        </h5>
+                    </div>
+                    <div class="panel-body " style="padding: 0px">
+                        <table class="table table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th style="width:10px">Sr.No.</th>
+
+                                    <th>Item Name</th>
+                                    <th>Unit</th>
+                                    <th>Quantity</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="aitem in additem">
+                                    <th scope="row">{{$index+1}}</th>
+                                    <td style="display:none">{{aitem.Id}}</td>
+                                    <td style="display:none">{{aitem.Item_Id}}</td>
+
+                                    <td>{{aitem.ItemName}}</td>
+                                    <td>{{aitem.PurchaseUnitName}}</td>
+                                    <td>{{aitem.Quantity}}</td>
+
+                                    <!--<td><a ng-click="deleteitemfrmlist($index,aitem)" class=" btn btn-danger btn-sm" style="padding:0px"><i class="glyphicon glyphicon-trash"></i></a></td>-->
+                                </tr>
+
+
+
+                                <tr>
+                                    <td colspan="1" class="bg-aqua"> </td>
+                                    <td colspan="1" class="bg-aqua"> </td>
+                                    <td class=" text-center bg-aqua"> Total Quantity</td>
+                                    <td class="active bg-aqua">
+
+                                        <b style="font-size:20px">
+                                            {{totalQuantity}}
+                                        </b>
+
+                                    </td>
+
+                                    <!--<td><a ng-click="clearAll()" class="col-sm-12 btn btn-danger btn-sm" style="padding:0px"><i>All Clear</i></a></td>-->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-4">
+                    <div style="font-size:20px"><b> Note: </b> </div>
+                    <br />
+                    <div style="padding-left:50px">
+                        <p ng-model="notePayment">{{PrintNote}} </p>
+                    </div>
+
+                </div>
+                <div class="col-sm-5 pull-right">
+                    <div class="panel   ">
+                        <div class="row panel-body">
+
+                            <div class="form-group form-group-sm col-sm-12 row">
+                                <div class="text-right col-sm-7 ">Total Quantity :</div>
+                                <div class="col-sm-5 text-right">
+                                    <label ng-model="totalQuantity">{{totalQuantity}}</label>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-12 text-center" style="padding-bottom:20px">
+                <a class="btn btn-primary sidebar-toggle" data-toggle="offcanvas" role="button" style="width:180px" ng-print print-element-id="printThisElement" ng-hide="PrintBtn" ng-click="ShowMaindiv()"><i class="fa fa-print"></i> Print</a>
+            </div>
+        </div>
+    </div>
+
+    <!--End Print Code-->
+
+
+</div><!-- ./wrapper -->

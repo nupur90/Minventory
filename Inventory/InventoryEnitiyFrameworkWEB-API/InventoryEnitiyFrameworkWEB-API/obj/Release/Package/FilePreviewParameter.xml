@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="inventoryM" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\mInventory\\InventoryEnitiyFrameworkWEB-API\\InventoryEnitiyFrameworkWEB-API\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^D:\\mInventory\\InventoryEnitiyFrameworkWEB-API\\InventoryEnitiyFrameworkWEB-API\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=tcp:vl325cs3pg.database.windows.net,1433;Initial Catalog=mInventory;Integrated Security=False;User ID=mservices@vl325cs3pg;Password=Password@01;Connect Timeout=30;Encrypt=True" tags="">
+    <parameterEntry kind="XmlFile" scope="D:\\mInventory\\InventoryEnitiyFrameworkWEB-API\\InventoryEnitiyFrameworkWEB-API\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="InventoryEntities-Web.config Connection String" description="" value="metadata=res://*/Models.Inventory.csdl|res://*/Models.Inventory.ssdl|res://*/Models.Inventory.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=tcp:vl325cs3pg.database.windows.net,1433;Initial Catalog=mInventory;Integrated Security=False;User ID=mservices@vl325cs3pg;Password=Password@01;Connect Timeout=30;Encrypt=True&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="D:\\mInventory\\InventoryEnitiyFrameworkWEB-API\\InventoryEnitiyFrameworkWEB-API\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='InventoryEntities']/@connectionString" />
+  </parameter>
+</parameters>

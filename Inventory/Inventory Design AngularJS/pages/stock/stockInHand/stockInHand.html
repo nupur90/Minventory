@@ -1,0 +1,127 @@
+﻿
+<div class="  " ng-controller="stockInHandController">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="margin-left:0px;">
+        <!-- Content Header (Page header) -->
+        <section class="content-header" style="margin-bottom:5px">
+            <h1>
+                <b>Stock-In-Hand</b>
+
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Stock-In-Hand</li>
+            </ol>
+        </section>
+
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="box box-primary">
+                        <div class="box box-solid">  
+
+                        </div>
+                    </div>
+                    <div class="panel panel-primary" style="padding:0px;margin-bottom:110px">
+                        <div class="text-left panel-heading col-lg-12 panel-body">
+                            <div style="padding:4px 1px">
+                                Stock In hand
+                            </div>
+
+                        </div>
+                        <div class="panel-body " style="padding: 0px">
+                            <div class="panel panel-info">
+                                <div class="">
+                                    <div class="col-sm-12" style="padding:5px;margin-top:10px;margin-bottom:10px">
+                                        <a class="pull-right btn btn-default btn-sm"><i class="glyphicon glyphicon-print" style="font-size:13pt"></i></a>
+                                        &nbsp;&nbsp;
+                                        <a class="pull-right btn btn-default btn-sm"><i class="glyphicon glyphicon-download-alt" style="font-size:13pt"></i></a>
+
+                                    </div>
+
+                                </div>
+                                <div class=" ">
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                            
+                                            <tr class="bg-info">
+                                               
+                                                <th style="width:400px">Item Name </th>
+                                                <th>Unit</th>
+                                                <th>Sales Price</th>
+                                                <th>Purchase Price</th>
+                                                <th>Current Stock</th>
+                                                <th>Total Sales Price</th>
+                                                <th>Total Purchase Price</th>
+
+
+                                            </tr>
+                                            <tr>
+
+                                                <th style="width:400px"><input type="text" class="form-control text-center" ng-model="itemName.ItemName" /></th>
+                                                <th><input type="text" class="form-control text-center" ng-model="maxQuantity.MaxQuantity" /></th>
+                                                <th><input type="text" class="form-control text-center" ng-model="salePrice.SalePrice" /></th>
+                                                <th><input type="text" class="form-control text-center" ng-model="purchasePrice.PurchasePrice" /></th>
+                                                <th><input type="text" class="form-control text-center" ng-model="totalQuantity.TotalQuantity" /></th>
+                                                <th><input type="text" class="form-control text-center" ng-model="SalePrice1.SalePrice" /></th>
+                                                <th><input type="text" class="form-control text-center" ng-model="PurchasePrice1.PurchasePrice" /></th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in getItems | filter:itemName | filter:maxQuantity | filter:salePrice | filter:purchasePrice |filter:totalQuantity |filter:SalePrice1 | filter:PurchasePrice1" ng-hide="item.Status==false">
+
+                                                
+                                                <td>{{item.ItemName}}</td>
+                                                <td>{{item.MaxQuantity}}</td>
+                                                <td>{{item.SalePrice}}</td>
+                                                <td>{{item.PurchasePrice}}</td>
+                                                <td>{{item.TotalQuantity}}</td>
+                                                <td>{{item.SalePrice}}</td>
+                                                <td>{{item.PurchasePrice}}</td>
+
+                                            </tr>
+                                            <tr class="bg-info" ng-show="!getItems">
+                                                <td colspan="6">Loading.....</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4" class="bg-gray"><h4><b>Total</b></h4></td>
+                                                <td class="bg-gray"><h4><b>Rs.{{currntStock}}</b></h4></td>
+                                                <td class="bg-gray"><h4><b>Rs.{{totalSalePrice}}</b></h4></td>
+                                                <td class="bg-gray"><h4><b>Rs.{{totalPurchasePrice}}</b></h4></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+
+                <!-- Trigger the modal with a button -->
+                <!-- Modal -->
+
+
+            </div>
+
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+    <!-- Control Sidebar -->
+
+</div><!-- ./wrapper -->

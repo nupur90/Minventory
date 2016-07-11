@@ -1,0 +1,276 @@
+﻿
+<div ng-controller="customerChequeController">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="margin-left:0px">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                <!--{{Units}}-->
+                Customer Cheques
+                <small>Control panel</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Services</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+
+                    <div>
+                        <!--panel 1 -->
+
+                         
+
+
+                        <div class="col-md-11">
+                            <div class="box box-solid">
+                                <div class="box-header with-border bg-aqua">
+                                    <h3 class="box-title text-center ">Duration</h3>
+                                </div>
+                                <form class="form-horizontal">
+                                    <div class="box-body col-sm-12">
+
+                                        <div class="form-group col-sm-4 ">
+                                            <label for="inputEmail3" class="col-sm-4 control-label" style="margin-left:0px">Duration:</label>
+
+                                            <div class="col-xs-8">
+                                                <select class="form-control " ng-model="selectDuration" ng-change="changePaymentDate(selectDuration)">
+                                                    <option value="">Select Duration</option>
+                                                    <option value="Today">Today</option>
+                                                    <option value="LastWeek">Last Week</option>
+                                                    <option value="Last15Day">Last 15 Days</option>
+                                                    <option value="LastMonths">Last Months</option>
+                                                    <option value="Last3Months">Last 3 Months</option>
+                                                    <option value="Last6Months">Last 6 Months</option>
+                                                    <option value="LastYear">Last Year</option>
+                                                </select>
+                                                <input type="text" class="form-control" ng-model="copyDuration" ng-hide="ishide" />
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group col-sm-4 ">
+                                            <label for="inputEmail3" class="col-sm-5 control-label">Start Date:</label>
+                                            <div class="col-xs-2 date">
+                                                <div class="input-group input-append " id="datepicker">
+                                                    <input type="date" class="form-control" placeholder="dd-mm-yyyy" ng-model="manuFacturingDate" />
+                                                    <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-sm-4 ">
+                                            <label for="inputEmail3" class="col-sm-6 control-label">End Date:</label>
+                                            <div class="col-xs-2 date">
+                                                <div class="input-group input-append " id="datepicker">
+                                                    <input type="date" class="form-control" placeholder="dd-mm-yyyy" ng-model="manuFacturingDate" />
+                                                    <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+
+                                </form>
+
+                            </div><!-- /.box-body -->
+
+
+                        </div>
+                    </div><!-- /. box -->
+                    <!--panel 2 -->
+
+                    <div class="col-md-1" style="padding-top:60px;">
+                        <div class="box box-solid">
+                            <form class="form-horizontal">
+                                <div class="box-body col-sm-10">
+                                    <div class="form-group">
+
+                                        <button type="submit" class="btn btn-success col-sm-12" ng-click="Clear()">Clear</button>
+
+                                    </div>
+                                 </div><!-- /.box-body -->
+                            </form>
+
+                        </div>
+                    </div><!-- /. box -->
+                </div>
+
+
+                <!--table panel -->
+                <div class="col-md-12">
+                    <div class="box box-solid">
+                        <table class="table  table-bordered table-sortable" id="tab_logic">
+
+                            <tbody>
+                                <tr>
+                                    <td class="form-group">
+                                    <div class="form-group form-group-sm bg-aqua">
+                                        <div class="box-header with-border">
+                                            <h4 class="box-title"></h4>
+                                        </div>
+                                    </div>
+                                </td>
+                                    <!--<td>
+                                        <div class="col-sm-12 bg-aqua">
+                                            <a class="pull-right btn btn-default btn-sm"><i class="glyphicon glyphicon-print" style="font-size:13pt"></i></a>
+                                            &nbsp;&nbsp;
+                                            <a class="pull-right btn btn-default btn-sm"><i class="glyphicon glyphicon-download-alt" style="font-size:13pt"></i></a>
+
+                                        </div>
+                                    </td>-->
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="box-body">
+                            <!-- the events -->
+                            <!-- the table  eventsstart 0000000    0000000000 -->
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th>
+                                        <input type="text" id="1" style="height:31px; width:100%;" ng-model="CheckNo.ChequeNumber" />
+                                    </th>
+                                    <th>
+                                        <div>
+                                            <input type="text" id="1" style="height:31px;  width:100%;" ng-model="InvoiceNo.Id" />
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div>
+                                            <input type="text" id="1" style="height:31px;  width:100%;" ng-model="SupplierName.Name" />
+                                        </div>
+                                    </th>
+                                    <th>
+
+                                        <!--<input type="date" class="form-control" placeholder="dd-mm-yyyy" ng-model="IssueDate" style="height:31px;  width:100%;" />-->
+
+                                        <select class="form-control" ng-model="IssueDate.IssueDate" style="height:31px;  width:100%;">
+                                            <option value="">Search Here</option>
+                                            <option ng-repeat="getdate in getCustomer | unique:'IssueDate'" value="{{getdate.IssueDate}}">{{getdate.IssueDate}}</option>
+
+                                        </select>
+                                    </th>
+                                    <th>
+
+                                        <!--<input type="date" class="form-control" placeholder="dd-mm-yyyy" ng-model="DepositeDate.DepositeDate" style="height:31px;  width:100%;" />-->
+                                        <select class="form-control" ng-model="DepositeDate.DepositeDate" style="height:31px;  width:100%;">
+                                            <option value="">Search Here</option>
+                                            <option ng-repeat="getdate in getCustomer | unique:'DepositeDate'" value="{{getdate.DepositeDate}}">{{getdate.DepositeDate}}</option>
+
+                                        </select>
+
+                                    </th>
+                                    <th>
+                                        <div>
+                                            <input type="text" id="1" style="height:31px;  width:100%;" ng-model="Amount.PaidAmount" />
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div>
+                                            <input type="text" id="1" style="height:31px;  width:100%;" ng-model="Status.ChequeStatus" />
+                                        </div>
+                                    </th>
+                                    <th><span class="glyphicon glyphicon-filter"></span></th>
+
+                                </tr>
+                                <tr class="table active">
+                                    <th></th>
+                                    <th>
+                                        <!--<div class="col-lg-10">-->
+                                        <input type="checkbox" ng-model="select" style="width:65px; height:17px;" ng-change="Allchecked(select)">
+                                        <!--</div>-->
+                                    </th>
+                                    <th>Cheque Number</th>
+                                    <th>Invoice Number</th>
+                                    <th>Customer Name</th>
+                                    <th>Issue Date</th>
+                                    <th>Deposite Date</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th></th>
+
+                                </tr>
+                                <tbody>
+                                   <!-- <tr ng-repeat="data in getSuppliers  | filter:chequeNumber | filter:invoiceNumber | filter:customerName |filter:issueDate |filter:depositeDate | filter:ammount |filter:status |filter:paymentType | unique:'InvoiceNumber'">-->
+                                    <tr ng-repeat="data in getCustomer | filter:CheckNo | filter:InvoiceNo | filter:SupplierName | filter:IssueDate | filter:DepositeDate | filter:Amount | filter:Status | filter:copyDuration" ng-hide="data.Status==false">
+                                        <td>{{$index + 1}}</td>
+                                        <td><input type="checkbox" style="width:65px; height:17px;" ng-model="checkbox[$index].selected" ng-change="CheckData(checkbox[$index].selected,data)"></td>
+                                        <td>{{data.ChequeNumber}}</td>
+                                        <td>{{data.Id}}</td>
+                                        <td>{{data.Name}}</td>
+                                        <td>{{data.IssueDate}}</td>
+                                        <td>{{data.DepositeDate}}</td>
+                                        <td>{{data.PaidAmount}}</td>
+                                        <td>{{data.ChequeStatus}}</td>
+                                        <td><a ng-click="deleteCheque(data)" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></a> </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <b>{{totalch}}</b>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr class="bg-info" ng-show="!getCustomer">
+                                        <td colspan="9">Loading.....</td>
+                                    </tr>
+                                  
+
+                                </tbody>
+
+
+                            </table>
+                            <!--table coding end----->
+                        </div><!-- /.box-body -->
+                    </div><!-- /. box -->
+
+                </div><!-- /.col -->
+
+
+            </div><!-- /.col -->
+            <!-- /.col -->
+            <!-- /.row -->
+
+        </section><!-- /.content -->
+
+            </div>
+
+
+
+
+
+
+
+    <!--<div>
+
+        <div>
+            Current Date:<b> {{cdate | date:'dd/MM/yyyy hh:mm:ss a'}}</b><br />
+            Previous Day:<b> {{pday | date:'dd/MM/yyyy'}}</b><br />
+            Next Day:<b> {{nday | date:'dd/MM/yyyy'}}</b><br />
+            Previous Month:<b> {{pmonth | date:'dd/MM/yyyy'}}</b><br />
+            Next Month:<b> {{nmonth | date:'dd/MM/yyyy'}}</b><br />
+            Current Year :<b>{{cyear | date:'dd/MM/yyyy'}}</b><br />
+        </div>
+
+    </div>-->
+
+    </div><!-- /.content-wrapper -->
+
+

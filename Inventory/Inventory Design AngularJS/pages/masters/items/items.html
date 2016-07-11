@@ -1,0 +1,498 @@
+﻿
+<div class=" " ng-controller="itemController">
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="margin-left:0px">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                {{items}}
+                <small>Control panel</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Services</li>
+            </ol>
+        </section>
+
+
+        <section class="content">
+            <div class="box box-primary">
+
+            </div>
+            <div class="row">
+
+
+                <div class="col-md-5">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <h4 class="box-title">Item Name Listing</h4>
+                        </div>
+                        <div class="box-body">
+                            <!-- the events -->
+                            <!-- the table  eventsstart 0000000    0000000000 -->
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10px">Sr.No</th>
+                                        <th>Item</th>
+                                        <th>Category</th>
+                                        <th>Sale Price</th>
+                                        <th>Total Quality</th>
+                                        <th style="width: 20px">Update</th>
+                                        <th style="width: 20px">Delete</th>
+                                    </tr>
+                                </thead> 
+                                <tbody>
+                                    <tr ng-repeat="data in getItems" ng-hide="data.Status==false">
+                                        <td>{{$index + 1}}</td>
+                                        <th>{{data.ItemName}}</th>
+                                        <th>{{data.CategoryName}}</th>
+                                        <th>{{data.SalePrice}}</th>
+                                        <th>{{data.TotalQuantity}}</th>
+                                        <th><a ng-click="editItems(id=data.Id)" class="btn btn-info btn-sm" style="padding:0px"><i class="glyphicon glyphicon-edit"></i></a></th>
+                                        <th><a ng-click="deleteItem(id=data.Id)" class="btn btn-danger btn-sm" style="padding:0px"><i class="glyphicon glyphicon-trash"></i></a></th>
+
+                                    </tr>
+                                    <tr class="bg-info" ng-show="!getItems">
+                                        <td colspan="7">Loading.....</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="7" class="bg-aqua">Record Status</td>
+                                    </tr>
+                                </tbody>
+
+
+                            </table>
+                            <!--table coding end----->
+                        </div><!-- /.box-body -->
+
+
+
+                    </div><!-- /. box -->
+
+                </div><!-- /.col -->
+
+
+                <div class="col-md-5">
+                    <div class="box box-primary">
+                        <div class="box box-solid">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Item Details</h3>
+                            </div>
+                                <form class="form-horizontal" name="signup1" role="form">
+                                    <div class="box-body">
+                                        <div class="form-group" style="display:none">
+                                            <label for="inputEmail3" class="col-sm-4 control-label">ID:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" ng-model="id" id="inputEmail3" placeholder="" disabled>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-4 control-label">Code:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" ng-model="code" name="code" id="inputEmail3" ng-pattern="/^[0-9\s]*$/" placeholder="" required>
+                                            </div>
+                                            <!-- Error Defination -->
+                                            <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.code.$dirty && signup1.code.$invalid">
+                                                <small class="error" ng-show="signup1.code.$error.required">
+                                                    <b>please enter text</b>
+                                                </small>
+                                                <small class="error" ng-show="signup1.code.$error.pattern">
+                                                    <b>please enter text</b>
+                                                </small>
+                                            </div>
+                                            <!-- Error Defination End -->
+                                        </div>
+
+                                        <!--name validation start-->
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-4 control-label">Item Name:</label>
+
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" ng-model="itemName" name="Name" id="inputPassword3" value="" placeholder="" required>
+                                            </div>
+                                            <!-- Error Defination -->
+
+                                            <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.Name.$dirty && signup1.Name.$invalid">
+                                                <small class="error" ng-show="signup1.Name.$error.required">
+                                                    <b>please enter text</b>
+                                                </small>
+                                            </div>
+                                            <!-- Error Defination End -->
+                                        </div>
+                                        <!--name validation end-->
+
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-4 control-label">Manufacturer:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="inputPassword3" ng-model="manufacturer" name="manufacturer" placeholder="" required>
+                                            </div>
+                                            <!-- Error Defination -->
+
+                                            <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.manufacturer.$dirty && signup1.manufacturer.$invalid">
+                                                <small class="error" ng-show="signup1.manufacturer.$error.required">
+                                                    <b>please enter text</b>
+                                                </small>
+                                            </div>
+                                            <!-- Error Defination End -->
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-xs-4 control-label">ManuFacturing Date:</label>
+                                            <div class="col-xs-8 date">
+                                                <div class="input-group input-append " id="datepicker">
+                                                    <input type="date" class="form-control" placeholder="dd-mm-yyyy" ng-model="manuFacturingDate" />
+                                                    <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-xs-4 control-label">Expiry Date:</label>
+                                            <div class="col-xs-8 date">
+                                                <div class="input-group input-append " id="datepicker">
+                                                    <input type="date" class="form-control" placeholder="dd-mm-yyyy" ng-model="expeiryDate" />
+                                                    <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="bfh-datepicker" data-format="y-m-d" data-date="today">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-4 control-label">Cost Price:</label>
+                                            <div class="col-sm-8">
+                                                <input type="number" class="form-control " ng-model="costPrice" id="inputEmail3">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-4 control-label">Profit %:</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" ng-model="percentage" ng-change="percent(percentage)">
+                                                    <option value="">
+                                                        Select Percentage
+                                                    </option>
+                                                    <option value="{{data.ProfitPercentage}}" ng-repeat="data in getPercentage" ng-hide="data.Status==false">
+                                                        {{data.ProfitPercentage}}
+
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-4 control-label">Sales Price:</label>
+                                            <div class="col-sm-8">
+                                                <input type="number" class="form-control " ng-model="salesPrice" id="inputEmail3" disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-4 control-label">Purchase Price:</label>
+                                            <div class="col-sm-8">
+                                                <input type="number" class="form-control" id="inputEmail3" ng-model="purchasePrice">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-4 control-label">M.R.P.:</label>
+                                            <div class="col-sm-8">
+                                                <input type="number" class="form-control" id="inputEmail3" ng-model="MRP">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-4 control-label">Standard Unit:</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" ng-model="standardUnit">
+                                                    <option value="">
+                                                        Select Standard Unit
+                                                    </option>
+                                                    <option value="{{data.ID}}" ng-repeat="data in getUnits" ng-hide="data.Status==false">
+                                                        {{data.Name}}
+
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-4 control-label">Purchase Unit:</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" ng-model="purchaseUnit">
+                                                    <option value="">
+                                                        Select Purchase Unit
+                                                    </option>
+                                                    <option value="{{data.ID}}" ng-repeat="data in getUnits" ng-hide="data.Status==false">
+                                                        {{data.Name}}
+
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-4 control-label">Category:</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" ng-model="category">
+                                                    <option value="">
+                                                        Select Category
+                                                    </option>
+                                                    <option value="{{data.Id}}" ng-repeat="data in getCategories" ng-hide="data.Status==false">
+                                                        {{data.Name}}
+
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-4 control-label">Purchase Tax:</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" ng-model="purchaseTax">
+                                                    <option value="">
+                                                        Select Purchase Tax
+                                                    </option>
+                                                    <option value="{{data.Id}}" ng-repeat="data in getTaxs" ng-hide="data.Status==false">
+                                                        {{data.Name}}
+
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-4 control-label">Sales Tax:</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" ng-model="salesTax">
+                                                    <option value="">
+                                                        Select Sales Tax
+                                                    </option>
+                                                    <option value="{{data.Id}}" ng-repeat="data in getTaxs" ng-hide="data.Status==false">
+                                                        {{data.Name}}
+
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-4 control-label">Opening Stock:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="inputEmail3" ng-model="openingStock" ng-pattern="/^[0-9\s]*$/" name="openingStock" required>
+                                            </div>
+                                            <!-- Error Defination -->
+                                            <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.openingStock.$dirty && signup1.openingStock.$invalid">
+                                                <small class="error" ng-show="signup1.openingStock.$error.required">
+                                                    <b>please enter numeric</b>
+                                                </small>
+                                                <small class="error" ng-show="signup1.openingStock.$error.pattern">
+                                                    <b>please enter numeric</b>
+                                                </small>
+                                            </div>
+                                            <!-- Error Defination End -->
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-4 control-label">Ideal Quantity:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="inputEmail3" ng-model="idealQuantity" ng-pattern="/^[0-9\s]*$/" name="idealQuantity" required>
+                                            </div>
+                                            <!-- Error Defination -->
+                                            <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.idealQuantity.$dirty && signup1.idealQuantity.$invalid">
+                                                <small class="error" ng-show="signup1.idealQuantity.$error.required">
+                                                    <b>please enter numeric</b>
+                                                </small>
+                                                <small class="error" ng-show="signup1.idealQuantity.$error.pattern">
+                                                    <b>please enter numeric</b>
+                                                </small>
+                                            </div>
+                                            <!-- Error Defination End -->
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-4 control-label" style="font-size:small">Reorder Quantity:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="inputEmail3" ng-model="reorderQuantity" ng-pattern="/^[0-9\s]*$/" name="reorderQuantity" required>
+                                            </div>
+                                            <!-- Error Defination -->
+                                            <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.reorderQuantity.$dirty && signup1.reorderQuantity.$invalid">
+                                                <small class="error" ng-show="signup1.reorderQuantity.$error.required">
+                                                    <b>please enter numeric</b>
+                                                </small>
+                                                <small class="error" ng-show="signup1.reorderQuantity.$error.pattern">
+                                                    <b>please enter numeric</b>
+                                                </small>
+                                            </div>
+                                            <!-- Error Defination End -->
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-4 control-label">Max Quantity:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="inputEmail3" ng-model="maxQuantity" ng-pattern="/^[0-9\s]*$/" name="maxQuantity" required>
+                                            </div>
+                                            <!-- Error Defination -->
+                                            <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.maxQuantity.$dirty && signup1.maxQuantity.$invalid">
+                                                <small class="error" ng-show="signup1.maxQuantity.$error.required">
+                                                    <b>please enter numeric</b>
+                                                </small>
+                                                <small class="error" ng-show="signup1.maxQuantity.$error.pattern">
+                                                    <b>please enter numeric</b>
+                                                </small>
+                                            </div>
+                                            <!-- Error Defination End -->
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-4 control-label">Total Quantity:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="inputEmail3" ng-model="totalQuantity" ng-pattern="/^[0-9\s]*$/" name="totalQuantity" required>
+                                            </div>
+                                            <!-- Error Defination -->
+                                            <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.totalQuantity.$dirty && signup1.totalQuantity.$invalid">
+                                                <small class="error" ng-show="signup1.totalQuantity.$error.required">
+                                                    <b>please enter numeric</b>
+                                                </small>
+                                                <small class="error" ng-show="signup1.totalQuantity.$error.pattern">
+                                                    <b>please enter numeric</b>
+                                                </small>
+                                            </div>
+                                            <!-- Error Defination End -->
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-4 control-label">Allow Sales:</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" ng-model="allowSales">
+                                                    <option value="">
+                                                        Select Sales
+                                                    </option>
+                                                    <option value='true'>
+                                                        YES
+                                                    </option>
+                                                    <option value='false'>
+                                                        No
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-4 control-label">Allow Purchase:</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" ng-model="allowPurchase">
+                                                    <option value="">
+                                                        Select Purchase
+                                                    </option>
+                                                    <option value='true'>
+                                                        YES
+                                                    </option>
+                                                    <option value='false'>
+                                                        No
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-4 control-label">Allow Inward:</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" ng-model="allowInword">
+                                                    <option value="">
+                                                        Select Inward
+                                                    </option>
+                                                    <option value='true'>
+                                                        YES
+                                                    </option>
+                                                    <option value='false'>
+                                                        No
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputPassword3" class="col-sm-4 control-label">Allow Outward:</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" ng-model="allowOutword">
+                                                    <option value="">
+                                                        Select Outward
+                                                    </option>
+                                                    <option value='true'>
+                                                        YES
+                                                    </option>
+                                                    <option value='false'>
+                                                        No
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!--Description validation start-->
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-4 control-label">Description:</label>
+
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" ng-model="description" name="description" id="inputEmail3" value="" placeholder="" required>
+                                            </div>
+                                            <!-- Error Defination -->
+                                            <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.description.$dirty && signup1.description.$invalid">
+                                                <small class="error" ng-show="signup1.description.$error.required">
+                                                    <b>please enter text</b>
+                                                </small>
+                                            </div>
+                                            <!-- Error Defination End -->
+                                        </div>
+                                        <!--Description validation end-->
+
+                                       
+
+                                    </div><!-- /.box-body -->
+                                    <div class="box-footer">
+                                        <a class="btn btn-success col-sm-8" ng-show="btnsave" ng-click="save()">Save</a>
+                                        <a class="btn btn-info col-sm-8" ng-show="btnupdate" ng-click="update()">Update</a>
+                                        <a class="btn btn-danger pull-right" ng-click="cancelAndNew()">Cancel</a>
+                                    </div><!-- /.box-footer -->
+                                </form>
+                        </div>
+                    </div><!-- /. box -->
+                </div><!-- /.col -->
+
+
+                <div class="col-md-2">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <form class="form-horizontal">
+                
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary col-md-12" ng-click="cancelAndNew()">New</button>
+                                </div>
+
+                            </form>
+                            <div class="box-body">
+                                <!-- the events -->
+
+                            </div><!-- /.box-body -->
+                        </div><!-- /. box -->
+
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+
+
+            </div>
+        </section><!-- /.content -->
+
+
+    </div><!-- /.content-wrapper -->
+    <!-- Control Sidebar -->
+
+</div><!-- ./wrapper -->

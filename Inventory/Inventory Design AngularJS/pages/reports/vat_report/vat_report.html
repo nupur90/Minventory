@@ -1,0 +1,400 @@
+﻿<div class="  " ng-controller="vatReportController">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="margin-left:0px;">
+        <!-- Content Header (Page header) -->
+        <section class="content-header" style="margin-bottom:5px">
+            <h1>
+                Reports
+                <small>Control panel</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Reports</li>
+            </ol>
+        </section>
+
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="row">
+
+                <div class="col-lg-12">
+
+                    <div class="box box-primary">
+                        <div class="box box-solid">
+
+                        </div>
+                    </div>
+
+                    <div class="panel panel-primary" style="padding:0px;margin-bottom:110px">
+                        <div class="text-center panel-heading col-lg-12 panel-body">
+                            <div style="padding:4px 1px">
+                                Duration
+                                <a href="/#/reports" class="btn btn-default pull-left"><i class="glyphicon glyphicon-arrow-left"></i>&nbsp;&nbsp;Back</a>
+                            </div>
+
+                        </div>
+                        <div class="panel-body " style="padding: 0px">
+
+                            <table class="table  table-bordered table-sortable" id="tab_logic">
+
+                                <tbody>
+                                    <tr>
+                                        <td class="form-group">
+                                            <div class="form-group form-group-sm">
+                                                <div class="pull-left col-sm-3 " style="padding:4px 2px">Duration:</div>
+                                                <div class="col-sm-9" style="padding-left:5px">
+                                                    <select class="form-control input-sm" ng-model="selectDuration" ng-change="showhide()">
+                                                        <option value="">Select Duration</option>
+                                                        <option value="Today">Today</option>
+                                                        <option value="LastWeek">Last Week</option>
+                                                        <option value="Last15Day">Last 15 Days</option>
+                                                        <option value="LastMonths">Last Months</option>
+                                                        <option value="Last3Months">Last 3 Months</option>
+                                                        <option value="Last6Months">Last 6 Months</option>
+                                                        <option value="LastYear">Last Year</option>
+                                                    </select>
+                                                </div>
+
+
+                                            </div>
+                                        </td>
+                                        <td data-name="mail">
+                                            <div class="form-group form-group-sm">
+                                                <div class="pull-left col-sm-3 " style="padding:4px 1px">Start Date:</div>
+
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="datetime" ng-model="startDate" placeholder="Select Date" ng-hide="strartDatehide" ng-click="textDate()">
+
+                                                    <input class="form-control" type="date" ng-model="startDate" placeholder="Select Date" ng-hide="strartdatePic">
+
+                                                    <!--<input class="form-control" type="text" ng-model="txtStartDates" ng-hide="strartDatehide" value="{{startDate | datetime:'MMM-yyyy'}}" />-->
+                                                </div>
+
+                                            </div>
+                                        </td>
+
+                                        <td data-name="sel">
+                                            <div class="form-group form-group-sm">
+                                                <div class="pull-left col-sm-3 " style="padding:4px 1px">End Date:</div>
+
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" type="datetime" ng-model="endDate" ng-hide="endDatehide" ng-click="textDate()">
+
+                                                    <input class="form-control" type="date" ng-model="endDate" ng-hide="enddatePic">
+                                                    <!--<input class="form-control" type="text" ng-model="txtEndDate" ng-hide="endDatehide" ng-click="textDate()" />-->
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-4">
+                                                    <input type="button" class="btn btn-primary" value="Show" ng-click="ShowRecords()" />
+                                                </div>
+                                                <div class="col-sm-8">
+
+                                                    <a class="pull-left btn btn-default btn-sm"><i class="glyphicon glyphicon-print" style="font-size:13pt"></i></a>
+                                                    &nbsp;&nbsp;
+                                                    <a class=" btn btn-default btn-sm"><i class="glyphicon glyphicon-download-alt" style="font-size:13pt"></i></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+
+                            <div class="panel panel-info">
+                                <div class="panel-heading panel-body" style="padding:5px">
+
+
+                                </div>
+                                <section class="content">
+
+                                    <div class="row" ng-hide="tablediv">
+
+                                        <!--Modal-->
+                                        <!--Daily Sale Register Report modal-->
+                                        <div>
+                                            <div>
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header center">
+                                                        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                                                        <h3 class="modal-title text-center">
+
+                                                            <b>
+                                                                VALUE ADDED TAX REPORT
+                                                            </b>
+
+                                                        </h3>
+                                                        <a class="btn btn-primary pull-right" data-toggle="offcanvas" role="button" style="width:100px; padding-top:10px;" ng-print print-element-id="printThisElement" data-dismiss="modal" ng-hide="PrintBtn" ng-click="ShowMaindiv()"><i class="fa fa-print"></i> Print</a>
+
+
+                                                    </div>
+
+                                                    <br />
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4">
+
+                                                            <h4>
+                                                                <span>
+
+                                                                    <b>
+                                                                        Company Name:&nbsp;{{companyName}}
+                                                                    </b>
+                                                                </span>
+                                                            </h4>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4">
+
+                                                            <h4>
+                                                                <span>
+
+                                                                    <b>
+                                                                        Address:&nbsp;{{address}}
+                                                                    </b>
+                                                                </span>
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4">
+
+                                                            <h4>
+                                                                <span>
+
+                                                                    <b>
+                                                                        TIN No:&nbsp;{{tinNo}}
+                                                                    </b>
+                                                                </span>
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-3">
+
+                                                            <h4>
+                                                                <span>
+
+                                                                    <b>
+                                                                        <span><b>Period :&nbsp; {{startDate | date:'dd/MM/yyyy'}}&nbsp;&nbsp; 6.00 AM</b></span>
+                                                                    </b>
+                                                                </span>
+                                                            </h4>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <h4>
+                                                                <span>
+
+                                                                    <b>
+                                                                        <span><b>To:&nbsp; {{endDate | date:'dd/MM/yyyy'}}&nbsp;&nbsp;5.59 AM</b></span>
+                                                                    </b>
+                                                                </span>
+                                                            </h4>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <br />
+                                                    <div class="col-sm-12">
+
+                                                        <div class="panel panel-primary">
+
+                                                            <div class="panel-body " style="padding:0px">
+                                                                <div class="col-sm-12 ">
+
+                                                                    <div class="panel panel-primary col-sm-6">
+                                                                        <div class="panel-heading text-center">
+                                                                            Purchase
+                                                                        </div>
+                                                                        <div class="panel-body ">
+                                                                            <div class="col-sm-12">
+                                                                                <table class="table table-bordered table-striped" style="border-bottom-color:black;">
+                                                                                    <thead>
+                                                                                        <tr class="info ">
+                                                                                            <th>Tax</th>
+                                                                                            <th>Purchase Amount </th>
+                                                                                            <th>Input Tax Amount</th>
+
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr ng-repeat="data in getData">
+                                                                                            <td>{{data.PurchaseTaxRate}}</td>
+                                                                                            <td>{{data.PurchaseAmount}}</td>
+                                                                                            <td>{{data.InputTaxAmount}}</td>
+
+                                                                                        </tr>
+                                                                                    </tbody>
+
+                                                                                </table>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="panel panel-primary col-sm-6">
+                                                                        <div class="panel-heading text-center">
+                                                                            Sales
+                                                                        </div>
+                                                                        <div class="panel-body ">
+                                                                            <div class="col-sm-12">
+                                                                                <table class="table table-bordered table-striped" style="border-bottom-color:black;">
+                                                                                    <thead>
+                                                                                        <tr class="info ">
+                                                                                            <th>Tax</th>
+                                                                                            <th>Sales Amount </th>
+                                                                                            <th>OutPut Tax Amount</th>
+
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr ng-repeat="data in getData">
+                                                                                            <td>{{data.SalesTaxRate}}</td>
+                                                                                            <td>{{data.SaleAmount}}</td>
+                                                                                            <td>{{data.OutputTaxAmount}}</td>
+
+                                                                                        </tr>
+                                                                                    </tbody>
+
+                                                                                </table>
+
+                                                                            </div>
+
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-sm-12 ">
+                                                                        <h4>
+                                                                            <b>
+                                                                                Amount Payable =&nbsp; &nbsp;Output tax Amount - Input tax Amount
+                                                                                <br />
+                                                                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                                                =&nbsp; &nbsp;{{saleTaxTotal}}&nbsp; &nbsp;- &nbsp; &nbsp;{{purchaseTaxTotal}}
+                                                                                <br />
+
+                                                                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                                                =&nbsp; &nbsp;{{amountPayable}}
+
+                                                                            </b>
+                                                                        </h4>
+
+                                                                    </div>
+                                                                    <div class="col-sm-12 " style="float:left">
+                                                                        <h4>
+                                                                            <b>
+                                                                                Declaration
+
+                                                                            </b>
+                                                                        </h4>
+                                                                        <p>
+                                                                            <h4>
+                                                                                <b>
+                                                                                    1. I / We T.Salvam declare that to the best of my / our knowledge and belief the information furnished in the above
+                                                                                    statment is true and complete.
+                                                                                    <br />
+                                                                                    2. I / We T.Salvam declare that I am / We are authorised by(Proprietor/ Partner / Board of director) to sign the return.
+
+                                                                                </b>
+                                                                            </h4>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-12 " style="margin-top:45px">
+                                                                    <div class="col-sm-2 " style="float:left">
+                                                                        <h4>
+                                                                            <b>
+                                                                                Place
+                                                                            </b>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+
+                                                                    </div>
+                                                                    <div class="col-sm-2" style="float:left">
+                                                                        <h4>
+                                                                            <b>
+                                                                                Signature
+                                                                            </b>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="col-sm-2">
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-12 " style="margin-top:15px;margin-bottom:45px;">
+                                                                    <div class="col-sm-2 " style="float:left">
+                                                                        <h4>
+                                                                            <b>
+                                                                                Date
+                                                                            </b>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+
+                                                                    </div>
+                                                                    <div class="col-sm-2" style="float:left">
+                                                                        <h4>
+                                                                            <b>
+                                                                                Name
+                                                                            </b>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="col-sm-2">
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <!--Monthly Profit And Loss modal-->
+
+
+
+
+                                    </div>
+                                </section>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- /.content-wrapper -->
+        <!-- Add the sidebar's background. This div must be placed
+             immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+
+    </div>
+</div>

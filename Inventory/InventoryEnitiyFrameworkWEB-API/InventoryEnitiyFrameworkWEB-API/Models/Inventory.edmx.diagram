@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a944d4b1767e4c0cbdcbe5ece0a3edda" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="InventoryModel.BankAccount" Width="1.5" PointX="13" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Bank" Width="1.5" PointX="10.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.BusinessDetail" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Category" Width="1.5" PointX="8.25" PointY="44.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.City" Width="1.5" PointX="5.25" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Company" Width="1.5" PointX="7.5" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.ContraEntry" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Country" Width="1.5" PointX="0.75" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Customer_Item_Invoice" Width="1.5" PointX="12.75" PointY="27" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.CustomerPayment" Width="1.5" PointX="9.75" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Customer" Width="1.5" PointX="7.5" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.DeliveryChallan" Width="1.5" PointX="12.75" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Expens" Width="1.5" PointX="12.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.ForgetPassword" Width="1.5" PointX="5.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Item" Width="1.5" PointX="10.5" PointY="42" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Language" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.LogIn" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Menu" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.NewStockItem" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.NewStock" Width="1.5" PointX="7.5" PointY="34.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.NewUnit" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Notification" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Organisation" Width="1.5" PointX="2.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.PartyPayment" Width="1.5" PointX="9.75" PointY="35.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.PaymentCustomerPayment" Width="1.5" PointX="8" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Payment" Width="1.5" PointX="5.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.PaymentSupplier" Width="1.5" PointX="8" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Percentage" Width="1.5" PointX="4.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.PurchaseInvoice" Width="1.5" PointX="10.5" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.QuantityAndPrice" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.RoleOfUser" Width="1.5" PointX="8" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.SalesInvoiceCustomer" Width="1.5" PointX="9.75" PointY="39.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.SalesInvoice" Width="1.5" PointX="12.75" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Service" Width="1.5" PointX="10.5" PointY="49.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.State" Width="1.5" PointX="3" PointY="28.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.StockInHand" Width="1.5" PointX="14.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.SubMenu" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Supplier_Item_Invoice" Width="1.5" PointX="15.75" PointY="29.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.SupplierPayment" Width="1.5" PointX="10.5" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Supplier" Width="1.5" PointX="8.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Tax" Width="1.5" PointX="14.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Unit" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.User" Width="1.5" PointX="10.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Country_State_City_View" Width="1.5" PointX="15.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Customer_View" Width="1.5" PointX="14.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.ServicesView" Width="1.5" PointX="16.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Supplier_View" Width="1.5" PointX="16.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_Bank_Accounts" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_Banks" Width="1.5" PointX="0.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_Categories" Width="1.5" PointX="2.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_Companies" Width="1.5" PointX="4.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_Country" Width="1.5" PointX="17.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_Customer_Item_Invoice" Width="1.5" PointX="16.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_Customer_Ledger" Width="1.5" PointX="18.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_Customer_Payment_SalesInvoice" Width="1.5" PointX="18.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_CustomerCheque" Width="1.5" PointX="18.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.view_CustomerPayment" Width="1.5" PointX="19.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_Item" Width="1.5" PointX="20.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_Item_For_Delivery_Challan" Width="1.5" PointX="20.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_New_Units" Width="1.5" PointX="21.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_PartyPayment" Width="1.5" PointX="22.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_Role" Width="1.5" PointX="22.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_State" Width="1.5" PointX="22.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_Supplier_Item_Invoice" Width="1.5" PointX="22.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_Supplier_Ledger" Width="1.5" PointX="18.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_Supplier_PurcchaseIvoice_SupplierPayment" Width="1.5" PointX="24.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_SupplierCheque" Width="1.5" PointX="24.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_SupplierPayment" Width="1.5" PointX="24.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_Unit" Width="1.5" PointX="0.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_Users" Width="1.5" PointX="24.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.View_Users_Role" Width="1.5" PointX="24.75" PointY="20.75" IsExpanded="true" />
+        <AssociationConnector Association="InventoryModel.FK_Items_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_Services_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_Companies_City" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_Customers_City" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_DeliveryChallan_City" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_NewStocks_City" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_PurchaseInvoices_City" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_SalesInvoices_City" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_State_City" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_Companies_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_Companies_State" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_Country_State" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_Customer_Item_Invoice_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_Customer_Item_Invoice_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_CustomerPayments_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_DeliveryChallan_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_PartyPayments_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_SalesInvoiceCustomer_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_SalesInvoices_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_Supplier_Item_Invoice_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_SubMenuMenu" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_NewUnits_FromUnits" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_NewUnits_ToUnits" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_PaymentCustomerPayment_Payment" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_PaymentSupplier_Payment" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_PurchaseInvoices_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_QuantityAndPrice_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_Users_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_Supplier_Item_Invoice_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.FK_SupplierSupplyerPayment" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.BankBankAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryModel.ForgetPasswordRoleOfUsers" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="InventoryModel.View_StockReconciliations" Width="1.5" PointX="21.375" PointY="25.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

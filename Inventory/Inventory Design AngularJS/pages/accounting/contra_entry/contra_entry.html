@@ -1,0 +1,186 @@
+﻿
+<div ng-controller="contraEntryController">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper" style="margin-left:0px">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                <!--{{Units}}-->
+                Contra Entry
+                <small>Control panel</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Services</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+
+                    </div>
+                    <div class="col-md-12">
+                        <!--panel 1-->
+
+                        <div class="col-md-12">
+                            <div class="box box-solid">
+                                <div class="box-header with-border bg-aqua">
+                                    <h3 class="box-title text-center"></h3>
+                                </div>
+                                <form class="form-horizontal" name="signup1">
+                                    <div class="box-body col-sm-12">
+
+                                        <div class="pull-right form-group col-lg-6">
+                                            <label for="inputEmail3" class="col-sm-4 control-label">Payment Date:</label>
+                                            <div class="col-xs-8 date">
+                                                <div class="input-group input-append " id="datepicker">
+                                                    <input type="date" class="form-control" ng-model="PaymentDate" />
+                                                    <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+
+                                            <div class="form-group panel-body col-lg-6" style="padding-left:110px;">
+
+                                                <strong class="control-label">From :</strong>
+                                                &nbsp; &nbsp;
+                                                <label for="frmcashRadio">Cash&nbsp;</label>
+                                                <input id="frmcashRadio" type="radio" ng-model="Value" value="frmCash" checked/>
+                                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                <label for="frmbankRadio">Bank&nbsp;</label>
+                                                <input id="frmbankRadio" type="radio" ng-model="Value" value="frmBank"/>
+
+                                            </div>
+                                            <div class="form-group panel-body col-lg-6" style="padding-left:110px;">
+                                                <strong class="control-label">To :</strong>
+                                                &nbsp; &nbsp;
+                                                <label for="TocashRadio">Cash:&nbsp;</label>
+                                                <input id="TocashRadio" type="radio" ng-model="ToValue" value="tocash" />
+                                                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                <label for="TobankRadio">Bank:&nbsp;</label>
+                                                <input id="TobankRadio" type="radio" ng-model="ToValue" value="tobank" checked />
+
+
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="col-md-12">
+                                            <div class="form-group col-lg-6" ng-show="Value=='frmCash'">
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="col-sm-4 control-label">Cash Account:</label>
+
+                                                    <div class="col-sm-8">
+                                                        <select id="Select1" class="form-control" ng-model="selectfromcash" >
+                                                            <option value="">Select Bank Account</option>
+                                                            <option ng-repeat="bankAcc in getBankAccounts" value="{{bankAcc.AccountNumber}}">{{bankAcc.AccountNumber}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-lg-6" ng-show="Value=='frmBank'">
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="col-sm-4 control-label">Bank Account:</label>
+
+                                                    <div class="col-sm-8">
+                                                        <select id="Select1" class="form-control" ng-model="selectfrombank" >
+                                                           <option value="">Select Bank Account</option>
+                                                            <option ng-repeat="bankAcc in getBankAccounts" value="{{bankAcc.AccountNumber}}">{{bankAcc.AccountNumber}}</option>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-lg-6" ng-show="ToValue=='tocash'">
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="col-sm-4 control-label">Cash Account:</label>
+
+                                                    <div class="col-sm-8">
+                                                        <select id="Select1" class="form-control" ng-model="selecttocash">
+                                                            <option value="">Select Cash Account</option>
+                                                            <option ng-repeat="bankAcc in getBankAccounts" value="{{bankAcc.AccountNumber}}">{{bankAcc.AccountNumber}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-lg-6" ng-show="ToValue=='tobank'">
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="col-sm-4 control-label">Bank Account:</label>
+
+                                                    <div class="col-sm-8">
+                                                        <select id="Select1" class="form-control" ng-model="selecttobank" >
+                                                            <option value="">Select Bank Account</option>
+                                                            <option ng-repeat="bankAcc in getBankAccounts" value="{{bankAcc.AccountNumber}}">{{bankAcc.AccountNumber}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-12">
+                                            <div class="form-group col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="inputEmail3" class="col-sm-4 control-label">Ammount:</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="number" class="form-control" ng-model="ammount" name="ammount" id="inputEmail3" value="" placeholder="" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="form-group col-lg-10">
+                                                <label for="inputEmail3" class="col-sm-2 control-label">Note:</label>
+                                                <div class="col-sm-10">
+                                                    <textarea type="text" class="form-control" ng-model="notes" name="note" required></textarea>
+                                                </div>
+                                            </div>
+                                            <!-- Error Defination -->
+
+                                            <div class="error-container" style="margin-bottom: 5px; margin-left:170px;" ng-show="signup1.note.$dirty && signup1.note.$invalid">
+                                                <small class="error" ng-show="signup1.note.$error.required">
+                                                    <b>please enter text</b>
+                                                </small>
+                                            </div>
+                                            <!-- Error Defination End -->
+                                        </div>
+
+                                        <div class="box-footer">
+                                            <a class="btn btn-danger pull-right" ng-click="cancelAndNew()">Cancel</a>
+                                            <a class="btn btn-success pull-right col-sm-1" ng-click="transfer()">Transfer</a>
+
+                                        </div><!-- /.box-footer -->
+
+
+                                    </div><!-- /.box-body -->
+                                    <div class="box-body">
+
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div><!-- /. box -->
+
+                    </div>
+
+                </div><!-- /.col -->
+                <!-- /.col -->
+                <!-- /.row -->
+            </div>
+
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+
+</div>
